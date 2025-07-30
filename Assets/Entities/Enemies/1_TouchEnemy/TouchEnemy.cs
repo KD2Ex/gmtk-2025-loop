@@ -16,16 +16,24 @@ namespace Entities.Enemies._1_TouchEnemy
         [SerializeField] private Attack attack;
 
         [SerializeField] private float damage;
+        [SerializeField] private float knockbackForce;
         //[SerializeField] private EnemySensor attackSensor;
         
         private Rigidbody2D rb;
         private Player player;
+
+        private bool disableChase = false;
+
+        private Timer afterAttackHit;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
 
             attack.damage = damage;
+            attack.knockbackForce = knockbackForce;
+
+            afterAttackHit = new Timer(.5f, true);
         }
 
         private void OnEnable()
@@ -33,6 +41,9 @@ namespace Entities.Enemies._1_TouchEnemy
             chaseSensor.OnEnter += OnPlayerEnterChase;
 
             healthComponent.OnDeath += Die;
+
+            attack.OnHit += OnAttackHit;
+            afterAttackHit.Timeout += OnAfterAttackHit;
         }
 
         private void OnDisable()
@@ -40,6 +51,9 @@ namespace Entities.Enemies._1_TouchEnemy
             chaseSensor.OnEnter -= OnPlayerEnterChase;
             
             healthComponent.OnDeath -= Die;
+            
+            attack.OnHit -= OnAttackHit;
+            afterAttackHit.Timeout -= OnAfterAttackHit;
         }
 
         private void OnPlayerEnterChase(Player player)
@@ -47,9 +61,24 @@ namespace Entities.Enemies._1_TouchEnemy
             this.player = player;
         }
 
+        private void OnAttackHit()
+        {
+            disableChase = true;
+            rb.velocity = Vector2.zero;
+            afterAttackHit.Start();
+        }
+
+        private void OnAfterAttackHit()
+        {
+            disableChase = false;
+        }
+
         private void Update()
         {
+            afterAttackHit.Tick(Time.deltaTime);
+            
             if (!player) return;
+            if (disableChase) return;
 
             Chase();
         }
