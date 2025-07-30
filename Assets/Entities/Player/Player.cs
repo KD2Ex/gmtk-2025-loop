@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Damage;
+using Health;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private float moveSpeed = 100f;
+    [SerializeField] private HealthComponent healthComponent;
+    
     private Rigidbody2D rb;
     private PlayerInput input;
 
@@ -63,5 +67,11 @@ public class Player : MonoBehaviour
     public void Move()
     {
         rb.velocity = moveInput * moveSpeed;
+    }
+
+    public void TakeDamage(DamageMessage message)
+    {
+        healthComponent.Remove(message.damage);
+        print("Player's Heath's: " + healthComponent.Value);
     }
 }
