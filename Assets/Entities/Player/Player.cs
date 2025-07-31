@@ -3,6 +3,7 @@ using Damage;
 using Entities;
 using Health;
 using Knockback;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,10 +22,15 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private KnockbackComponent knockback;
     [SerializeField] private Attack attack;
     [SerializeField] private Transform attackPivot;
+    [SerializeField] private RangedWeapon rangedWeapon;
     [SerializeField] private float damage;
     [SerializeField] private float attackCooldown = 0.25f;
     [SerializeField] private float iTime = .5f;
     [SerializeField] private Color dashColor;
+    
+    [Space(5)]
+    
+    [SerializeField] private TMP_Text hp;
     
     private Rigidbody2D rb;
     private Dash dash;
@@ -65,6 +71,7 @@ public class Player : MonoBehaviour, IDamageable
         var moveAction = input.currentActionMap.FindAction("Move");
         var attackAction = input.currentActionMap.FindAction("Attack");
         var dashAction = input.currentActionMap.FindAction("Dash");
+        var shootAction = input.currentActionMap.FindAction("Shoot");
 
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
@@ -74,7 +81,11 @@ public class Player : MonoBehaviour, IDamageable
 
         dashAction.started += OnDash;
 
+        shootAction.started += OnShoot;
+
         dash.Finished += OnDashFinished;
+
+        healthComponent.OnValueChanged += OnHpChanged;
     }
 
     private void OnDisable()
@@ -82,6 +93,7 @@ public class Player : MonoBehaviour, IDamageable
         var moveAction = input.currentActionMap.FindAction("Move");
         var attackAction = input.currentActionMap.FindAction("Attack");
         var dashAction = input.currentActionMap.FindAction("Dash");
+        var shootAction = input.currentActionMap.FindAction("Shoot");
         
         moveAction.performed -= OnMove;
         moveAction.canceled -= OnMove;
@@ -92,6 +104,15 @@ public class Player : MonoBehaviour, IDamageable
         dashAction.started -= OnDash;
         
         dash.Finished -= OnDashFinished;
+        
+        shootAction.started -= OnShoot;
+        
+        healthComponent.OnValueChanged -= OnHpChanged;
+    }
+
+    private void OnHpChanged(float current, float max)
+    {
+        hp.text = current.ToString();
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -144,6 +165,13 @@ public class Player : MonoBehaviour, IDamageable
         hitbox.excludeLayers = LayerMask.GetMask("Enemy");
         sprite.color = dashColor; // new Color(ogColor.r, ogColor.g, ogColor.b, .5f);
         dash.Execute(dir);
+    }
+
+    private void OnShoot(InputAction.CallbackContext context)
+    {
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var dir = (mousePos - transform.position).normalized;
+        rangedWeapon.Shoot(dir);
     }
 
     private void OnDashFinished()
