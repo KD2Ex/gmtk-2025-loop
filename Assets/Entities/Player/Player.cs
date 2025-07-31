@@ -1,13 +1,21 @@
 using Attacks;
 using Damage;
+using Entities;
 using Health;
 using Knockback;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum PlayerDashType
+{
+    Mouse,
+    Movement
+}
+
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private float moveSpeed = 100f;
+    [SerializeField] private CircleCollider2D hitbox;
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private KnockbackComponent knockback;
@@ -18,6 +26,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float iTime = .5f;
     
     private Rigidbody2D rb;
+    private Dash dash;
     private PlayerInput input;
 
     private Vector2 moveInput;
@@ -31,11 +40,14 @@ public class Player : MonoBehaviour, IDamageable
 
     private Color ogColor;
 
+    private PlayerDashType dashType = PlayerDashType.Movement;
+
     private void Awake()
     {
         ogColor = sprite.color;
         
         rb = GetComponent<Rigidbody2D>();
+        dash = GetComponent<Dash>();
         input = GetComponent<PlayerInput>();
 
         knockback.velocitySetter = SetVelocity;
@@ -51,25 +63,34 @@ public class Player : MonoBehaviour, IDamageable
     {
         var moveAction = input.currentActionMap.FindAction("Move");
         var attackAction = input.currentActionMap.FindAction("Attack");
-
+        var dashAction = input.currentActionMap.FindAction("Dash");
 
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
 
         attackAction.started += OnAttack;
         attackAction.canceled += OnAttack;
+
+        dashAction.started += OnDash;
+
+        dash.Finished += OnDashFinished;
     }
 
     private void OnDisable()
     {
         var moveAction = input.currentActionMap.FindAction("Move");
         var attackAction = input.currentActionMap.FindAction("Attack");
+        var dashAction = input.currentActionMap.FindAction("Dash");
         
         moveAction.performed -= OnMove;
         moveAction.canceled -= OnMove;
         
         attackAction.started -= OnAttack;
         attackAction.canceled -= OnAttack;
+        
+        dashAction.started -= OnDash;
+        
+        dash.Finished -= OnDashFinished;
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -86,7 +107,7 @@ public class Player : MonoBehaviour, IDamageable
         if (context.performed || context.canceled) return;
 
         if (!attackReady) return;
-
+        if (dash.IsDashing && dash.TimeRemain < 0.8f) return;
 
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var dir = (mousePos - transform.position).normalized;
@@ -101,6 +122,32 @@ public class Player : MonoBehaviour, IDamageable
         attackReady = false;
 
         attackTimer.Start();
+    }
+
+    private void OnDash(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+
+        Vector2 dir = lastMoveDir;
+        switch (dashType)
+        {
+            case PlayerDashType.Movement:
+                dir = lastMoveDir;
+                break;
+            case PlayerDashType.Mouse:
+                var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                dir = (mousePos - transform.position).normalized;
+                break;
+        }
+        
+        hitbox.excludeLayers = LayerMask.GetMask("Enemy");
+        
+        dash.Execute(dir);
+    }
+
+    private void OnDashFinished()
+    {
+        hitbox.excludeLayers = 0;
     }
 
     private void OnAttackTimerTimeout()
@@ -131,6 +178,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         //moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
         if (knockback.IsRunning) return;
+        if (dash.IsDashing) return;
         Move();
         //print(rb.velocity);
     }
@@ -143,6 +191,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(DamageMessage message)
     {
+        if (dash.IsDashing) return;
         if (invincible) return;
         
         healthComponent.Remove(message.damage);
