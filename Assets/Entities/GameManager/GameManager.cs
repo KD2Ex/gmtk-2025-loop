@@ -6,6 +6,7 @@ using Entities.Enemies._1_TouchEnemy;
 using Entities.Enemies._2_RangedEnemy;
 using Entities.Enemies._3_TankEnemy;
 using Entities.Enemies._4_DashEnemy;
+using Unity.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -28,6 +29,7 @@ public class EnemyTypePrefab
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public bool spawnOnStart;
 
     [SerializeField] private List<EnemySpawner> spawners;
     // [SerializeField] private TouchEnemy touchEnemy;
@@ -85,12 +87,23 @@ public class GameManager : MonoBehaviour
     };
 
     public int DifficultyLevel;
+    [ReadOnly] public float Coeff;
+
+    private int stagesCompleted = 0;
+    private float stageFactor = 0;
+    private int minutesPassed = 0;
+
+    private float timeFactor = 0.0506f;
+    private float playerFactor = 1f;
+
+    private Timer difficultyTimer;
       
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            difficultyTimer = new Timer(5f,  false);
             return;
         }
         
@@ -154,6 +167,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         
         enemyRanges.Add(touchEnemyAmountRanges);
         enemyRanges.Add(rangedEnemyAmountRanges);
@@ -161,13 +175,55 @@ public class GameManager : MonoBehaviour
         enemyRanges.Add(dashEnemyAmountRanges);
         enemyRanges.Add(explosiveEnemyAmountRanges);
         
-        InitLevel();
+        
+        difficultyTimer.Start();
+        if (spawnOnStart)
+            InitLevel();
+    }
+
+    private void OnEnable()
+    {
+        difficultyTimer.Timeout += DifficultyTimerTimeout;
+    }
+
+    private void OnDisable()
+    {
+        difficultyTimer.Timeout -= DifficultyTimerTimeout;
     }
 
     // Update is called once per frame
     void Update()
     {
+        difficultyTimer.Tick(Time.deltaTime);
+    }
+
+    private void DifficultyTimerTimeout()
+    {
+        minutesPassed++;
+        CalculateDifficultyLevel();
         
+        print(DifficultyLevel);
+    }
+
+    public float CalculateCoeff()
+    {
+        CalculateStageFactor();
+        var coeff = (playerFactor + timeFactor * minutesPassed) * stageFactor;
+
+        Coeff = coeff;
+        
+        return coeff;
+    }
+
+    private void CalculateDifficultyLevel()
+    {
+        CalculateCoeff();
+        DifficultyLevel = Mathf.FloorToInt(1 + (Coeff - playerFactor) / 0.33f);
+    }
+
+    private void CalculateStageFactor()
+    {
+        stageFactor = Mathf.Pow(1.15f, stagesCompleted);
     }
      
 }
