@@ -57,6 +57,7 @@ public class ExplosiveEnemy : Enemy, IDamageable
     private void OnReachedPlayer(Player player)
     {
         health.isDead = true;
+        Detonate();
         Die();
         
         attackSensor.OnEnter -= OnReachedPlayer;
@@ -73,10 +74,15 @@ public class ExplosiveEnemy : Enemy, IDamageable
 
     private void Die()
     {
-        attack.Execute(damage, knockbackForce);
         rb.velocity = Vector2.zero;
+        rb.excludeLayers = LayerMask.GetMask("Enemy", "Player", "Default");
         sprite.color = Color.black;
         //Destroy(gameObject);
+    }
+
+    private void Detonate()
+    {
+        attack.Execute(damage, knockbackForce);
     }
 }
 
