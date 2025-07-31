@@ -14,6 +14,7 @@ public class ExplosiveEnemy : Enemy, IDamageable
     [SerializeField] private Attack attack;
     [SerializeField] private EnemySensor chaseSensor;
     [SerializeField] private EnemySensor attackSensor;
+    [SerializeField] private CircleCollider2D hitbox;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float accelTime;
     [SerializeField] private float damage;
@@ -75,7 +76,8 @@ public class ExplosiveEnemy : Enemy, IDamageable
     private void Die()
     {
         rb.velocity = Vector2.zero;
-        rb.excludeLayers = LayerMask.GetMask("Enemy", "Player", "Default");
+        //rb.excludeLayers = LayerMask.GetMask("Enemy", "Default");
+        hitbox.excludeLayers = LayerMask.GetMask("Enemy", "Player", "Default");
         sprite.color = Color.black;
         //Destroy(gameObject);
     }

@@ -46,10 +46,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 191
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -62,7 +62,7 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -275,6 +275,7 @@ MonoBehaviour:
   attack: {fileID: 4240257480654295106}
   chaseSensor: {fileID: 1235862576924693446}
   attackSensor: {fileID: 3326917189586315132}
+  hitbox: {fileID: 2415257711059870488}
   moveSpeed: 17
   accelTime: 0.7
   damage: 50

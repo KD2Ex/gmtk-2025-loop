@@ -105,7 +105,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7293836918925543185, guid: 10c11eca82f8f644bbbd4d65919a1da9, type: 3}
   speed: 10
   damage: 10
-  attackCooldown: 1
+  attackCooldown: 0.5
 --- !u!58 &6844870813307974662
 CircleCollider2D:
   m_ObjectHideFlags: 0

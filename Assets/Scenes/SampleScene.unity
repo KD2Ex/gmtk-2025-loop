@@ -2155,7 +2155,7 @@ MonoBehaviour:
     prefab: {fileID: 3902809680619658434, guid: 0d9d9dfb2a6385a4db117dd4aaf5142b, type: 3}
   - type: 4
     prefab: {fileID: 1798686807775459159, guid: 4ecf28d176cf28e46a51c68b1d4af752, type: 3}
-  DifficultyLevel: 2
+  DifficultyLevel: 1
 --- !u!1 &1092657176
 GameObject:
   m_ObjectHideFlags: 0
@@ -17026,53 +17026,9 @@ PrefabInstance:
       propertyPath: currentAmmo
       value: 
       objectReference: {fileID: 217757209}
-    - target: {fileID: 3404771855481362824, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: dashCooldown
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4889690243537376135, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: time
-      value: 0.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].time
-      value: 0.6756927
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.data[2].time
-      value: 0.99642944
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].value
-      value: 0.9680154
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.data[2].value
-      value: 0.92009735
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].inSlope
-      value: -0.09422691
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].outSlope
-      value: -0.09422691
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: curve.m_Curve.Array.data[1].outWeight
-      value: 0.33333334
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

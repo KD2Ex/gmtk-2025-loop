@@ -251,7 +251,7 @@ MonoBehaviour:
   attackSensor: {fileID: 5760453611591285931}
   attack: {fileID: 5676877522282112078}
   attackPivot: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 6
   damage: 25
   knockbackForce: 12
   attackDelayTime: 1

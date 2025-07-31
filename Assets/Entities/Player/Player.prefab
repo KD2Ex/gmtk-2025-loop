@@ -115,6 +115,7 @@ MonoBehaviour:
   rangedWeapon: {fileID: 1124376827357982861}
   damage: 25
   attackCooldown: 0.25
+  dashCooldown: 0.6
   iTime: 0.5
   dashColor: {r: 0.8039216, g: 0.85490197, b: 0.9647059, a: 0.5882353}
   hp: {fileID: 0}
@@ -264,8 +265,17 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.9923401
-      value: 1.0025253
+      time: 0.6756927
+      value: 0.9680154
+      inSlope: -0.09422691
+      outSlope: -0.09422691
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99642944
+      value: 0.92009735
       inSlope: 0
       outSlope: 0
       tangentMode: 0

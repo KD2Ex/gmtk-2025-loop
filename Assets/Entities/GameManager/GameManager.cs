@@ -42,20 +42,20 @@ public class GameManager : MonoBehaviour
     
     private List<RangeInt> touchEnemyAmountRanges = new ()
     {
-        new RangeInt(1, 1), 
-        new RangeInt(1, 2), 
-        new RangeInt(2, 3), 
+        new RangeInt(2, 2), 
+        new RangeInt(3, 2), 
+        new RangeInt(4, 2), 
     };
     private List<RangeInt> rangedEnemyAmountRanges = new()
     {
-        new RangeInt(1, 1),
-        new RangeInt(1, 1),
-        new RangeInt(1, 1),
+        new RangeInt(2, 2),
+        new RangeInt(3, 3),
+        new RangeInt(4, 1),
     };
     private List<RangeInt> tankEnemyAmountRanges = new()
     {
         new RangeInt(0, 0),
-        new RangeInt(1, 1),
+        new RangeInt(2, 1),
         new RangeInt(1, 1),
     };
     private List<RangeInt> dashEnemyAmountRanges = new()
@@ -123,7 +123,11 @@ public class GameManager : MonoBehaviour
                 var rangeIndex = indexes[index];
 
                 var range = enemyRanges[rangeIndex];
-                if (range[DifficultyLevel].end == 0) continue;
+                if (range[DifficultyLevel].end == 0)
+                {
+                    i--;
+                    continue;
+                }
                 //InitEnemy(spawner, range, enemies[(EnemyType)rangeIndex]);
                 InitEnemy(spawner, range, enemyPrefabs[rangeIndex].prefab);
                 
