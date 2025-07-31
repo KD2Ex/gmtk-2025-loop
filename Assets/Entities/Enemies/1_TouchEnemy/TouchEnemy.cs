@@ -61,7 +61,7 @@ namespace Entities.Enemies._1_TouchEnemy
             this.player = player;
         }
 
-        private void OnAttackHit()
+        private void OnAttackHit(int layer)
         {
             disableChase = true;
             rb.velocity = Vector2.zero;
@@ -70,6 +70,7 @@ namespace Entities.Enemies._1_TouchEnemy
 
         private void OnAfterAttackHit()
         {
+            print("timeout?");
             disableChase = false;
         }
 

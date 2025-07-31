@@ -33,9 +33,10 @@ public class Timer
         isRunning = true;
     }
 
-    protected virtual void Stop()
+    public virtual void Stop()
     {
         isRunning = false;
+
         Timeout?.Invoke();
 
         if (oneShot) return;
@@ -43,12 +44,12 @@ public class Timer
         Start();
     }
 
-    protected virtual void Pause()
+    public virtual void Pause()
     {
         isRunning = false;
     }
 
-    protected virtual void Resume()
+    public virtual void Resume()
     {
         isRunning = true;
     }

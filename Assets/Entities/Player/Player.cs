@@ -88,6 +88,6 @@ public class Player : MonoBehaviour, IDamageable
     private void SetVelocity(Vector2 dir, float force)
     {
         rb.velocity = dir * force;
-        print(rb.velocity);
+        //print(rb.velocity);
     }
 }
