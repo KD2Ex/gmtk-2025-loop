@@ -8,6 +8,8 @@ public class Timer
     protected float timeLeft;
     protected bool isRunning;
     protected bool oneShot;
+
+    public bool IsRunning => isRunning;
         
     public Timer(float waitTime, bool oneShot)
     {
