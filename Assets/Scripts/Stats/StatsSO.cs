@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+
+[CreateAssetMenu(fileName = "StatsSO")]
 
 public class StatsSO : ScriptableObject
 {
@@ -10,6 +13,7 @@ public class StatsSO : ScriptableObject
     public float moveSpeed;
     public float attackDelay;
 
+    [ContextMenu("Reset Stats")]
     public void ResetStats()
     {
         health = 0;
