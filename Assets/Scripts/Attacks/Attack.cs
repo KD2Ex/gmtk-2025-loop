@@ -7,15 +7,31 @@ namespace Attacks
 {
     public class Attack : MonoBehaviour
     {
+        [SerializeField] private float lifetime = 0.1f;
+        
         public float damage;
         public float knockbackForce;
 
         public Action<int> OnHit;
 
+        private Timer lifeTimer;
+
+        private void Awake()
+        {
+            lifeTimer = new Timer(lifetime, true);
+            lifeTimer.Timeout += Disable;
+        }
+
+        private void Update()
+        {
+            lifeTimer.Tick(Time.deltaTime);
+        }
+
         public void Execute(float damage)
         {
             this.damage = damage;
             gameObject.SetActive(true);
+            lifeTimer.Start();
         }
 
         public void Disable()

@@ -70,7 +70,6 @@ namespace Entities.Enemies._1_TouchEnemy
 
         private void OnAfterAttackHit()
         {
-            print("timeout?");
             disableChase = false;
         }
 
@@ -92,7 +91,9 @@ namespace Entities.Enemies._1_TouchEnemy
 
         public void TakeDamage(DamageMessage message)
         {
+            
             healthComponent.Remove(message.damage);
+            print("Touch enemey health: " + healthComponent.Value);
         }
 
         public void Die()
