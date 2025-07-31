@@ -34,7 +34,7 @@ namespace Entities
                 var curveValue = curve.Evaluate(elapsed / time);
                 var vel = dir * (speed * curveValue);
                 rb.velocity = vel;
-                print(rb.velocity.magnitude);
+                //print(rb.velocity.magnitude);
                 yield return Time.deltaTime;
                 elapsed += Time.deltaTime;
             }

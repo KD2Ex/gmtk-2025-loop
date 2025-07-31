@@ -21,9 +21,6 @@ namespace Entities.Enemies._3_TankEnemy
         [SerializeField] private float attackRestoreTime = .4f;
         [SerializeField] private float attackCooldownTime = 1f;
 
-        private Rigidbody2D rb;
-        private HealthComponent health;
-        private SpriteRenderer sprite;
         private Color ogColor;
         private Player player;
 
@@ -35,11 +32,10 @@ namespace Entities.Enemies._3_TankEnemy
         private Timer attackRestore;
         private Timer attackCooldown;
 
-        private void Awake()
+        protected override void Awake()
         {
-            rb = GetComponent<Rigidbody2D>();
-            health = GetComponent<HealthComponent>();
-            sprite = GetComponent<SpriteRenderer>();
+            base.Awake();
+            
             ogColor = sprite.color;
             
             attackDelay = new Timer(attackDelayTime, true);
@@ -60,9 +56,11 @@ namespace Entities.Enemies._3_TankEnemy
         {
             
             if (!player) return;
-            if (playerInAttackRange) return;
-            if (blockMovement) return;
-            if (attackCharging) return;
+            if (playerInAttackRange || blockMovement || attackCharging)
+            {
+                rb.velocity = Vector2.zero;
+                return;
+            }
             
             Chase();
         }
@@ -155,14 +153,9 @@ namespace Entities.Enemies._3_TankEnemy
             sprite.color = Color.white;
             
             StopAllCoroutines();
-            StartCoroutine(Flash());
+            StartCoroutine(Flash(ogColor));
         }
 
-        private IEnumerator Flash()
-        {
-            yield return new WaitForSeconds(0.3f);
-            sprite.color = ogColor;
-        }
 
         private void Die()
         {

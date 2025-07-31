@@ -33,9 +33,13 @@ namespace Attacks
             pivot.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * angle - 90f);
         }
 
-        public void Execute(float damage)
+        public void Execute(float damage, float knockbackForce = 0)
         {
             this.damage = damage;
+            if (knockbackForce > 0)
+            {
+                this.knockbackForce = knockbackForce;
+            }
             gameObject.SetActive(true);
             lifeTimer.Start();
         }

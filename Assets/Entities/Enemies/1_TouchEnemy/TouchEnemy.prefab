@@ -105,7 +105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   chaseSensor: {fileID: 3866647854186572449}
-  healthComponent: {fileID: 2861824067811020955}
   knockbackComponent: {fileID: 7009604620538940967}
   attack: {fileID: 5859869591613422169}
   damage: 25

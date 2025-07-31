@@ -15,16 +15,14 @@ namespace Entities.Enemies._2_RangedEnemy
         [SerializeField] private float damage = 10;
         [SerializeField] private float attackCooldown = 1f;
         
-        private Rigidbody2D rb;
-        private HealthComponent health;
         private Player player;
 
         private Timer attackTimer;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             attackTimer = new Timer(attackCooldown, false);
-            health = GetComponent<HealthComponent>();
         }
 
         private void Update()

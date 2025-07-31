@@ -12,7 +12,6 @@ namespace Entities.Enemies._1_TouchEnemy
     {
         [SerializeField] private float moveSpeed;
         [SerializeField] private EnemySensor chaseSensor;
-        [SerializeField] private HealthComponent healthComponent;
         [SerializeField] private KnockbackComponent knockbackComponent;
 
         [SerializeField] private Attack attack;
@@ -21,8 +20,6 @@ namespace Entities.Enemies._1_TouchEnemy
         [SerializeField] private float knockbackForce;
         //[SerializeField] private EnemySensor attackSensor;
         
-        private Rigidbody2D rb;
-        private SpriteRenderer sprite;
         private Color ogColor;
         private Player player;
 
@@ -33,10 +30,9 @@ namespace Entities.Enemies._1_TouchEnemy
         
         private bool knockbacking = false;
 
-        private void Awake()
+        protected override void Awake()
         {
-            rb = GetComponent<Rigidbody2D>();
-            sprite = GetComponent<SpriteRenderer>();
+            base.Awake();
             ogColor = sprite.color;
 
             attack.damage = damage;
@@ -52,7 +48,7 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             chaseSensor.OnEnter += OnPlayerEnterChase;
 
-            healthComponent.OnDeath += Die;
+            health.OnDeath += Die;
 
             attack.OnHit += OnAttackHit;
             afterAttackHit.Timeout += OnAfterAttackHit;
@@ -63,7 +59,7 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             chaseSensor.OnEnter -= OnPlayerEnterChase;
             
-            healthComponent.OnDeath -= Die;
+            health.OnDeath -= Die;
             
             attack.OnHit -= OnAttackHit;
             afterAttackHit.Timeout -= OnAfterAttackHit;
@@ -116,14 +112,14 @@ namespace Entities.Enemies._1_TouchEnemy
 
         public void TakeDamage(DamageMessage message)
         {
-            healthComponent.Remove(message.damage);
+            health.Remove(message.damage);
             sprite.color = Color.white;
             
             knockbackComponent.Execute(message.dir, 7.5f);
             knockbacking = true;
             knockbackTimer.Start();
             
-            print("Touch enemey health: " + healthComponent.Value);
+            print("Touch enemey health: " + health.Value);
         }
 
         public void Die()

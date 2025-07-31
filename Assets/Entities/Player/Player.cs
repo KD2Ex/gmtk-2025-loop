@@ -24,6 +24,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float damage;
     [SerializeField] private float attackCooldown = 0.25f;
     [SerializeField] private float iTime = .5f;
+    [SerializeField] private Color dashColor;
     
     private Rigidbody2D rb;
     private Dash dash;
@@ -141,13 +142,14 @@ public class Player : MonoBehaviour, IDamageable
         }
         
         hitbox.excludeLayers = LayerMask.GetMask("Enemy");
-        
+        sprite.color = dashColor; // new Color(ogColor.r, ogColor.g, ogColor.b, .5f);
         dash.Execute(dir);
     }
 
     private void OnDashFinished()
     {
         hitbox.excludeLayers = 0;
+        sprite.color = ogColor;
     }
 
     private void OnAttackTimerTimeout()
