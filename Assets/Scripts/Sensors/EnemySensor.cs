@@ -9,12 +9,14 @@ namespace Sensors
         public Player player;
 
         public Action<Player> OnEnter;
+        public Action<Player> OnLeave;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
             
             player = other.GetComponent<Player>();
+            OnEnter?.Invoke(player);
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -23,6 +25,7 @@ namespace Sensors
             if (!forgetOnExit) return;
 
             player = null;
+            OnLeave?.Invoke(player);
         }
     }
 }

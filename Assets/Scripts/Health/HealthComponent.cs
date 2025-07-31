@@ -16,10 +16,13 @@ namespace Health
         public void Remove(float value)
         {
             Value -= value;
+            
+            OnValueChanged?.Invoke(Value, MaxValue);
 
             if (Value <= 0)
             {
                 isDead = true;
+                OnDeath?.Invoke();
             }
         }
 
@@ -28,6 +31,8 @@ namespace Health
             Value += value;
             
             Value = Mathf.Clamp(Value, 0f, MaxValue);
+            
+            OnValueChanged?.Invoke(Value, MaxValue);
         }
     }
 }

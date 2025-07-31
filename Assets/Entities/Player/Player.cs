@@ -1,8 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Attacks;
 using Damage;
 using Health;
+using Knockback;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,39 +9,109 @@ public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private float moveSpeed = 100f;
     [SerializeField] private HealthComponent healthComponent;
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private KnockbackComponent knockback;
+    [SerializeField] private Attack attack;
+    [SerializeField] private Transform attackPivot;
+    [SerializeField] private float damage;
+    [SerializeField] private float attackCooldown = 0.25f;
+    [SerializeField] private float iTime = .5f;
     
     private Rigidbody2D rb;
     private PlayerInput input;
 
     private Vector2 moveInput;
+    private Vector2 lastMoveDir;
+
+    private Timer attackTimer;
+    private Timer iFramesTimer; 
+    
+    private bool attackReady = true;
+    private bool invincible = false;
+
+    private Color ogColor;
 
     private void Awake()
     {
+        ogColor = sprite.color;
+        
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
+
+        knockback.velocitySetter = SetVelocity;
+
+        attackTimer = new Timer(attackCooldown, true);
+        attackTimer.Timeout += OnAttackTimerTimeout;
+        
+        iFramesTimer = new Timer(iTime, true);
+        iFramesTimer.Timeout += OnIFramesTimerTimeout;
     }
 
     private void OnEnable()
     {
         var moveAction = input.currentActionMap.FindAction("Move");
+        var attackAction = input.currentActionMap.FindAction("Attack");
 
 
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
+
+        attackAction.started += OnAttack;
+        attackAction.canceled += OnAttack;
     }
 
     private void OnDisable()
     {
         var moveAction = input.currentActionMap.FindAction("Move");
-        
+        var attackAction = input.currentActionMap.FindAction("Attack");
         
         moveAction.performed -= OnMove;
         moveAction.canceled -= OnMove;
+        
+        attackAction.started -= OnAttack;
+        attackAction.canceled -= OnAttack;
     }
 
     private void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>().normalized;
+        if (moveInput != Vector2.zero)
+        {
+            lastMoveDir = moveInput;
+        }
+    }
+
+    private void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed || context.canceled) return;
+
+        if (!attackReady) return;
+
+
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var dir = (mousePos - transform.position).normalized;
+        if (Gamepad.current != null)
+        {
+            dir = lastMoveDir;
+        }
+        var angle = Mathf.Atan2(dir.y, dir.x);
+        attackPivot.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * angle - 90f);
+        attack.Execute(damage);
+
+        attackReady = false;
+
+        attackTimer.Start();
+    }
+
+    private void OnAttackTimerTimeout()
+    {
+        attackReady = true;
+    }
+
+    private void OnIFramesTimerTimeout()
+    {
+        invincible = false;
+        sprite.color = ogColor;
     }
     
     // Start is called before the first frame update
@@ -54,11 +123,14 @@ public class Player : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        attackTimer.Tick(Time.deltaTime);
+        iFramesTimer.Tick(Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         //moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        if (knockback.IsRunning) return;
         Move();
         //print(rb.velocity);
     }
@@ -71,7 +143,25 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(DamageMessage message)
     {
+        if (invincible) return;
+        
         healthComponent.Remove(message.damage);
+        
+        invincible = true;
+        iFramesTimer.Start();
+        sprite.color = Color.white;
+
+        if (message.knockbackForce > 0)
+        {
+            knockback.Execute(message.dir, message.knockbackForce);
+        }
+        
         print("Player's Heath's: " + healthComponent.Value);
+    }
+
+    private void SetVelocity(Vector2 dir, float force)
+    {
+        rb.velocity = dir * force;
+        //print(rb.velocity);
     }
 }
