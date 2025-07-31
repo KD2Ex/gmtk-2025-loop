@@ -13,7 +13,6 @@ public class EnemySpawner : MonoBehaviour
     
     [SerializeField] private List<Enemy> prefabs = new ();
     [SerializeField] private List<int> amounts = new ();
-    [SerializeField] private Dictionary<Enemy, int> prefs = new ();
     
     [SerializeField] private bool spawnOnStart = true;
     
@@ -28,6 +27,16 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Spawn(Enemy pref, int amount)
+    {
+        for (int j = 0; j < amount; j++)
+        {
+            var point = Random.insideUnitCircle * spawnArea.radius;
+            var pos = transform.position + (Vector3)point;
+            TryToInst(pos, pref);
+        }
     }
 
     private void SpawnAll()
@@ -57,9 +66,9 @@ public class EnemySpawner : MonoBehaviour
     private void TryToInst(Vector3 position, Enemy prefab)
     {
         var occupied = true;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 50; i++)
         {
-            var coll = Physics2D.OverlapCircle(position, 2f, LayerMask.GetMask("Enemy"));
+            var coll = Physics2D.OverlapCircle(position, 1f, LayerMask.GetMask("Enemy"));
             if (coll) continue;
             
             occupied = false;
@@ -71,4 +80,3 @@ public class EnemySpawner : MonoBehaviour
         
     }
 }
-
