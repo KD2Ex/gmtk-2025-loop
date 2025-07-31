@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Entities.Enemies._1_TouchEnemy
 {
-    public class TouchEnemy : MonoBehaviour, IDamageable
+    public class TouchEnemy : Enemy, IDamageable
     {
         [SerializeField] private float moveSpeed;
         [SerializeField] private EnemySensor chaseSensor;

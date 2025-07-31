@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Entities.Enemies._2_RangedEnemy
 {
-    public class RangedEnemy : MonoBehaviour, IDamageable
+    public class RangedEnemy : Enemy, IDamageable
     {
         [SerializeField] private EnemySensor attackSensor;
         [SerializeField] private Projectile projectilePrefab;
