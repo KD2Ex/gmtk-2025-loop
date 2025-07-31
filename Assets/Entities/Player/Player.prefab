@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4108799358466115009}
   - component: {fileID: 4226273577700598976}
   - component: {fileID: 6422684906093031647}
+  - component: {fileID: 1124376827357982861}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -34,8 +35,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -55.8, y: 0.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3358389888059134135}
   m_Father: {fileID: 0}
@@ -111,11 +112,14 @@ MonoBehaviour:
   knockback: {fileID: 4226273577700598976}
   attack: {fileID: 4048993498393075806}
   attackPivot: {fileID: 3358389888059134135}
+  rangedWeapon: {fileID: 1124376827357982861}
   damage: 25
   attackCooldown: 0.25
+  dashCooldown: 0.6
   iTime: 0.5
   dashColor: {r: 0.8039216, g: 0.85490197, b: 0.9647059, a: 0.5882353}
   hp: {fileID: 0}
+  currentAmmo: {fileID: 0}
 --- !u!50 &5738671271156143622
 Rigidbody2D:
   serializedVersion: 4
@@ -261,8 +265,17 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.9923401
-      value: 1.0025253
+      time: 0.6756927
+      value: 0.9680154
+      inSlope: -0.09422691
+      outSlope: -0.09422691
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99642944
+      value: 0.92009735
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -274,6 +287,26 @@ MonoBehaviour:
     m_RotationOrder: 4
   speed: 20
   time: 0.27
+--- !u!114 &1124376827357982861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4889690243537376135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488ad76b9ce54d46ab516554f4df547f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projPrefab: {fileID: 7293836918925543185, guid: 11cfbab76fda42845836476339ebfa91, type: 3}
+  speed: 30
+  damage: 10
+  knockbackForce: 3
+  maxAmmo: 6
+  consumePerShot: 1
+  generatePerHit: 0.4
+  cooldown: 0.15
 --- !u!1 &7779093975129522989
 GameObject:
   m_ObjectHideFlags: 0

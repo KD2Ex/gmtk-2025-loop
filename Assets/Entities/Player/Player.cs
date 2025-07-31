@@ -25,12 +25,14 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private RangedWeapon rangedWeapon;
     [SerializeField] private float damage;
     [SerializeField] private float attackCooldown = 0.25f;
+    [SerializeField] private float dashCooldown = 1f;
     [SerializeField] private float iTime = .5f;
     [SerializeField] private Color dashColor;
     
     [Space(5)]
     
     [SerializeField] private TMP_Text hp;
+    [SerializeField] private TMP_Text currentAmmo;
     
     private Rigidbody2D rb;
     private Dash dash;
@@ -40,11 +42,13 @@ public class Player : MonoBehaviour, IDamageable
     private Vector2 lastMoveDir;
 
     private Timer attackTimer;
-    private Timer iFramesTimer; 
+    private Timer iFramesTimer;
+    private Timer dashCooldownTimer;
     
-    private bool attackReady = true;
+    private bool isAttackReady = true;
+    private bool isDashReady = true;
     private bool invincible = false;
-
+    
     private Color ogColor;
 
     private PlayerDashType dashType = PlayerDashType.Movement;
@@ -64,6 +68,9 @@ public class Player : MonoBehaviour, IDamageable
         
         iFramesTimer = new Timer(iTime, true);
         iFramesTimer.Timeout += OnIFramesTimerTimeout;
+        
+        dashCooldownTimer = new Timer(dashCooldown, true);
+        dashCooldownTimer.Timeout += OnDashCooldown;
     }
 
     private void OnEnable()
@@ -86,6 +93,9 @@ public class Player : MonoBehaviour, IDamageable
         dash.Finished += OnDashFinished;
 
         healthComponent.OnValueChanged += OnHpChanged;
+        
+        attack.OnHit += OnAttackHit;
+        rangedWeapon.OnAmmoChanged += OnAmmoUpdated;
     }
 
     private void OnDisable()
@@ -108,6 +118,9 @@ public class Player : MonoBehaviour, IDamageable
         shootAction.started -= OnShoot;
         
         healthComponent.OnValueChanged -= OnHpChanged;
+        
+        attack.OnHit -= OnAttackHit;
+        rangedWeapon.OnAmmoChanged -= OnAmmoUpdated;
     }
 
     private void OnHpChanged(float current, float max)
@@ -128,7 +141,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed || context.canceled) return;
 
-        if (!attackReady) return;
+        if (!isAttackReady) return;
         if (dash.IsDashing && dash.TimeRemain < 0.8f) return;
 
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -141,7 +154,7 @@ public class Player : MonoBehaviour, IDamageable
         attackPivot.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * angle - 90f);
         attack.Execute(damage);
 
-        attackReady = false;
+        isAttackReady = false;
 
         attackTimer.Start();
     }
@@ -149,7 +162,13 @@ public class Player : MonoBehaviour, IDamageable
     private void OnDash(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+        if (!isDashReady) return;
+        
+        Dash();
+    }
 
+    private void Dash()
+    {
         Vector2 dir = lastMoveDir;
         switch (dashType)
         {
@@ -165,6 +184,8 @@ public class Player : MonoBehaviour, IDamageable
         hitbox.excludeLayers = LayerMask.GetMask("Enemy");
         sprite.color = dashColor; // new Color(ogColor.r, ogColor.g, ogColor.b, .5f);
         dash.Execute(dir);
+
+        isDashReady = false;
     }
 
     private void OnShoot(InputAction.CallbackContext context)
@@ -178,17 +199,34 @@ public class Player : MonoBehaviour, IDamageable
     {
         hitbox.excludeLayers = 0;
         sprite.color = ogColor;
+
+        dashCooldownTimer.Start();
     }
 
     private void OnAttackTimerTimeout()
     {
-        attackReady = true;
+        isAttackReady = true;
     }
 
     private void OnIFramesTimerTimeout()
     {
         invincible = false;
         sprite.color = ogColor;
+    }
+
+    private void OnAttackHit(int layer)
+    {
+        rangedWeapon.GenerateAmmo();
+    }
+
+    private void OnAmmoUpdated(int value)
+    {
+        currentAmmo.text = value.ToString();
+    }
+
+    private void OnDashCooldown()
+    {
+        isDashReady = true;
     }
     
     // Start is called before the first frame update
@@ -202,6 +240,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         attackTimer.Tick(Time.deltaTime);
         iFramesTimer.Tick(Time.deltaTime);
+        dashCooldownTimer.Tick(Time.deltaTime);
     }
 
     private void FixedUpdate()

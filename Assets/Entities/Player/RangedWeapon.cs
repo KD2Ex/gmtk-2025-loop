@@ -19,11 +19,14 @@ namespace Entities
         private bool isReady = true;
 
         private int currentAmmo;
-        private float generationProgress; 
+        private float generationProgress;
+
+        public Action<int> OnAmmoChanged; 
 
         private void Awake()
         {
             cooldownTimer = new Timer(cooldown, true);
+            currentAmmo = maxAmmo;
         }
 
         private void OnEnable()
@@ -48,21 +51,33 @@ namespace Entities
 
         public void Shoot(Vector2 dir)
         {
+            if (!isReady) return;
+            if (currentAmmo <= 0) return;
+            
             var inst = Instantiate(projPrefab, transform.position, Quaternion.identity);
             inst.Init(dir, speed, damage, knockbackForce);
             
             cooldownTimer.Start();
             isReady = false;
+
+            currentAmmo -= consumePerShot;
+            
+            OnAmmoChanged?.Invoke(currentAmmo);
         }
 
         public void GenerateAmmo()
         {
+            if (currentAmmo == maxAmmo) return;
             generationProgress += generatePerHit;
             if (generationProgress >= 1f)
             {
                 var amount = (int)generationProgress;
                 currentAmmo += amount;
                 generationProgress -= amount;
+                
+                currentAmmo = Mathf.Clamp(currentAmmo, 0, maxAmmo);
+                
+                OnAmmoChanged?.Invoke(currentAmmo);
             }
         }
     }
