@@ -105,11 +105,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   healthComponent: {fileID: 4108799358466115009}
+  sprite: {fileID: 5944971561078540511}
   knockback: {fileID: 4226273577700598976}
   attack: {fileID: 4048993498393075806}
   attackPivot: {fileID: 3358389888059134135}
-  damage: 0
-  attackLifeTime: 0.1
+  damage: 25
+  attackCooldown: 0.25
+  iTime: 0.5
 --- !u!50 &5738671271156143622
 Rigidbody2D:
   serializedVersion: 4
@@ -279,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4971983682576029703
 Transform:
   m_ObjectHideFlags: 0
@@ -394,5 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14eea135cbe242d49e71d36e90c68af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifetime: 0.1
   damage: 25
   knockbackForce: 10

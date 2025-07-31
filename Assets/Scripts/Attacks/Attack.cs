@@ -27,6 +27,12 @@ namespace Attacks
             lifeTimer.Tick(Time.deltaTime);
         }
 
+        public void RotateToTarget(Vector2 dir, Transform pivot)
+        {
+            var angle = Mathf.Atan2(dir.y, dir.x);
+            pivot.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * angle - 90f);
+        }
+
         public void Execute(float damage)
         {
             this.damage = damage;
