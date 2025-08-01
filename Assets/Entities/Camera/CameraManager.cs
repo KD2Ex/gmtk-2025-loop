@@ -6,6 +6,7 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] private PolygonCollider2D loopBoundingShape;
     [SerializeField] private PolygonCollider2D hubBoundingShape;
+    [SerializeField] private float hubOrthoSize = 16f;
     [SerializeField] private bool startInHub = true;
     
     private CinemachineVirtualCamera virtualCamera;
@@ -30,7 +31,7 @@ public class CameraManager : MonoBehaviour
         confier.m_BoundingShape2D = hubBoundingShape;
         confier.m_MaxWindowSize = 0;
         confier.m_Damping = 0;
-        virtualCamera.m_Lens.OrthographicSize = 15f;
+        virtualCamera.m_Lens.OrthographicSize = hubOrthoSize;
     }
 
     public void SetLoopBounds()
