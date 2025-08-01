@@ -31,6 +31,7 @@ namespace Entities
         public float TotalCooldown;
 
         public FireDoT firDot;
+        
 
         private void Awake()
         {

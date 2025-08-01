@@ -147,7 +147,6 @@ namespace Entities.Enemies._3_TankEnemy
                 Die();
                 return;
             }
-            sprite.color = Color.white;
             
             StopAllCoroutines();
             StartCoroutine(Flash());

@@ -93,6 +93,8 @@ namespace Entities.Enemies._1_TouchEnemy
 
         private void Update()
         {
+            if (health.isDead) return;
+            
             afterAttackHit.Tick(Time.deltaTime);
             knockbackTimer.Tick(Time.deltaTime);
             
@@ -106,13 +108,16 @@ namespace Entities.Enemies._1_TouchEnemy
         private void Chase()
         {
             var dir = (player.transform.position - transform.position).normalized;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             rb.velocity = dir * moveSpeed;
+            
+            transform.eulerAngles = new Vector3(0, 0, angle + 90);
         }
 
         public void TakeDamage(DamageMessage message)
         {
+            if (health.isDead) return;
             health.Remove(message.damage);
-            sprite.color = Color.white;
             StartCoroutine(Flash());
             
             if (message.knockbackForce > 0)
@@ -127,7 +132,15 @@ namespace Entities.Enemies._1_TouchEnemy
 
         public void Die()
         {
-            Destroy(gameObject);
+            animator.Play("SpiderDeath");
+            
+            rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast");
+            rb.velocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            
+            Destroy(attack);
+            Destroy(chaseSensor);
+            //Destroy(gameObject);
         }
 
         private void SetVelocity(Vector2 dir, float force)

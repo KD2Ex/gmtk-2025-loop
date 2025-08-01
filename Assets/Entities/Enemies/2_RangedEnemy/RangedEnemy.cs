@@ -79,7 +79,6 @@ namespace Entities.Enemies._2_RangedEnemy
         public void TakeDamage(DamageMessage message)
         {
             health.Remove(message.damage);
-            sprite.color = Color.white;
             StartCoroutine(Flash());
         }
     }

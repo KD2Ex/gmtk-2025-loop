@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e36e08afbc0462a8cacc4d4f620568f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 8080543110610588879}
   coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   chaseSensor: {fileID: 2081427777473654005}
   attackSensor: {fileID: 5760453611591285931}

@@ -152,7 +152,6 @@ namespace Entities.Enemies._4_DashEnemy
                 knockback.Execute(message.dir, message.knockbackForce);
             }
 
-            sprite.color = Color.white;
             StartCoroutine(Flash());
 
             if (health.isDead)

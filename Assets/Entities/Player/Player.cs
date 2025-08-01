@@ -68,6 +68,8 @@ public class Player : MonoBehaviour, IDamageable
     public PlayerModifiersController playerModifiers;
     public RangedModifierController rangedModifiers;
     public DashModifiersController dashModifiers;
+
+    public Animator animator;
     
     public HealthComponent Health => healthComponent;
 
@@ -269,6 +271,8 @@ public class Player : MonoBehaviour, IDamageable
         
         //dash.SetSpeed(dash.OgSpeed + dash.OgSpeed * (stats.moveSpeed * 0.01f * 0.5f));
         dash.Execute(dir);
+        
+        animator.Play("PlayerDash");
 
         isDashReady = false;
     }
@@ -351,10 +355,17 @@ public class Player : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
+        if (healthComponent.isDead)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         //moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
         if (knockback.IsRunning) return;
         if (dash.IsDashing) return;
         Move();
+
+        sprite.flipX = lastMoveDir.x < 0;
         //print(rb.velocity);
     }
 
@@ -365,14 +376,30 @@ public class Player : MonoBehaviour, IDamageable
             playerModifiers.GetTotalValue(PlayerModifierType.MoveSpeed, ogMoveSpeed, stats.moveSpeed);
         //var totalMS = moveSpeed + moveSpeed * (stats.moveSpeed * 0.01f);
         rb.velocity = moveInput * totalMoveSpeed;
+
+        if (moveInput == Vector2.zero)
+        {
+            animator.Play("PlayerIdle");
+        }
+        else
+        {
+            animator.Play("PlayerRun");
+        }
     }
 
     public void TakeDamage(DamageMessage message)
     {
+        if (healthComponent.isDead) return;
         if (dash.IsDashing) return;
         if (invincible) return;
         
         healthComponent.Remove(message.damage);
+
+        if (healthComponent.isDead)
+        {
+            Die();
+            return;
+        }
         
         invincible = true;
         iFramesTimer.Start();
@@ -408,6 +435,14 @@ public class Player : MonoBehaviour, IDamageable
 
         return -1f;
     }
+
+    public void Die()
+    {
+        animator.Play("PlayerDeath");
+        sprite.color = ogColor;
+        input.currentActionMap.Disable();
+    }
+    
 }
 
 public enum PlayerStats

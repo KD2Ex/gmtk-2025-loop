@@ -380,7 +380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &60076928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20872,7 +20872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1550779908
 Transform:
   m_ObjectHideFlags: 0
@@ -22672,14 +22672,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2703969271200757042, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703969271200757042, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703969271200757042, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3404771855481362824, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: hp
       value: 
       objectReference: {fileID: 461444412}
-    - target: {fileID: 3404771855481362824, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: moveSpeed
-      value: 8.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3404771855481362824, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: currentAmmo
       value: 

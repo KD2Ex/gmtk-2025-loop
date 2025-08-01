@@ -8,7 +8,8 @@ namespace Entities.Enemies
     public class Enemy : MonoBehaviour
     {
         protected HealthComponent health;
-        protected SpriteRenderer sprite;
+        public SpriteRenderer sprite;
+        public Animator animator;
         protected Rigidbody2D rb;
         protected Color ogColor;
 
@@ -18,14 +19,15 @@ namespace Entities.Enemies
         {
             health = GetComponent<HealthComponent>();
             rb = GetComponent<Rigidbody2D>();
-            sprite = GetComponent<SpriteRenderer>();
+            //sprite = GetComponent<SpriteRenderer>();
             ogColor = sprite.color;
             health.OnDeath += DropGold;
         }
         protected IEnumerator Flash()
         {
+            sprite.material.SetFloat("_Amount", 1);
             yield return new WaitForSeconds(0.3f);
-            sprite.color = ogColor;
+            sprite.material.SetFloat("_Amount", 0);
         }
 
         protected virtual void DropGold()
