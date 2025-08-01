@@ -14,7 +14,6 @@ public class Timer
     public Timer(float waitTime, bool oneShot)
     {
         this.waitTime = waitTime;
-            
         this.oneShot = oneShot;
     }
 
@@ -54,5 +53,10 @@ public class Timer
     public virtual void Resume()
     {
         isRunning = true;
+    }
+
+    public void UpdateWaitTime(float time)
+    {
+        waitTime = time;
     }
 }

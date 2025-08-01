@@ -120,6 +120,7 @@ MonoBehaviour:
   dashColor: {r: 0.8039216, g: 0.85490197, b: 0.9647059, a: 0.5882353}
   hp: {fileID: 0}
   currentAmmo: {fileID: 0}
+  stats: {fileID: 11400000, guid: adb928cda721e3c46a63f49b5284e64c, type: 2}
 --- !u!50 &5738671271156143622
 Rigidbody2D:
   serializedVersion: 4
@@ -287,6 +288,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   speed: 20
   time: 0.27
+  Speed: 0
 --- !u!114 &1124376827357982861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +442,7 @@ CapsuleCollider2D:
     m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 127
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

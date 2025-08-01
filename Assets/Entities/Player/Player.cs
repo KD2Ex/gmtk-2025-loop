@@ -33,6 +33,9 @@ public class Player : MonoBehaviour, IDamageable
     
     [SerializeField] private TMP_Text hp;
     [SerializeField] private TMP_Text currentAmmo;
+
+    [Space(5)] [Header("Stats")] [SerializeField]
+    private StatsSO stats;
     
     private Rigidbody2D rb;
     private Dash dash;
@@ -51,11 +54,16 @@ public class Player : MonoBehaviour, IDamageable
     
     private Color ogColor;
 
+    private float ogMaxHealth; 
+
     private PlayerDashType dashType = PlayerDashType.Movement;
+    
+    public HealthComponent Health => healthComponent;
 
     private void Awake()
     {
         ogColor = sprite.color;
+        ogMaxHealth = healthComponent.MaxValue;
         
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<Dash>();
@@ -152,10 +160,15 @@ public class Player : MonoBehaviour, IDamageable
         }
         var angle = Mathf.Atan2(dir.y, dir.x);
         attackPivot.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * angle - 90f);
-        attack.Execute(damage);
+
+        var totalDamage = damage + damage * (stats.damage * 0.01f);
+        
+        attack.Execute(totalDamage);
 
         isAttackReady = false;
 
+        var totalAttackCD = this.attackCooldown - this.attackCooldown * (stats.attackDelay * 0.01f);
+        attackTimer.UpdateWaitTime(totalAttackCD);
         attackTimer.Start();
     }
 
@@ -183,6 +196,8 @@ public class Player : MonoBehaviour, IDamageable
         
         hitbox.excludeLayers = LayerMask.GetMask("Enemy");
         sprite.color = dashColor; // new Color(ogColor.r, ogColor.g, ogColor.b, .5f);
+        
+        dash.SetSpeed(dash.Speed + dash.Speed * (stats.moveSpeed * 0.01f * 0.5f));
         dash.Execute(dir);
 
         isDashReady = false;
@@ -241,6 +256,8 @@ public class Player : MonoBehaviour, IDamageable
         attackTimer.Tick(Time.deltaTime);
         iFramesTimer.Tick(Time.deltaTime);
         dashCooldownTimer.Tick(Time.deltaTime);
+
+        healthComponent.MaxValue = ogMaxHealth + ogMaxHealth * (stats.health * 0.01f);
     }
 
     private void FixedUpdate()
@@ -255,7 +272,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Move()
     {
-        rb.velocity = moveInput * moveSpeed;
+        var totalMS = moveSpeed + moveSpeed * (stats.moveSpeed * 0.01f);
+        rb.velocity = moveInput * totalMS;
     }
 
     public void TakeDamage(DamageMessage message)
