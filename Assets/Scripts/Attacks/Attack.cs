@@ -8,6 +8,7 @@ namespace Attacks
     public class Attack : MonoBehaviour
     {
         [SerializeField] private float lifetime = 0.1f;
+
         
         public float damage;
         public float knockbackForce;
@@ -15,6 +16,7 @@ namespace Attacks
         public Action<Collider2D> OnHit;
 
         private Timer lifeTimer;
+        
 
         private void Awake()
         {

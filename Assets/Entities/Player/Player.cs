@@ -1,6 +1,7 @@
 using Attacks;
 using Damage;
 using Entities;
+using Entities.Modifiers;
 using Health;
 using Knockback;
 using TMPro;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Transform attackPivot;
     [SerializeField] private RangedWeapon rangedWeapon;
     [SerializeField] private float damage;
+    [SerializeField] private float meleeKnockbackForce = 10f;
     [SerializeField] private float attackCooldown = 0.25f;
     [SerializeField] private float dashCooldown = 1f;
     [SerializeField] private float iTime = .5f;
@@ -55,9 +57,17 @@ public class Player : MonoBehaviour, IDamageable
     
     private Color ogColor;
 
-    private float ogMaxHealth; 
+    private float ogMaxHealth;
+    private float ogMoveSpeed;
+    private Vector3 ogAttackScale;
+    private float ogDashCooldown;
 
     private PlayerDashType dashType = PlayerDashType.Movement;
+    
+    public MeleeModifierController meleeModifiers;
+    public PlayerModifiersController playerModifiers;
+    public RangedModifierController rangedModifiers;
+    public DashModifiersController dashModifiers;
     
     public HealthComponent Health => healthComponent;
 
@@ -65,6 +75,12 @@ public class Player : MonoBehaviour, IDamageable
     {
         ogColor = sprite.color;
         ogMaxHealth = healthComponent.MaxValue;
+        ogMoveSpeed = moveSpeed;
+        ogDashCooldown = dashCooldown;
+
+        ogAttackScale = attack.transform.localScale;
+
+        UpdateAttackStats();
         
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<Dash>();
@@ -153,7 +169,14 @@ public class Player : MonoBehaviour, IDamageable
         if (!isAttackReady) return;
         if (dash.IsDashing && dash.TimeRemain < 0.8f) return;
 
+        Attack();
+    }
+
+    private void Attack()
+    {
+        
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
         var dir = (mousePos - transform.position).normalized;
         if (Gamepad.current != null)
         {
@@ -164,13 +187,54 @@ public class Player : MonoBehaviour, IDamageable
 
         var totalDamage = damage + damage * (stats.damage * 0.01f);
         
-        attack.Execute(totalDamage);
+        attack.Execute(meleeModifiers.TotalDamage);
 
         isAttackReady = false;
 
         var totalAttackCD = this.attackCooldown - this.attackCooldown * (stats.attackDelay * 0.01f);
         attackTimer.UpdateWaitTime(totalAttackCD);
         attackTimer.Start();
+    }
+
+    public void UpdateAttackStats()
+    {
+        var totalDamage = meleeModifiers.GetTotalValue(MeleeModifierType.Damage, damage, stats.damage);
+        var totalKnockback = meleeModifiers.GetTotalValue(MeleeModifierType.Knockback, meleeKnockbackForce);
+
+        meleeModifiers.TotalDamage = totalDamage;
+        //attack.damage = totalDamage;
+        attack.knockbackForce = totalKnockback;
+        
+        var radius = meleeModifiers.GetTotalValue(MeleeModifierType.Radius, 1);
+        attack.transform.localScale = ogAttackScale * radius;
+        
+        var ammoGen = meleeModifiers.GetTotalValue(MeleeModifierType.AmmoGeneration, rangedWeapon.OgAmmoGen);
+        rangedWeapon.generatePerHit = ammoGen;
+
+        print(totalDamage + " " + totalKnockback + " " + radius + " " + ammoGen);
+    }
+
+    public void UpdateRangedStats()
+    {
+        var totalDamage = rangedModifiers.GetTotalValue(RangedModifierType.Damage, rangedWeapon.OgDamage);
+        rangedWeapon.TotalDamage = totalDamage;
+
+        var totalCooldown = rangedModifiers.GetTotalValue(RangedModifierType.Cooldown, rangedWeapon.OgCooldown);
+        rangedWeapon.TotalCooldown = totalCooldown;
+        print(totalCooldown);
+    }
+
+    public void UpdateDashStats()
+    {
+        var totalSpeed = dashModifiers.GetTotalValue(DashModifierType.Speed, dash.OgSpeed, stats.moveSpeed * .5f);
+        dash.SetSpeed(totalSpeed);
+        
+        var totalCooldown = dashModifiers.GetTotalValue(DashModifierType.Cooldown, ogDashCooldown);
+        dashCooldown = totalCooldown;
+    }
+
+    public void UpdatePlayerStats()
+    {
     }
 
     private void OnDash(InputAction.CallbackContext context)
@@ -191,6 +255,7 @@ public class Player : MonoBehaviour, IDamageable
                 break;
             case PlayerDashType.Mouse:
                 var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePos.z = 0f;
                 dir = (mousePos - transform.position).normalized;
                 break;
         }
@@ -198,7 +263,7 @@ public class Player : MonoBehaviour, IDamageable
         hitbox.excludeLayers = LayerMask.GetMask("Enemy");
         sprite.color = dashColor; // new Color(ogColor.r, ogColor.g, ogColor.b, .5f);
         
-        dash.SetSpeed(dash.Speed + dash.Speed * (stats.moveSpeed * 0.01f * 0.5f));
+        //dash.SetSpeed(dash.OgSpeed + dash.OgSpeed * (stats.moveSpeed * 0.01f * 0.5f));
         dash.Execute(dir);
 
         isDashReady = false;
@@ -207,8 +272,11 @@ public class Player : MonoBehaviour, IDamageable
     private void OnShoot(InputAction.CallbackContext context)
     {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
         var dir = (mousePos - transform.position).normalized;
-        rangedWeapon.Shoot(dir);
+        print(mousePos);
+        print(dir);
+        rangedWeapon.Shoot(dir.normalized);
     }
 
     private void OnDashFinished()
@@ -216,6 +284,7 @@ public class Player : MonoBehaviour, IDamageable
         hitbox.excludeLayers = 0;
         sprite.color = ogColor;
 
+        dashCooldownTimer.UpdateWaitTime(dashCooldown);
         dashCooldownTimer.Start();
     }
 
@@ -258,13 +327,22 @@ public class Player : MonoBehaviour, IDamageable
         iFramesTimer.Tick(Time.deltaTime);
         dashCooldownTimer.Tick(Time.deltaTime);
 
-        healthComponent.MaxValue = ogMaxHealth + ogMaxHealth * (stats.health * 0.01f);
+        //healthComponent.MaxValue = ogMaxHealth + ogMaxHealth * (stats.health * 0.01f);
+        UpdateHP();
 
         statsText.text = $"Stats:\n" +
                          $"Damage: {GetStatValue(PlayerStats.Damage)}\n" +
                          $"Move Speed: {GetStatValue(PlayerStats.MoveSpeed)}\n" +
                          $"Attack Cooldown: {GetStatValue(PlayerStats.AttackDelay)}\n" +
                          $"Max Health: {GetStatValue(PlayerStats.Health)}\n";
+    }
+
+    private void UpdateHP()
+    {
+        var baseHP = ogMaxHealth;
+        var hp = playerModifiers.GetTotalValue(PlayerModifierType.HP, baseHP, stats.health);
+
+        healthComponent.MaxValue = hp;
     }
 
     private void FixedUpdate()
@@ -279,8 +357,10 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Move()
     {
-        var totalMS = moveSpeed + moveSpeed * (stats.moveSpeed * 0.01f);
-        rb.velocity = moveInput * totalMS;
+        var totalMoveSpeed =
+            playerModifiers.GetTotalValue(PlayerModifierType.MoveSpeed, ogMoveSpeed, stats.moveSpeed);
+        //var totalMS = moveSpeed + moveSpeed * (stats.moveSpeed * 0.01f);
+        rb.velocity = moveInput * totalMoveSpeed;
     }
 
     public void TakeDamage(DamageMessage message)
