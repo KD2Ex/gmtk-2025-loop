@@ -7,6 +7,9 @@ public class HubScript : MonoBehaviour
 {
     [SerializeField] private List<PortalScript> loopPortals;
     [SerializeField] private List<StatsUpgradeTrigger> statsTriggers;
+    
+    
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         print("Player entered Hub");
