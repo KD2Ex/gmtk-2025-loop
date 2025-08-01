@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5e175af3ed4ba6ae2a152f3fd937f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   knockback: {fileID: 8115502812313546837}
   dash: {fileID: 1518132967790541680}
   chaseSensor: {fileID: 7544242214848628499}

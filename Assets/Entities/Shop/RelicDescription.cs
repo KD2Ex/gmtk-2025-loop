@@ -23,4 +23,9 @@ public class RelicDescription : MonoBehaviour
     {
         textBox.text = null;
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        textBox.text = description;
+    }
 }

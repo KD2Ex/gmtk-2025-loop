@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd307b6fd0523f47af98b4067d3eda4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   movementCurve:
     serializedVersion: 2
     m_Curve:

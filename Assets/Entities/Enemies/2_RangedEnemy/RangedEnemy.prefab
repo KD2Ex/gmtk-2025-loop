@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79592ef29e5f4b0f9140d2acbb734205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   attackSensor: {fileID: 6528516942654155759}
   projectilePrefab: {fileID: 7293836918925543185, guid: 10c11eca82f8f644bbbd4d65919a1da9, type: 3}
   speed: 12
