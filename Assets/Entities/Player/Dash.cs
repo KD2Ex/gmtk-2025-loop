@@ -15,13 +15,13 @@ namespace Entities
         private float elapsed = 0f;
         public bool IsDashing => isDashing;
         public float TimeRemain => elapsed / time;
-        public float Speed;
+        public float OgSpeed;
 
         public Action Finished;
 
         private void Awake()
         {
-            Speed = speed;
+            OgSpeed = speed;
         }
 
         public void Execute(Vector2 dir)

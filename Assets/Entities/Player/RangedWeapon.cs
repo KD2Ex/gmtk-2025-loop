@@ -12,7 +12,7 @@ namespace Entities
         [SerializeField] private float knockbackForce;
         [SerializeField] private int maxAmmo;
         [SerializeField] private int consumePerShot;
-        [SerializeField] private float generatePerHit;
+        [SerializeField] public float generatePerHit;
         [SerializeField] private float cooldown = .2f;
 
         private Timer cooldownTimer;
@@ -21,12 +21,22 @@ namespace Entities
         private int currentAmmo;
         private float generationProgress;
 
-        public Action<int> OnAmmoChanged; 
+        public Action<int> OnAmmoChanged;
+
+        public float OgAmmoGen;
+        public float OgDamage => damage;
+        public float OgCooldown => cooldown;
+        public float TotalDamage; 
+        public float TotalCooldown; 
 
         private void Awake()
         {
+            OgAmmoGen = generatePerHit;
             cooldownTimer = new Timer(cooldown, true);
             currentAmmo = maxAmmo;
+            
+            TotalDamage = damage; 
+            TotalCooldown = cooldown; 
         }
 
         private void OnEnable()
@@ -55,8 +65,9 @@ namespace Entities
             if (currentAmmo <= 0) return;
             
             var inst = Instantiate(projPrefab, transform.position, Quaternion.identity);
-            inst.Init(dir, speed, damage, knockbackForce);
+            inst.Init(dir, speed, TotalDamage, knockbackForce);
             
+            cooldownTimer.UpdateWaitTime(TotalCooldown);
             cooldownTimer.Start();
             isReady = false;
 
