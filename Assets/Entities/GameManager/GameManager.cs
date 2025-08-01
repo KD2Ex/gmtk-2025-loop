@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<EnemyTypePrefab> enemyPrefabs;
 
     private Dictionary<EnemyType, Enemy> enemies;
-    
+    public Action playerEnteredHub;
     private List<RangeInt> touchEnemyAmountRanges = new ()
     {
         new RangeInt(2, 2), 
@@ -274,6 +274,7 @@ public class GameManager : MonoBehaviour
 
     public void ExitLoop()
     {
+        playerEnteredHub?.Invoke();
         RemoveAllSpawnedEnemies();
     }
 
