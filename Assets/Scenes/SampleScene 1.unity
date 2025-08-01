@@ -277,7 +277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Test Item Description
-  textBox: {fileID: 163456212}
 --- !u!61 &20158918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20480,6 +20479,22 @@ PrefabInstance:
     - target: {fileID: 4889690243537376135, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944971561078540511, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1923549333, guid: 2aff6c15898f6374387d178bca1e90f9, type: 3}
+    - target: {fileID: 5944971561078540511, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944971561078540511, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944971561078540511, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
