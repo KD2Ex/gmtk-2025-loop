@@ -12,7 +12,7 @@ namespace Attacks
         public float damage;
         public float knockbackForce;
 
-        public Action<int> OnHit;
+        public Action<Collider2D> OnHit;
 
         private Timer lifeTimer;
 
@@ -51,7 +51,7 @@ namespace Attacks
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            print(other.gameObject.name);
+            //print(other.gameObject.name);
             var damageable = other.GetComponent<IDamageable>();
 
             if (damageable == null) return;
@@ -63,7 +63,7 @@ namespace Attacks
             damageable.TakeDamage(msg);
 
             
-            OnHit?.Invoke(other.gameObject.layer);
+            OnHit?.Invoke(other);
         }
     }
 }

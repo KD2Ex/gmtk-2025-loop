@@ -33,6 +33,7 @@ public class Player : MonoBehaviour, IDamageable
     
     [SerializeField] private TMP_Text hp;
     [SerializeField] private TMP_Text currentAmmo;
+    [SerializeField] private TMP_Text statsText;
 
     [Space(5)] [Header("Stats")] [SerializeField]
     private StatsSO stats;
@@ -229,7 +230,7 @@ public class Player : MonoBehaviour, IDamageable
         sprite.color = ogColor;
     }
 
-    private void OnAttackHit(int layer)
+    private void OnAttackHit(Collider2D _)
     {
         rangedWeapon.GenerateAmmo();
     }
@@ -258,6 +259,12 @@ public class Player : MonoBehaviour, IDamageable
         dashCooldownTimer.Tick(Time.deltaTime);
 
         healthComponent.MaxValue = ogMaxHealth + ogMaxHealth * (stats.health * 0.01f);
+
+        statsText.text = $"Stats:\n" +
+                         $"Damage: {GetStatValue(PlayerStats.Damage)}\n" +
+                         $"Move Speed: {GetStatValue(PlayerStats.MoveSpeed)}\n" +
+                         $"Attack Cooldown: {GetStatValue(PlayerStats.AttackDelay)}\n" +
+                         $"Max Health: {GetStatValue(PlayerStats.Health)}\n";
     }
 
     private void FixedUpdate()
@@ -292,7 +299,7 @@ public class Player : MonoBehaviour, IDamageable
             knockback.Execute(message.dir, message.knockbackForce);
         }
         
-        print("Player's Heath's: " + healthComponent.Value);
+        //print("Player's Heath's: " + healthComponent.Value);
     }
 
     private void SetVelocity(Vector2 dir, float force)
@@ -300,4 +307,29 @@ public class Player : MonoBehaviour, IDamageable
         rb.velocity = dir * force;
         //print(rb.velocity);
     }
+
+    public float GetStatValue(PlayerStats stat)
+    {
+        switch (stat)
+        {
+            case PlayerStats.Damage:
+                return damage + damage * (stats.damage * 0.01f);
+            case PlayerStats.Health:
+                return healthComponent.MaxValue;
+            case PlayerStats.MoveSpeed:
+                return moveSpeed + moveSpeed * (stats.moveSpeed * 0.01f);
+            case PlayerStats.AttackDelay:
+                return attackCooldown - attackCooldown * (stats.attackDelay * 0.01f);
+        }
+
+        return -1f;
+    }
+}
+
+public enum PlayerStats
+{
+    Damage,
+    MoveSpeed,
+    AttackDelay,
+    Health
 }

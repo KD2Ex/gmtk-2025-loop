@@ -29,13 +29,16 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
-    public void Spawn(Enemy pref, int amount)
+    public void Spawn(Enemy pref, int amount, out List<Enemy> spawnedEnemies)
     {
+        spawnedEnemies = new();
         for (int j = 0; j < amount; j++)
         {
             var point = Random.insideUnitCircle * spawnArea.radius;
             var pos = transform.position + (Vector3)point;
-            TryToInst(pos, pref);
+            TryToInst(pos, pref, out var inst);
+            if (inst)
+                spawnedEnemies.Add(inst);
         }
     }
 
@@ -47,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 var point = Random.insideUnitCircle * spawnArea.radius;
                 var pos = transform.position + (Vector3)point;
-                TryToInst(pos, prefabs[i]);
+                TryToInst(pos, prefabs[i], out _);
             }
         }
     }
@@ -58,12 +61,12 @@ public class EnemySpawner : MonoBehaviour
         {
             var point = Random.insideUnitCircle * spawnArea.radius;
             var pos = transform.position + (Vector3)point;
-            TryToInst(pos, enemyPrefab);
+            TryToInst(pos, enemyPrefab, out _);
         }
         
     }
 
-    private void TryToInst(Vector3 position, Enemy prefab)
+    private void TryToInst(Vector3 position, Enemy prefab, out Enemy enemyInst)
     {
         var occupied = true;
         for (int i = 0; i < 50; i++)
@@ -75,8 +78,12 @@ public class EnemySpawner : MonoBehaviour
             break;
         }
 
-        if (occupied) return;
+        if (occupied)
+        {
+            enemyInst = null;
+            return;
+        }
         var inst = Instantiate(prefab,  position, Quaternion.identity);
-        
+        enemyInst = inst;
     }
 }

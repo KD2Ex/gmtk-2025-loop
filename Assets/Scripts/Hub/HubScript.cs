@@ -9,6 +9,10 @@ public class HubScript : MonoBehaviour
     [SerializeField] private List<StatsUpgradeTrigger> statsTriggers;
     private void OnTriggerEnter2D(Collider2D other)
     {
+        print("Player entered Hub");
+        
+        GameManager.instance.CompleteStage();
+        
         foreach (var loopPortal in loopPortals)
         {
             loopPortal.activated = false;

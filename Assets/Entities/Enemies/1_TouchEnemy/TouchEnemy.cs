@@ -71,7 +71,7 @@ namespace Entities.Enemies._1_TouchEnemy
             this.player = player;
         }
 
-        private void OnAttackHit(int layer)
+        private void OnAttackHit(Collider2D other)
         {
             disableChase = true;
             rb.velocity = Vector2.zero;
@@ -119,7 +119,7 @@ namespace Entities.Enemies._1_TouchEnemy
             knockbacking = true;
             knockbackTimer.Start();
             
-            print("Touch enemey health: " + health.Value);
+            //print("Touch enemey health: " + health.Value);
         }
 
         public void Die()

@@ -16,8 +16,14 @@ public class PortalScript : MonoBehaviour
     [SerializeField] public Transform exit;
     [SerializeField] private Transform cameraFollow;
     [SerializeField] private CinemachineVirtualCamera cinemachine;
-    
-    
+
+    private CameraManager cameraManager;
+
+    private void Awake()
+    {
+        cameraManager = cinemachine.GetComponent<CameraManager>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (activated) return;
@@ -28,10 +34,17 @@ public class PortalScript : MonoBehaviour
         Vector3 displacement = exit.transform.position - oldPosition;
         cinemachine.OnTargetObjectWarped(other.gameObject.transform, displacement);
 
-        if (!blockOnExit) cinemachine.GetComponent<CinemachineConfiner2D>().enabled = false;
-        else
+        if (!blockOnExit) // enetered loop
         {
-            cinemachine.GetComponent<CinemachineConfiner2D>().enabled = true;
+            //cinemachine.GetComponent<CinemachineConfiner2D>().enabled = false;
+            cameraManager.SetLoopBounds();
+            GameManager.instance.EnterLoop();
+        }
+        else // entered hub
+        {
+            //cinemachine.GetComponent<CinemachineConfiner2D>().enabled = true;
+            cameraManager.SetHubBounds();
+            GameManager.instance.ExitLoop();
         }
         
         activated = true;

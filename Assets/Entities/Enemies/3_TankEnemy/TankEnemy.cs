@@ -21,7 +21,6 @@ namespace Entities.Enemies._3_TankEnemy
         [SerializeField] private float attackRestoreTime = .4f;
         [SerializeField] private float attackCooldownTime = 1f;
 
-        private Color ogColor;
         private Player player;
 
         private bool playerInAttackRange = false;
@@ -35,8 +34,6 @@ namespace Entities.Enemies._3_TankEnemy
         protected override void Awake()
         {
             base.Awake();
-            
-            ogColor = sprite.color;
             
             attackDelay = new Timer(attackDelayTime, true);
             attackRestore = new Timer(attackDelayTime, true);
@@ -93,7 +90,7 @@ namespace Entities.Enemies._3_TankEnemy
         private void OnAttackSensorEnter(Player player)
         {
             if (attackCharging) return;
-            print("Attack sensor entered");
+            //print("Attack sensor entered");
             playerInAttackRange = true;
             
             attackDelay.Start(); // start attack animation
@@ -153,7 +150,7 @@ namespace Entities.Enemies._3_TankEnemy
             sprite.color = Color.white;
             
             StopAllCoroutines();
-            StartCoroutine(Flash(ogColor));
+            StartCoroutine(Flash());
         }
 
 

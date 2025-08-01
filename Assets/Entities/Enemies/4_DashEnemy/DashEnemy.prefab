@@ -173,8 +173,8 @@ MonoBehaviour:
   attackSensor: {fileID: 8166984854732955417}
   attack: {fileID: 319104929405121334}
   moveSpeed: 8
-  damage: 13
-  knockbackForce: 6
+  damage: 10
+  knockbackForce: 10
   dashChargeTime: 0.5
   dashCooldownTime: 2
 --- !u!114 &1518132967790541680
@@ -234,6 +234,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   speed: 20
   time: 0.5
+  Speed: 0
 --- !u!114 &8115502812313546837
 MonoBehaviour:
   m_ObjectHideFlags: 0

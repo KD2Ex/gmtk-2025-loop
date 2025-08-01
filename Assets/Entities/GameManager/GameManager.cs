@@ -6,6 +6,7 @@ using Entities.Enemies._1_TouchEnemy;
 using Entities.Enemies._2_RangedEnemy;
 using Entities.Enemies._3_TankEnemy;
 using Entities.Enemies._4_DashEnemy;
+using TMPro;
 using Unity.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -31,12 +32,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool spawnOnStart;
 
+    public TMP_Text difficultyText;
+
     [SerializeField] private List<EnemySpawner> spawners;
-    // [SerializeField] private TouchEnemy touchEnemy;
-    // [SerializeField] private RangedEnemy rangedEnemy;
-    // [SerializeField] private TankEnemy tankEnemy;
-    // [SerializeField] private DashEnemy dashEnemy;
-    // [SerializeField] private ExplosiveEnemy explosiveEnemy;
 
     [SerializeField] private List<EnemyTypePrefab> enemyPrefabs;
 
@@ -45,32 +43,58 @@ public class GameManager : MonoBehaviour
     private List<RangeInt> touchEnemyAmountRanges = new ()
     {
         new RangeInt(2, 2), 
+        new RangeInt(3, 1), 
         new RangeInt(3, 2), 
+        new RangeInt(4, 1), 
         new RangeInt(4, 2), 
+        new RangeInt(5, 1), 
+        new RangeInt(6, 1), 
+        new RangeInt(6, 2), 
     };
     private List<RangeInt> rangedEnemyAmountRanges = new()
     {
+        new RangeInt(2, 1),
         new RangeInt(2, 2),
-        new RangeInt(3, 3),
-        new RangeInt(4, 1),
+        new RangeInt(2, 3),
+        new RangeInt(3, 1),
+        new RangeInt(3, 2),
+        new RangeInt(4, 2),
+        new RangeInt(4, 3),
     };
     private List<RangeInt> tankEnemyAmountRanges = new()
     {
         new RangeInt(0, 0),
-        new RangeInt(2, 1),
+        new RangeInt(1, 0),
         new RangeInt(1, 1),
+        new RangeInt(1, 2),
+        new RangeInt(2, 1),
+        new RangeInt(2, 2),
+        new RangeInt(3, 1),
+        new RangeInt(3, 2),
     };
     private List<RangeInt> dashEnemyAmountRanges = new()
     {
         new RangeInt(0, 0),
         new RangeInt(0, 0),
+        new RangeInt(1, 0),
         new RangeInt(1, 1),
+        new RangeInt(2, 1),
+        new RangeInt(2, 1),
+        new RangeInt(3, 1),
+        new RangeInt(3, 1),
+        new RangeInt(3, 1),
     };
     private List<RangeInt> explosiveEnemyAmountRanges = new()
     {
         new RangeInt(0, 0),
         new RangeInt(0, 0),
+        new RangeInt(0, 0),
+        new RangeInt(1, 0),
+        new RangeInt(1, 0),
         new RangeInt(1, 1),
+        new RangeInt(1, 2),
+        new RangeInt(1, 2),
+        new RangeInt(1, 3),
     };
 
     private List<List<RangeInt>> enemyRanges = new();
@@ -85,6 +109,8 @@ public class GameManager : MonoBehaviour
     {
         new RangeInt(2, 2),
     };
+
+    private List<Enemy> spawnedEnemies = new();
 
     public int DifficultyLevel;
     [ReadOnly] public float Coeff;
@@ -103,7 +129,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            difficultyTimer = new Timer(5f,  false);
+            difficultyTimer = new Timer(30f,  false);
             return;
         }
         
@@ -160,7 +186,9 @@ public class GameManager : MonoBehaviour
         var range = ranges[DifficultyLevel];
         var amount = Random.Range(range.start, range.end); 
                 
-        spawner.Spawn(enemy, amount);
+        spawner.Spawn(enemy, amount, out var spawned);
+        
+        spawnedEnemies.AddRange(spawned);
     }
 
 
@@ -200,9 +228,10 @@ public class GameManager : MonoBehaviour
     private void DifficultyTimerTimeout()
     {
         minutesPassed++;
+        //stagesCompleted++;
+        
         CalculateDifficultyLevel();
         
-        print(DifficultyLevel);
     }
 
     public float CalculateCoeff()
@@ -218,12 +247,44 @@ public class GameManager : MonoBehaviour
     private void CalculateDifficultyLevel()
     {
         CalculateCoeff();
-        DifficultyLevel = Mathf.FloorToInt(1 + (Coeff - playerFactor) / 0.33f);
+        DifficultyLevel = Mathf.FloorToInt(1 + (Coeff - playerFactor) / 0.25f) - 1;
+        
+        print("Difficulty: " + DifficultyLevel);
+
+        if (difficultyText)
+            difficultyText.text = "Difficutly: " + DifficultyLevel.ToString();
     }
 
     private void CalculateStageFactor()
     {
-        stageFactor = Mathf.Pow(1.15f, stagesCompleted);
+        stageFactor = Mathf.Pow(1.05f, stagesCompleted);
     }
-     
+
+    public void CompleteStage()
+    {
+        stagesCompleted++;
+        CalculateDifficultyLevel();
+    }
+
+    public void EnterLoop()
+    {
+        InitLevel();
+        print(spawnedEnemies.Count);
+    }
+
+    public void ExitLoop()
+    {
+        RemoveAllSpawnedEnemies();
+    }
+
+    private void RemoveAllSpawnedEnemies()
+    {
+        foreach (var e in spawnedEnemies)
+        {
+            if (e)
+                Destroy(e.gameObject);
+        }
+        
+        spawnedEnemies.Clear();
+    }
 }

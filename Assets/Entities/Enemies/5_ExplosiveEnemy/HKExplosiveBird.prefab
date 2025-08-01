@@ -278,7 +278,7 @@ MonoBehaviour:
   hitbox: {fileID: 2415257711059870488}
   moveSpeed: 17
   accelTime: 0.7
-  damage: 50
+  damage: 30
   knockbackForce: 30
 --- !u!50 &4683978105011522966
 Rigidbody2D:

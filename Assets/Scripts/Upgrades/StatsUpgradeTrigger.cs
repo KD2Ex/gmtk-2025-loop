@@ -18,6 +18,7 @@ public class StatsUpgradeTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //print(other.gameObject.name);
         if (activated) return;
         UpgradeStat(Random.Range(1,5));
 
