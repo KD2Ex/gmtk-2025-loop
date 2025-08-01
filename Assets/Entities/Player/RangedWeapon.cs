@@ -1,4 +1,5 @@
 using System;
+using Entities.DoTEffects;
 using Projectiles;
 using UnityEngine;
 
@@ -27,7 +28,9 @@ namespace Entities
         public float OgDamage => damage;
         public float OgCooldown => cooldown;
         public float TotalDamage; 
-        public float TotalCooldown; 
+        public float TotalCooldown;
+
+        public FireDoT firDot;
 
         private void Awake()
         {
@@ -66,6 +69,7 @@ namespace Entities
             
             var inst = Instantiate(projPrefab, transform.position, Quaternion.identity);
             inst.Init(dir, speed, TotalDamage, knockbackForce);
+            inst.AddDoTEffect(firDot);
             
             cooldownTimer.UpdateWaitTime(TotalCooldown);
             cooldownTimer.Start();

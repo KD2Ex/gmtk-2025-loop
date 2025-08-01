@@ -71,6 +71,8 @@ public class Player : MonoBehaviour, IDamageable
     
     public HealthComponent Health => healthComponent;
 
+    public RangedWeapon RangedWeapon => rangedWeapon;
+
     private void Awake()
     {
         ogColor = sprite.color;
@@ -221,7 +223,9 @@ public class Player : MonoBehaviour, IDamageable
 
         var totalCooldown = rangedModifiers.GetTotalValue(RangedModifierType.Cooldown, rangedWeapon.OgCooldown);
         rangedWeapon.TotalCooldown = totalCooldown;
-        print(totalCooldown);
+        //print(totalCooldown);
+
+        //rangedWeapon.firDot = rangedModifiers.fireDot;
     }
 
     public void UpdateDashStats()

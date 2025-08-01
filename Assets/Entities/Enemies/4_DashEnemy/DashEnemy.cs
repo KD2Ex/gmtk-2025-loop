@@ -30,8 +30,6 @@ namespace Entities.Enemies._4_DashEnemy
         private bool dashCharging;
         private bool isDashReady = true;
 
-        private Color ogColor;
-
         protected override void Awake()
         {
             base.Awake();

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1518132967790541680}
   - component: {fileID: 8115502812313546837}
   - component: {fileID: 4846251813282842171}
+  - component: {fileID: 7238648902375797512}
   m_Layer: 7
   m_Name: DashEnemy
   m_TagString: Untagged
@@ -235,7 +236,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   speed: 20
   time: 0.5
-  Speed: 0
+  OgSpeed: 0
 --- !u!114 &8115502812313546837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +264,19 @@ MonoBehaviour:
   Value: 75
   MaxValue: 75
   isDead: 0
+--- !u!114 &7238648902375797512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4920749071556892253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d956a06563f497582286b59bc1419c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenDamage: 0
 --- !u!1001 &37913623805631201
 PrefabInstance:
   m_ObjectHideFlags: 0
