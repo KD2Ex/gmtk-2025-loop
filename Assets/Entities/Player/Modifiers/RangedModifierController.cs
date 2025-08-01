@@ -1,19 +1,24 @@
 using System;
+using Entities.DoTEffects;
 using UnityEngine;
 
 public enum RangedModifierType
 {
     Damage,
-    Cooldown
+    Cooldown,
+    FireDOT,
+    Vulnerable,
+    LightningStrike
 }
 
 namespace Entities.Modifiers
 {
     public class RangedModifierController : ModifiersController
     {
-
         public float baseDamage;
         public float cooldown;
+
+        public FireDoT fireDot;
         
         public void AddModifier(RangedModifierType type, Modifier modifier)
         {
@@ -30,6 +35,24 @@ namespace Entities.Modifiers
             }
             
             player.UpdateRangedStats();
+        }
+
+        public void AddFireDoT(FireDoT dot)
+        {
+            fireDot = dot;
+
+            if (player.RangedWeapon.firDot.Damage == 0)
+            {
+                player.RangedWeapon.firDot.Damage += dot.Damage;
+                player.RangedWeapon.firDot.TimeBetweenDamage += dot.TimeBetweenDamage;
+            }
+            else
+            {
+                player.RangedWeapon.firDot.Damage += dot.Damage;
+                player.RangedWeapon.firDot.TimeBetweenDamage -= dot.TimeBetweenDamage * .25f;
+                
+                player.RangedWeapon.firDot.TimeBetweenDamage = Mathf.Clamp(player.RangedWeapon.firDot.TimeBetweenDamage, .1f, 1f);
+            }
         }
 
         public float GetTotalValue(RangedModifierType type, float baseValue, float increased = 0f)

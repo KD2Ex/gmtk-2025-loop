@@ -20,11 +20,13 @@ public class Reroll : MonoBehaviour
     private void OnEnable()
     {
         GameManager.instance.playerEnteredHub += ResetCost;
+        GameManager.instance.playerEnteredHub += RerollRelics;
     }
 
     private void OnDisable()
     {
         GameManager.instance.playerEnteredHub -= ResetCost;
+        GameManager.instance.playerEnteredHub -= RerollRelics;
     }
 
     private void Start()
@@ -39,7 +41,7 @@ public class Reroll : MonoBehaviour
         Inventory inventory = other.GetComponent<Inventory>();
         if (inventory.coins < cost) return; 
         inventory.coins -= cost;
-        cost += deltaCost;
+        cost *= GameManager.instance.DifficultyLevel + 2;
         costText.text = cost.ToString();
         RerollRelics();
     }

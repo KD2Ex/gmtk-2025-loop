@@ -1,6 +1,8 @@
 using System;
 using Attacks;
 using Damage;
+using DoT;
+using Entities.DoTEffects;
 using UnityEngine;
 
 namespace Projectiles
@@ -15,6 +17,9 @@ namespace Projectiles
         private int penetrateAmount;
 
         private int penetrated = 0;
+
+        private float dotDamage = 0;
+        private float timeBetweenDamage = 0;
 
         private void Awake()
         {
@@ -40,6 +45,12 @@ namespace Projectiles
             {
                 Destroy(gameObject);
             }
+
+            if (dotDamage > 0)
+            {
+                var dotHandler = other.GetComponent<DoTHandler>();
+                dotHandler.SetDoTDamage(dotDamage, timeBetweenDamage);
+            }
             
             penetrated++;
             if (penetrated > penetrateAmount)
@@ -56,6 +67,12 @@ namespace Projectiles
             this.speed = speed;
             this.dir = dir;
             this.penetrateAmount = penetrateAmount;
+        }
+
+        public void AddDoTEffect(FireDoT dot)
+        {
+            dotDamage = dot.Damage;
+            timeBetweenDamage = dot.TimeBetweenDamage;
         }
         
         private void FixedUpdate()

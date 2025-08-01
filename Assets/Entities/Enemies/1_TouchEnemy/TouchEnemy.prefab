@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1332791029342643043}
   - component: {fileID: 2993866725703391886}
   - component: {fileID: 7009604620538940967}
+  - component: {fileID: 5873592008180905212}
   m_Layer: 7
   m_Name: TouchEnemy
   m_TagString: Untagged
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503cf5e775b74e4e88308fdbfc379e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   moveSpeed: 5
   chaseSensor: {fileID: 3866647854186572449}
   knockbackComponent: {fileID: 7009604620538940967}
@@ -198,6 +200,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a521c400947444a8f13861bbc29c2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5873592008180905212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355620896188001864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d956a06563f497582286b59bc1419c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenDamage: 0
 --- !u!1 &2904752132915052157
 GameObject:
   m_ObjectHideFlags: 0

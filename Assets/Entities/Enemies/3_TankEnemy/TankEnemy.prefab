@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 8080543110610588879}
   - component: {fileID: 2508799344786159360}
   - component: {fileID: 5810269142242575671}
+  - component: {fileID: 259688153506104951}
   m_Layer: 7
   m_Name: TankEnemy
   m_TagString: Untagged
@@ -247,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e36e08afbc0462a8cacc4d4f620568f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   chaseSensor: {fileID: 2081427777473654005}
   attackSensor: {fileID: 5760453611591285931}
   attack: {fileID: 5676877522282112078}
@@ -272,6 +274,19 @@ MonoBehaviour:
   Value: 150
   MaxValue: 150
   isDead: 0
+--- !u!114 &259688153506104951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866659479057284564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d956a06563f497582286b59bc1419c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenDamage: 0
 --- !u!1 &1940616183475560009
 GameObject:
   m_ObjectHideFlags: 0

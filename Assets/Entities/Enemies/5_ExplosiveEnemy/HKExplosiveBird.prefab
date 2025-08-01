@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 4683978105011522966}
   - component: {fileID: 2698987498869831842}
   - component: {fileID: 2415257711059870488}
+  - component: {fileID: 7442481484619731425}
   m_Layer: 7
   m_Name: HKExplosiveBird
   m_TagString: Untagged
@@ -239,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd307b6fd0523f47af98b4067d3eda4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   movementCurve:
     serializedVersion: 2
     m_Curve:
@@ -357,6 +359,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7442481484619731425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8127114903102267626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d956a06563f497582286b59bc1419c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenDamage: 0
 --- !u!1001 &5052950688086424206
 PrefabInstance:
   m_ObjectHideFlags: 0

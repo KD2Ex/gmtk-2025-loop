@@ -20,7 +20,6 @@ namespace Entities.Enemies._1_TouchEnemy
         [SerializeField] private float knockbackForce;
         //[SerializeField] private EnemySensor attackSensor;
         
-        private Color ogColor;
         private Player player;
 
         private bool disableChase = false;
@@ -89,7 +88,7 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             knockbacking = false;
             rb.velocity = Vector2.zero;
-            sprite.color = ogColor;
+            //sprite.color = ogColor;
         }
 
         private void Update()
@@ -114,10 +113,14 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             health.Remove(message.damage);
             sprite.color = Color.white;
+            StartCoroutine(Flash());
             
-            knockbackComponent.Execute(message.dir, 7.5f);
-            knockbacking = true;
-            knockbackTimer.Start();
+            if (message.knockbackForce > 0)
+            {
+                knockbackComponent.Execute(message.dir, message.knockbackForce);
+                knockbacking = true;
+                knockbackTimer.Start();
+            }
             
             //print("Touch enemey health: " + health.Value);
         }
