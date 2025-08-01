@@ -13,6 +13,7 @@ namespace Entities.Drops.Coins
         private Rigidbody2D rb;
         [SerializeField] private EnemySensor senor;
 
+        private bool exec = false;
 
         private void OnEnable()
         {
@@ -22,18 +23,20 @@ namespace Entities.Drops.Coins
 
         private void OnPlayerEnterChase(Player player)
         {
+            this.player = player;
             StartCoroutine(WaitToFindPlayer(player));
         }
 
         IEnumerator WaitToFindPlayer(Player player)
         {
             yield return new WaitForSeconds(0.3f);
-            this.player = player;
+            //this.player = player;
+            exec = true;
         }
 
         private void Update()
         {
-            if (!player) return;
+            if (!exec) return;
             
             Chase();
         }
