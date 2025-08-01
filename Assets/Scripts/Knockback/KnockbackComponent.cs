@@ -19,7 +19,7 @@ namespace Knockback
         
         public void Execute(Vector2 dir, float force)
         {
-            print("Knockback exec");
+            //print("Knockback exec");
             exec = true;
             this.dir = dir;
             this.force = force;

@@ -155,7 +155,7 @@ namespace Entities.Enemies._4_DashEnemy
             }
 
             sprite.color = Color.white;
-            StartCoroutine(Flash(ogColor));
+            StartCoroutine(Flash());
 
             if (health.isDead)
             {

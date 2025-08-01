@@ -15,8 +15,14 @@ namespace Entities
         private float elapsed = 0f;
         public bool IsDashing => isDashing;
         public float TimeRemain => elapsed / time;
+        public float Speed;
 
         public Action Finished;
+
+        private void Awake()
+        {
+            Speed = speed;
+        }
 
         public void Execute(Vector2 dir)
         {
@@ -41,6 +47,11 @@ namespace Entities
 
             isDashing = false;
             Finished?.Invoke();
+        }
+
+        public void SetSpeed(float speed)
+        {
+            this.speed = speed;
         }
         
     }

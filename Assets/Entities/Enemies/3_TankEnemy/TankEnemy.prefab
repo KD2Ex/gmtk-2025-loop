@@ -252,8 +252,8 @@ MonoBehaviour:
   attack: {fileID: 5676877522282112078}
   attackPivot: {fileID: 0}
   moveSpeed: 6
-  damage: 25
-  knockbackForce: 12
+  damage: 15
+  knockbackForce: 15
   attackDelayTime: 1
   attackRestoreTime: 0.6
   attackCooldownTime: 1

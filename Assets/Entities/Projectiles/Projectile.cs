@@ -27,11 +27,16 @@ namespace Projectiles
             hitbox.OnHit += OnHit;
         }
 
-        private void OnHit(int layer)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            var layerName = LayerMask.LayerToName(layer);
+            //print("Proj hit " + other.gameObject.name);
+            if (other.CompareTag("Obstacle")) Destroy(gameObject);
+        }
 
-            if (layerName == "Obstacle")
+        private void OnHit(Collider2D other)
+        {
+            //print(other.gameObject.name);
+            if (other.CompareTag("Obstacle"))
             {
                 Destroy(gameObject);
             }
