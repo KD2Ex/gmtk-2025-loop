@@ -7,6 +7,8 @@ using Knockback;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public enum PlayerDashType
 {
@@ -32,9 +34,6 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Color dashColor;
     
     [Space(5)]
-    
-    [SerializeField] private TMP_Text hp;
-    [SerializeField] private TMP_Text currentAmmo;
     [SerializeField] private TMP_Text statsText;
 
     [Space(5)] [Header("Stats")] [SerializeField]
@@ -75,6 +74,12 @@ public class Player : MonoBehaviour, IDamageable
 
     public RangedWeapon RangedWeapon => rangedWeapon;
 
+    [Header("UI Elements")] 
+    [SerializeField] private Image ammoImage;
+    [SerializeField] private Image hpImage;
+    [SerializeField] private GameObject pausePanel;
+    public bool pauseOpen;
+    
     private void Awake()
     {
         ogColor = sprite.color;
@@ -108,6 +113,7 @@ public class Player : MonoBehaviour, IDamageable
         var attackAction = input.currentActionMap.FindAction("Attack");
         var dashAction = input.currentActionMap.FindAction("Dash");
         var shootAction = input.currentActionMap.FindAction("Shoot");
+        var pauseAction = input.currentActionMap.FindAction("Pause");
 
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
@@ -115,6 +121,7 @@ public class Player : MonoBehaviour, IDamageable
         attackAction.started += OnAttack;
         attackAction.canceled += OnAttack;
 
+        pauseAction.started += OnPause; 
         dashAction.started += OnDash;
 
         shootAction.started += OnShoot;
@@ -133,6 +140,7 @@ public class Player : MonoBehaviour, IDamageable
         var attackAction = input.currentActionMap.FindAction("Attack");
         var dashAction = input.currentActionMap.FindAction("Dash");
         var shootAction = input.currentActionMap.FindAction("Shoot");
+        var pauseAction = input.currentActionMap.FindAction("Pause");
         
         moveAction.performed -= OnMove;
         moveAction.canceled -= OnMove;
@@ -154,7 +162,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnHpChanged(float current, float max)
     {
-        hp.text = current.ToString();
+        hpImage.fillAmount = current / max;
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -313,13 +321,53 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     private void OnAmmoUpdated(int value)
-    {
-        currentAmmo.text = value.ToString();
+    {;
+        switch (value)
+        {
+            case 0:
+                ammoImage.fillAmount = 0f;
+                break;
+            case 1:
+                ammoImage.fillAmount = 0.23f;
+                break;
+            case 2:
+                ammoImage.fillAmount = 0.36f;
+                break;
+            case 3:
+                ammoImage.fillAmount = 0.52f;
+                break;
+            case 4:
+                ammoImage.fillAmount = 0.67f;
+                break;
+            case 5:
+                ammoImage.fillAmount = 0.81f;
+                break;
+            case 6:
+                ammoImage.fillAmount = 1f;
+                break;
+        }
     }
 
     private void OnDashCooldown()
     {
         isDashReady = true;
+    }
+
+
+    private void OnPause(InputAction.CallbackContext context)
+    {
+        if (pauseOpen)
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1f;
+            pauseOpen = false;
+        }
+        else
+        {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+            pauseOpen = true;
+        }
     }
     
     // Start is called before the first frame update
@@ -337,7 +385,6 @@ public class Player : MonoBehaviour, IDamageable
 
         //healthComponent.MaxValue = ogMaxHealth + ogMaxHealth * (stats.health * 0.01f);
         UpdateHP();
-
         statsText.text = $"Stats:\n" +
                          $"Damage: {GetStatValue(PlayerStats.Damage)}\n" +
                          $"Move Speed: {GetStatValue(PlayerStats.MoveSpeed)}\n" +
@@ -349,8 +396,9 @@ public class Player : MonoBehaviour, IDamageable
     {
         var baseHP = ogMaxHealth;
         var hp = playerModifiers.GetTotalValue(PlayerModifierType.HP, baseHP, stats.health);
-
         healthComponent.MaxValue = hp;
+        
+        OnHpChanged(healthComponent.Value, healthComponent.MaxValue);
     }
 
     private void FixedUpdate()
