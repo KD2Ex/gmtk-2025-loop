@@ -11,6 +11,7 @@ public class GlobalTimer : MonoBehaviour
     private void Start()
     {
         timerIsRunning = true;
+        GameManager.instance.GlobalTimer = this;
     }
 
     private void Update()

@@ -13,6 +13,12 @@ namespace Entities.Modifiers
     {
         public float maxHP;
         public float baseMoveSpeed;
+
+        public void ResetModifiers()
+        {
+            maxHP = 0;
+            baseMoveSpeed = 0;
+        }
         
         public void AddModifier(PlayerModifierType type, Modifier modifier)
         {

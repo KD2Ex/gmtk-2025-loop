@@ -24,6 +24,8 @@ public class CameraManager : MonoBehaviour
             SetHubBounds();
         else
             SetLoopBounds();
+
+        GameManager.instance.CameraManager = this;
     }
 
     public void SetHubBounds()

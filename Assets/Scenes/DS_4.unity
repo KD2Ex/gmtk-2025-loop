@@ -6436,18 +6436,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUB
       objectReference: {fileID: 0}
-    - target: {fileID: 2328241344887164423, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 3711806153934758276, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: relics.Array.size
+      value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 2980802731996733225, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3003381497603892959, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
-      propertyPath: m_CallbackLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
+    - target: {fileID: 3711806153934758276, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: relics.Array.data[13]
+      value: 
+      objectReference: {fileID: 2378799811423638037, guid: e84e3e9375e703b408512603af2637e5, type: 3}
     - target: {fileID: 4221235358616182481, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: exit
       value: 
@@ -8162,6 +8158,10 @@ PrefabInstance:
     - target: {fileID: 2378799811423638037, guid: e84e3e9375e703b408512603af2637e5, type: 3}
       propertyPath: m_Name
       value: Relic_RangedExplosive (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378799811423638037, guid: e84e3e9375e703b408512603af2637e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3149131415415494519, guid: e84e3e9375e703b408512603af2637e5, type: 3}
       propertyPath: explosiveDamage
@@ -27299,6 +27299,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89551a4615cca354f87c3c785f2d23a2, type: 3}
+--- !u!4 &246063545 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6730290202003399337, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+  m_PrefabInstance: {fileID: 54579844}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &246083491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5513885648196480926, guid: 89551a4615cca354f87c3c785f2d23a2, type: 3}
@@ -51213,6 +51218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Relic_RangedExplosive
       objectReference: {fileID: 0}
+    - target: {fileID: 2378799811423638037, guid: e84e3e9375e703b408512603af2637e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3149131415415494519, guid: e84e3e9375e703b408512603af2637e5, type: 3}
       propertyPath: explosiveDamage
       value: 0.5
@@ -72569,79 +72578,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5513885648196480926, guid: 89551a4615cca354f87c3c785f2d23a2, type: 3}
   m_PrefabInstance: {fileID: 1840315646}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &651277823
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 160.54073
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -26.042772
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 698983687453418964, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082804824635413603, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6769676738642711673, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
-      propertyPath: m_Name
-      value: ExplosiveAttack
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
 --- !u!1001 &651466375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103178,6 +103114,10 @@ PrefabInstance:
     - target: {fileID: 2378799811423638037, guid: e84e3e9375e703b408512603af2637e5, type: 3}
       propertyPath: m_Name
       value: Relic_RangedExplosive (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378799811423638037, guid: e84e3e9375e703b408512603af2637e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3149131415415494519, guid: e84e3e9375e703b408512603af2637e5, type: 3}
       propertyPath: explosiveDamage
@@ -273900,6 +273840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Relic_RangedExplosive (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2378799811423638037, guid: e84e3e9375e703b408512603af2637e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3149131415415494519, guid: e84e3e9375e703b408512603af2637e5, type: 3}
       propertyPath: explosiveDamage
       value: 0.5
@@ -327285,6 +327229,10 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 7106418488121625499}
+    - target: {fileID: 4108799358466115009, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: Value
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4889690243537376135, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: m_Name
       value: Player
@@ -327293,10 +327241,6 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 1613185148}
-    - target: {fileID: 6058826491878371296, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: coins
-      value: 200
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -327551,29 +327495,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
-      propertyPath: EnemyFactor
-      value: 1.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
-      propertyPath: spawnOnStart
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
-      propertyPath: EnableEnemyHP
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
       propertyPath: difficultyText
       value: 
       objectReference: {fileID: 293062519}
     - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
-      propertyPath: DifficultyLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
-      propertyPath: spawners.Array.size
-      value: 12
-      objectReference: {fileID: 0}
+      propertyPath: playerSpawnPoint
+      value: 
+      objectReference: {fileID: 246063545}
     - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
       propertyPath: spawners.Array.data[0]
       value: 
@@ -327759,6 +327687,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 704092086588533463, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 2031573486}
     - target: {fileID: 1819876207826637144, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
       propertyPath: health
       value: 
@@ -327766,6 +327698,10 @@ PrefabInstance:
     - target: {fileID: 6718118046169766884, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
       propertyPath: m_Name
       value: PlayerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638745936208755427, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -327965,4 +327901,3 @@ SceneRoots:
   - {fileID: 949313246}
   - {fileID: 67612576}
   - {fileID: 1620645388}
-  - {fileID: 651277823}

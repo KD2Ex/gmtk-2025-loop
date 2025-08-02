@@ -618,7 +618,6 @@ public class Player : MonoBehaviour, IDamageable
         input.currentActionMap.Disable();
 
         hitbox.enabled = false;
-        
     }
 
     public void OnDeathAnimation()
@@ -627,7 +626,31 @@ public class Player : MonoBehaviour, IDamageable
         Time.timeScale = 0f;
         pauseOpen = true;
     }
-    
+
+    public void Restart()
+    {
+        stats.ResetStats();
+        Health.Value = ogMaxHealth;
+        Health.MaxValue = ogMaxHealth;
+        Health.OnValueChanged?.Invoke(Health.Value, Health.MaxValue);
+        
+        hitbox.enabled = true;
+        animator.Play("PlayerIdle");
+        
+        meleeModifiers.ResetModifiers();
+        rangedModifiers.ResetModifiers();
+        dashModifiers.ResetModifiers();
+        playerModifiers.ResetModifiers();
+
+        healthComponent.isDead = false;
+        
+        pausePanel.SetActive(false);
+        Time.timeScale = 1f;
+        pauseOpen = false;
+        
+        input.currentActionMap.Enable();
+        UpdateHP();
+    }
     
     protected IEnumerator Flash()
     {
