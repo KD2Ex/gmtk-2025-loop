@@ -1,3 +1,4 @@
+using System.Collections;
 using Attacks;
 using Damage;
 using Entities;
@@ -524,6 +525,8 @@ public class Player : MonoBehaviour, IDamageable
             Die();
             return;
         }
+
+        StartCoroutine(Flash());
         
         invincible = true;
         iFramesTimer.Start();
@@ -567,6 +570,12 @@ public class Player : MonoBehaviour, IDamageable
         input.currentActionMap.Disable();
     }
     
+    protected IEnumerator Flash()
+    {
+        sprite.material.SetFloat("_Amount", 1);
+        yield return new WaitForSeconds(0.3f);
+        sprite.material.SetFloat("_Amount", 0);
+    }
 }
 
 public enum PlayerStats

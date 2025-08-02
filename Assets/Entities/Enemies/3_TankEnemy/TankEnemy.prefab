@@ -318,7 +318,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.55
+  m_Radius: 2.86
 --- !u!1 &6486544181480963030
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,9 +498,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5082804824635413603, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432382046709942222, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
+      propertyPath: m_Radius
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 6769676738642711673, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_Name
       value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769676738642711673, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

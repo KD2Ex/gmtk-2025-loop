@@ -29,6 +29,8 @@ namespace Entities.Enemies._4_DashEnemy
         private bool isPlayerInAttackRange;
         private bool dashCharging;
         private bool isDashReady = true;
+        
+        private Vector2 lastVelocity;
 
         protected override void Awake()
         {
@@ -51,6 +53,9 @@ namespace Entities.Enemies._4_DashEnemy
 
             dashChargeTimer.Timeout += OnDashChargeTimeout;
             dashCooldown.Timeout += OnDashCooldown;
+            
+            dash.Finished += OnDashFinished;
+            attack.OnHit += OnAttackHit;
         }
 
         private void OnDisable()
@@ -61,6 +66,9 @@ namespace Entities.Enemies._4_DashEnemy
             
             dashChargeTimer.Timeout -= OnDashChargeTimeout;
             dashCooldown.Timeout -= OnDashCooldown;
+            
+            dash.Finished -= OnDashFinished;
+            attack.OnHit -= OnAttackHit;
         }
 
         private void OnChaseSensorEnter(Player obj)
@@ -71,7 +79,6 @@ namespace Entities.Enemies._4_DashEnemy
         private void OnAttackSensorEnter(Player obj)
         {
             isPlayerInAttackRange = true;
-            rb.velocity = Vector2.zero;
             // if (dashCharging || dash.IsDashing) return;
             // ChargeDash();
         }
@@ -83,6 +90,7 @@ namespace Entities.Enemies._4_DashEnemy
 
         private void Update()
         {
+            
             dashChargeTimer.Tick(Time.deltaTime);
             dashCooldown.Tick(Time.deltaTime);
 
@@ -98,10 +106,23 @@ namespace Entities.Enemies._4_DashEnemy
         private void FixedUpdate()
         {
             if (!player) return;
-            if (isPlayerInAttackRange || dashCharging) return;
-            if (dash.IsDashing) return;
+            if (isPlayerInAttackRange || dashCharging)
+            {
+                return;
+            }
+            if (dash.IsDashing)
+            {
+                return;
+            }
 
             Chase();
+            
+            if (rb.velocity != Vector2.zero)
+            {
+                lastVelocity = rb.velocity;
+            }
+            
+            sprite.flipX = lastVelocity.x > 0;
         }
 
         private void Chase()
@@ -109,6 +130,7 @@ namespace Entities.Enemies._4_DashEnemy
             var dir = (player.transform.position - transform.position).normalized;
             
             SetVel(dir, moveSpeed);
+            animator.Play("GhostIdle");
         }
         
         private void ChargeDash() 
@@ -122,7 +144,15 @@ namespace Entities.Enemies._4_DashEnemy
         {
             var dir = (player.transform.position - transform.position).normalized;
             dash.Execute(dir);
-            StartCoroutine(Attacking());
+            
+            animator.Play("GhostDash");
+            
+            sprite.flipX = dir.x > 0;
+            
+            //StartCoroutine(Attacking());
+            
+            attack.gameObject.SetActive(true);
+            
             dashCharging = false;
             
             isDashReady = false;
@@ -144,25 +174,54 @@ namespace Entities.Enemies._4_DashEnemy
             attack.Execute(damage, knockbackForce);
         }
 
+        private void OnDashFinished()
+        {
+            attack.Disable();
+        }
+
+        private void OnAttackHit(Collider2D other)
+        {
+            attack.Disable();
+        }
+
         public void TakeDamage(DamageMessage message)
         {
             health.Remove(message.damage);
-            if (message.knockbackForce > 0)
-            {
-                knockback.Execute(message.dir, message.knockbackForce);
-            }
-
-            StartCoroutine(Flash());
+            // if (message.knockbackForce > 0)
+            // {
+            //     knockback.Execute(message.dir, message.knockbackForce);
+            // }
 
             if (health.isDead)
             {
                 Die();
+                return;
             }
+            StartCoroutine(Flash());
+
         }
         
         private void Die()
         {
-            Destroy(gameObject);
+            chaseSensor.OnEnter -= OnChaseSensorEnter;
+            attackSensor.OnEnter -= OnAttackSensorEnter;
+            attackSensor.OnLeave -= OnAttackSensorLeave;
+            
+            dashChargeTimer.Timeout -= OnDashChargeTimeout;
+            dashCooldown.Timeout -= OnDashCooldown;
+            
+            attack.Disable();
+            
+            StopAllCoroutines();
+            
+            sprite.material.SetFloat("_Amount", 0);
+            
+            
+            rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast", "Enemy", "Default");
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            sprite.sortingOrder = -1;
+            
+            animator.Play("GhostDeath", 0, 0f);
         }
 
         private void SetVel(Vector2 dir, float force)
