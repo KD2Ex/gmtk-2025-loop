@@ -38,8 +38,13 @@ namespace Entities.Enemies
             
             health.Value = hp;
             health.MaxValue = hp;
+
             
             UpdateDamage();
+
+            var text = GetComponentInChildren<HPText>();
+            if (text)
+                text.gameObject.SetActive(GameManager.instance.EnableEnemyHP);
 
         }
 

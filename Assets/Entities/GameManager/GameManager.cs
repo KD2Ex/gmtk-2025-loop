@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public bool spawnOnStart;
 
     public TMP_Text difficultyText;
+    public bool EnableEnemyHP = false;
 
     [SerializeField] private List<EnemySpawner> spawners;
 
@@ -297,6 +298,8 @@ public class GameManager : MonoBehaviour
     {
         playerEnteredHub?.Invoke();
         RemoveAllSpawnedEnemies();
+        
+        OnHubEnter?.Invoke();
     }
 
     private void RemoveAllSpawnedEnemies()
@@ -314,4 +317,6 @@ public class GameManager : MonoBehaviour
     {
         return Mathf.Pow(EnemyFactor, DifficultyLevel);
     }
+
+    public Action OnHubEnter;
 }

@@ -49,7 +49,7 @@ namespace Projectiles
             if (dotDamage > 0)
             {
                 var dotHandler = other.GetComponent<DoTHandler>();
-                var dmg = hitbox.damage + hitbox.damage * (dotDamage * 0.01f);
+                var dmg = hitbox.damage * (dotDamage * 0.01f);
                 dotHandler.SetDoTDamage(dmg, timeBetweenDamage);
             }
             

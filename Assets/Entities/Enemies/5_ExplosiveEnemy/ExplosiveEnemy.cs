@@ -54,6 +54,8 @@ public class ExplosiveEnemy : Enemy, IDamageable
     private void OnPlayerSpotted(Player player)
     {
         this.player = player;
+        print("Spotted" +
+              "");
     }
 
     private void OnReachedPlayer(Player player)
@@ -78,6 +80,8 @@ public class ExplosiveEnemy : Enemy, IDamageable
     protected override void Die()
     {
         rb.velocity = Vector2.zero;
+        chaseSensor.OnEnter -= OnPlayerSpotted;
+        attackSensor.OnEnter -= OnReachedPlayer;
         //rb.excludeLayers = LayerMask.GetMask("Enemy", "Default");
         hitbox.excludeLayers = LayerMask.GetMask("Enemy", "Ignore Raycast", "Player", "Default");
         //sprite.color = Color.black;

@@ -9,7 +9,7 @@ public class RelicDescription : MonoBehaviour
     public string description;
     private TextMeshProUGUI textBox;
 
-    public Action OnEnter;
+    public Action<Player> OnEnter;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class RelicDescription : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        OnEnter?.Invoke();
+        OnEnter?.Invoke(other.GetComponent<Player>());
         textBox.text = description;
     }
 

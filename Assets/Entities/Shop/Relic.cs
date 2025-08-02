@@ -48,7 +48,7 @@ public class Relic : MonoBehaviour
             relicEffect.Apply(player);
     }
 
-    private void UpdateIgniteRelicDesc()
+    private void UpdateIgniteRelicDesc(Player _)
     {
         if (GameManager.instance.Player.rangedModifiers.fireDot.Damage != 0)
         {
