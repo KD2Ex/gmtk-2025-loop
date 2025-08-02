@@ -16,6 +16,13 @@ public enum PlayerDashType
     Movement
 }
 
+public enum PlayerAttackAction
+{
+    None,
+    Melee,
+    Ranged
+}
+
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private float moveSpeed = 100f;
@@ -85,6 +92,8 @@ public class Player : MonoBehaviour, IDamageable
     private bool attackInput = false;
 
     public Camera mainCamera;
+
+    private PlayerAttackAction currentAttack = PlayerAttackAction.None;
     
     private void Awake()
     {
@@ -192,10 +201,12 @@ public class Player : MonoBehaviour, IDamageable
         if (context.started)
         {
             attackInput = true;
+            currentAttack = PlayerAttackAction.Melee;
         } 
         else if (context.canceled)
         {
             attackInput = false;
+            currentAttack = shootInput ? PlayerAttackAction.Ranged : PlayerAttackAction.None;
         }
 
         //Attack();
@@ -312,11 +323,13 @@ public class Player : MonoBehaviour, IDamageable
         if (context.started)
         {
             shootInput = true;
+            currentAttack = PlayerAttackAction.Ranged;
             //Shoot();
         } 
         else if (context.canceled)
         {
             shootInput = false;
+            currentAttack = attackInput ? PlayerAttackAction.Melee : PlayerAttackAction.None;
         }
     }
 
@@ -427,18 +440,31 @@ public class Player : MonoBehaviour, IDamageable
                          $"Attack Cooldown: {GetStatValue(PlayerStats.AttackDelay)}\n" +
                          $"Max Health: {GetStatValue(PlayerStats.Health)}\n";
 
-        if (shootInput)
-        {
-            if (rangedWeapon.IsReady)
-            {
-                Shoot();
-            }
-        }
+        // if (shootInput)
+        // {
+        //     if (rangedWeapon.IsReady)
+        //     {
+        //         Shoot();
+        //     }
+        // }
+        //
+        // if (attackInput)
+        // {
+        //     Attack();
+        // }
 
-        if (attackInput)
+        switch (currentAttack)
         {
-            Attack();
-        } 
+            case PlayerAttackAction.Melee:
+                Attack();
+                break;
+            case PlayerAttackAction.Ranged:
+                if (rangedWeapon.IsReady)
+                {
+                    Shoot();
+                }
+                break;
+        }
         
     }
 
