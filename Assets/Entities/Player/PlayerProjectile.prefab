@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0.1
+  collisionLifetime: 0.1
   damage: 0
   knockbackForce: 0
 --- !u!58 &926093825936973741

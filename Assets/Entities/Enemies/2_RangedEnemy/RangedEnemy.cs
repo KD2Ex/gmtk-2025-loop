@@ -74,8 +74,7 @@ namespace Entities.Enemies._2_RangedEnemy
             var dir = (player.transform.position - transform.position).normalized;
             
             inst.Init(dir, speed, damage, 0);
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90;
-            inst.transform.rotation = Quaternion.Euler(0, 0, angle);
+            inst.RotateTo(dir, 90);
         }
 
         public void TakeDamage(DamageMessage message)

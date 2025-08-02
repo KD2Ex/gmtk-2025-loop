@@ -80,6 +80,11 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Image hpImage;
     [SerializeField] private GameObject pausePanel;
     public bool pauseOpen;
+
+    private bool shootInput = false;
+    private bool attackInput = false;
+
+    public Camera mainCamera;
     
     private void Awake()
     {
@@ -126,6 +131,7 @@ public class Player : MonoBehaviour, IDamageable
         dashAction.started += OnDash;
 
         shootAction.started += OnShoot;
+        shootAction.canceled += OnShoot;
 
         dash.Finished += OnDashFinished;
 
@@ -156,6 +162,7 @@ public class Player : MonoBehaviour, IDamageable
         dash.Finished -= OnDashFinished;
         
         shootAction.started -= OnShoot;
+        shootAction.canceled -= OnShoot;
         
         healthComponent.OnValueChanged -= OnHpChanged;
         
@@ -179,16 +186,25 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed || context.canceled) return;
+        //if (context.performed || context.canceled) return;
 
-        if (!isAttackReady) return;
-        if (dash.IsDashing && dash.TimeRemain < 0.8f) return;
 
-        Attack();
+        if (context.started)
+        {
+            attackInput = true;
+        } 
+        else if (context.canceled)
+        {
+            attackInput = false;
+        }
+
+        //Attack();
     }
 
     private void Attack()
     {
+        if (!isAttackReady) return;
+        if (dash.IsDashing && dash.TimeRemain < 0.8f) return;
         
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
@@ -200,13 +216,14 @@ public class Player : MonoBehaviour, IDamageable
         var angle = Mathf.Atan2(dir.y, dir.x);
         attackPivot.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * angle - 90f);
 
-        var totalDamage = damage + damage * (stats.damage * 0.01f);
+        //var totalDamage = damage + damage * (stats.damage * 0.01f);
         
-        attack.Execute(meleeModifiers.TotalDamage);
+        attack.Execute(meleeModifiers.TotalDamage, 0, false);
 
         isAttackReady = false;
 
         var totalAttackCD = this.attackCooldown - this.attackCooldown * (stats.attackDelay * 0.01f);
+        totalAttackCD = Mathf.Clamp(totalAttackCD, 0.12f, 1f);
         attackTimer.UpdateWaitTime(totalAttackCD);
         attackTimer.Start();
         
@@ -292,11 +309,25 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnShoot(InputAction.CallbackContext context)
     {
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (context.started)
+        {
+            shootInput = true;
+            //Shoot();
+        } 
+        else if (context.canceled)
+        {
+            shootInput = false;
+        }
+    }
+
+    public void Shoot()
+    {
+        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
         var dir = (mousePos - transform.position).normalized;
-        print(mousePos);
-        print(dir);
+        // print(mousePos);
+        // print(dir);
         rangedWeapon.Shoot(dir.normalized);
     }
 
@@ -378,7 +409,7 @@ public class Player : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -395,6 +426,20 @@ public class Player : MonoBehaviour, IDamageable
                          $"Move Speed: {GetStatValue(PlayerStats.MoveSpeed)}\n" +
                          $"Attack Cooldown: {GetStatValue(PlayerStats.AttackDelay)}\n" +
                          $"Max Health: {GetStatValue(PlayerStats.Health)}\n";
+
+        if (shootInput)
+        {
+            if (rangedWeapon.IsReady)
+            {
+                Shoot();
+            }
+        }
+
+        if (attackInput)
+        {
+            Attack();
+        } 
+        
     }
 
     private void UpdateHP()

@@ -22511,6 +22511,10 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 1996792564}
+    - target: {fileID: 4048993498393075806, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: lifetime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4889690243537376135, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: m_Name
       value: Player

@@ -37,8 +37,6 @@ namespace Entities.Enemies._3_TankEnemy
 
             attack.damage = damage;
             attack.knockbackForce = knockbackForce;
-            
-            print("wsfasddf");
         }
 
         private void Update()
@@ -147,6 +145,8 @@ namespace Entities.Enemies._3_TankEnemy
                 return;
             }
             
+            //print(health.Value);
+            
             //StopAllCoroutines();
             StartCoroutine(Flash());
         }
@@ -158,6 +158,9 @@ namespace Entities.Enemies._3_TankEnemy
             attackSensor.OnEnter -= OnAttackSensorEnter;
             attackSensor.OnLeave -= OnAttackSensorLeave;
             StopAllCoroutines();
+            
+            sprite.material.SetFloat("_Amount", 0);
+            
             isAttacking = false;
             
             rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast", "Enemy", "Default");

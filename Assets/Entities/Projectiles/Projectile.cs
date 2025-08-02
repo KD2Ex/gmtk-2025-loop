@@ -69,6 +69,12 @@ namespace Projectiles
             this.penetrateAmount = penetrateAmount;
         }
 
+        public void RotateTo(Vector2 dir, float offset = 90)
+        {
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + offset;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+
         public void AddDoTEffect(FireDoT dot)
         {
             dotDamage = dot.Damage;

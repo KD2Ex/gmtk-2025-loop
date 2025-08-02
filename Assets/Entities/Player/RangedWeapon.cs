@@ -19,6 +19,8 @@ namespace Entities
         private Timer cooldownTimer;
         private bool isReady = true;
 
+        public bool IsReady => isReady;
+
         private int currentAmmo;
         private float generationProgress;
 
@@ -70,6 +72,7 @@ namespace Entities
             
             var inst = Instantiate(projPrefab, transform.position, Quaternion.identity);
             inst.Init(dir, speed, TotalDamage, knockbackForce);
+            inst.RotateTo(dir, 0);
             inst.AddDoTEffect(firDot);
             
             cooldownTimer.UpdateWaitTime(TotalCooldown);
