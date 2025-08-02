@@ -12,11 +12,8 @@ namespace Entities.Enemies._3_TankEnemy
     {
         [SerializeField] private EnemySensor chaseSensor;
         [SerializeField] private EnemySensor attackSensor;
-        [SerializeField] private Attack attack;
         [SerializeField] private Transform attackPivot;
         [SerializeField] private float moveSpeed;
-        [SerializeField] private float damage;
-        [SerializeField] private float knockbackForce;
         [SerializeField] private float attackDelayTime = .4f;
         [SerializeField] private float attackRestoreTime = .4f;
         [SerializeField] private float attackCooldownTime = 1f;

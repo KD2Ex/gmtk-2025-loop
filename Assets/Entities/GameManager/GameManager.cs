@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
 
     public Player Player;
 
+    public int InititalDifficulty = 0;
 
     [Space(5)]
     [Header("Difficulty Scales")]
@@ -170,7 +171,7 @@ public class GameManager : MonoBehaviour
 
                 var range = enemyRanges[rangeIndex];
 
-                var dIndex = DifficultyLevel;
+                var dIndex = DifficultyLevel - 1;
                 
                 if (DifficultyLevel >= range.Count)
                 {
@@ -198,7 +199,7 @@ public class GameManager : MonoBehaviour
 
     private void InitEnemy(EnemySpawner spawner, List<RangeInt> ranges, Enemy enemy)
     {
-        var index = DifficultyLevel;
+        var index = DifficultyLevel - 1;
         if (DifficultyLevel >= ranges.Count)
         {
             index = ranges.Count - 1;
@@ -267,7 +268,7 @@ public class GameManager : MonoBehaviour
     private void CalculateDifficultyLevel()
     {
         CalculateCoeff();
-        DifficultyLevel = Mathf.FloorToInt(1 + (Coeff - playerFactor) / 0.25f) - 1;
+        DifficultyLevel = Mathf.FloorToInt(1 + (Coeff - playerFactor) / 0.25f) + InititalDifficulty;
         
         print("Difficulty: " + DifficultyLevel);
 

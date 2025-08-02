@@ -13,11 +13,6 @@ namespace Entities.Enemies._1_TouchEnemy
         [SerializeField] private float moveSpeed;
         [SerializeField] private EnemySensor chaseSensor;
         [SerializeField] private KnockbackComponent knockbackComponent;
-
-        [SerializeField] private Attack attack;
-
-        [SerializeField] private float damage;
-        [SerializeField] private float knockbackForce;
         [SerializeField] private float selfKnockback = 5f;
         //[SerializeField] private EnemySensor attackSensor;
         

@@ -14,10 +14,7 @@ namespace Entities.Enemies._4_DashEnemy
         [SerializeField] private Dash dash;
         [SerializeField] private EnemySensor chaseSensor;
         [SerializeField] private EnemySensor attackSensor;
-        [SerializeField] private Attack attack;
         [SerializeField] private float moveSpeed;
-        [SerializeField] private float damage;
-        [SerializeField] private float knockbackForce;
         [SerializeField] private float dashChargeTime;
         [SerializeField] private float dashCooldownTime;
         
@@ -40,8 +37,9 @@ namespace Entities.Enemies._4_DashEnemy
             dashCooldown = new Timer(dashCooldownTime, true);
         }
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             knockback.velocitySetter = SetVel;
         }
 

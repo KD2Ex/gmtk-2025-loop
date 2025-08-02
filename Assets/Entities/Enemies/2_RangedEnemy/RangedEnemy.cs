@@ -12,7 +12,6 @@ namespace Entities.Enemies._2_RangedEnemy
         [SerializeField] private EnemySensor attackSensor;
         [SerializeField] private Projectile projectilePrefab;
         [SerializeField] private float speed = 20;
-        [SerializeField] private float damage = 10;
         [SerializeField] private float attackCooldown = 1f;
         
         private Player player;

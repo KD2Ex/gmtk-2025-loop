@@ -452,7 +452,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         mainCamera = Camera.main;
         GameManager.instance.Player = this;
@@ -463,7 +463,12 @@ public class Player : MonoBehaviour, IDamageable
         {
             var animator = slash.GetComponent<Animator>();
             animator.Play("Slash", 0, 1f);
+            
         }
+
+        yield return null;
+        
+        healthComponent.OnValueChanged?.Invoke(healthComponent.Value, healthComponent.MaxValue);
     }
 
     // Update is called once per frame

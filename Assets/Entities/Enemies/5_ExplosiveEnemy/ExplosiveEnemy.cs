@@ -11,14 +11,12 @@ using UnityEngine;
 public class ExplosiveEnemy : Enemy, IDamageable
 {
     [SerializeField] private AnimationCurve movementCurve;
-    [SerializeField] private Attack attack;
     [SerializeField] private EnemySensor chaseSensor;
     [SerializeField] private EnemySensor attackSensor;
     [SerializeField] private CircleCollider2D hitbox;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float accel = 15;
     [SerializeField] private float accelTime;
-    [SerializeField] private float damage;
-    [SerializeField] private float knockbackForce;
 
 
     private Player player;
@@ -47,6 +45,9 @@ public class ExplosiveEnemy : Enemy, IDamageable
         var curveValue = movementCurve.Evaluate(elapsed / accelTime);
         var dir = (player.transform.position - transform.position).normalized;
         var vel = dir * (moveSpeed * curveValue);
+
+        moveSpeed += accel * Time.deltaTime;
+        
         rb.velocity = vel;
     }
 
