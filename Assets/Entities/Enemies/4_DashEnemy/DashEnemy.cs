@@ -32,6 +32,10 @@ namespace Entities.Enemies._4_DashEnemy
         protected override void Awake()
         {
             base.Awake();
+            
+            attack.damage = damage;
+            attack.knockbackForce = knockbackForce;
+            
             ogColor = sprite.color;
             dashChargeTimer = new Timer(dashChargeTime, true);
             dashCooldown = new Timer(dashCooldownTime, true);
@@ -88,6 +92,12 @@ namespace Entities.Enemies._4_DashEnemy
 
         private void Update()
         {
+
+            if (dash.IsDashing)
+            {
+                print(rb.velocity.magnitude);
+            }
+            
             if (health.isDead)
             {
                 animator.Play("GhostDeath", 0);

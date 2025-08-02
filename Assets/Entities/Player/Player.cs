@@ -43,7 +43,6 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Color dashColor;
     [SerializeField] private Animator slashAnim;
     
-    
     [Space(5)]
     [SerializeField] private TMP_Text statsText;
 
@@ -266,7 +265,7 @@ public class Player : MonoBehaviour, IDamageable
         isAttackReady = false;
 
         var totalAttackCD = this.attackCooldown - this.attackCooldown * (stats.attackDelay * 0.01f);
-        totalAttackCD = Mathf.Clamp(totalAttackCD, 0.12f, 1f);
+        totalAttackCD = Mathf.Clamp(totalAttackCD, 0.15f, 1f);
         attackTimer.UpdateWaitTime(totalAttackCD);
         attackTimer.Start();
         

@@ -84,17 +84,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2155201972385079845}
   animator: {fileID: 5477829699069901712}
+  attack: {fileID: 319104929405121334}
+  damage: 10
+  knockbackForce: 7
   coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   knockback: {fileID: 8115502812313546837}
   dash: {fileID: 1518132967790541680}
   chaseSensor: {fileID: 7544242214848628499}
   attackSensor: {fileID: 8166984854732955417}
-  attack: {fileID: 319104929405121334}
   moveSpeed: 8
-  damage: 10
-  knockbackForce: 7
   dashChargeTime: 0.3
-  dashCooldownTime: 1.5
+  dashCooldownTime: 1
 --- !u!114 &1518132967790541680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,38 +114,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.2920062
-      outSlope: -0.2920062
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.9508462
-      value: 0.722347
-      inSlope: -1.2390516
-      outSlope: -1.2390516
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.3487095
-    - serializedVersion: 3
-      time: 0.9821755
-      value: 0.117106795
-      inSlope: -13.950972
-      outSlope: -13.950972
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.99609375
-      value: -0.002357483
-      inSlope: -8.583301
-      outSlope: -8.583301
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

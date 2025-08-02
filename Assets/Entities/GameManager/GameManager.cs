@@ -75,8 +75,8 @@ public class GameManager : MonoBehaviour
     private List<RangeInt> dashEnemyAmountRanges = new()
     {
         new RangeInt(0, 0),
-        new RangeInt(0, 0),
         new RangeInt(1, 0),
+        new RangeInt(1, 1),
         new RangeInt(1, 1),
         new RangeInt(2, 1),
         new RangeInt(2, 1),

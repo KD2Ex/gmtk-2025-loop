@@ -199,14 +199,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1128457883442665489}
   animator: {fileID: 2916861830055844065}
+  attack: {fileID: 5676877522282112078}
+  damage: 20
+  knockbackForce: 10
   coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   chaseSensor: {fileID: 2081427777473654005}
   attackSensor: {fileID: 5760453611591285931}
-  attack: {fileID: 5676877522282112078}
   attackPivot: {fileID: 0}
   moveSpeed: 6
-  damage: 20
-  knockbackForce: 10
   attackDelayTime: 1
   attackRestoreTime: 0.6
   attackCooldownTime: 1
@@ -319,7 +319,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.86
+  m_Radius: 4.41
 --- !u!1 &6486544181480963030
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6432382046709942222, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_Radius
-      value: 0.32
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 6769676738642711673, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_Name
