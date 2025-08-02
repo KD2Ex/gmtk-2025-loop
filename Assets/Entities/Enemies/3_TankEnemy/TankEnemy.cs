@@ -27,33 +27,33 @@ namespace Entities.Enemies._3_TankEnemy
         private bool blockMovement = false;
         private bool attackCharging = false;
 
-        private Timer attackDelay;
-        private Timer attackRestore;
-        private Timer attackCooldown;
+
+        private bool isAttacking;
 
         protected override void Awake()
         {
             base.Awake();
             
-            attackDelay = new Timer(attackDelayTime, true);
-            attackRestore = new Timer(attackDelayTime, true);
-            attackCooldown = new Timer(attackCooldownTime, true);
 
             attack.damage = damage;
             attack.knockbackForce = knockbackForce;
+            
+            print("wsfasddf");
         }
 
         private void Update()
         {
-            attackDelay.Tick(Time.deltaTime);
-            attackRestore.Tick(Time.deltaTime);
+            // attackDelay.Tick(Time.deltaTime);
+            // attackRestore.Tick(Time.deltaTime);
         }
 
         private void FixedUpdate()
         {
-            
+            if (health.isDead) return;
             if (!player) return;
-            if (playerInAttackRange || blockMovement || attackCharging)
+            
+            //print(isAttacking + " " + playerInAttackRange);
+            if (isAttacking || playerInAttackRange)
             {
                 rb.velocity = Vector2.zero;
                 return;
@@ -68,8 +68,6 @@ namespace Entities.Enemies._3_TankEnemy
             attackSensor.OnEnter += OnAttackSensorEnter;
             attackSensor.OnLeave += OnAttackSensorLeave;
 
-            attackDelay.Timeout += OnAttackDelayTimeout;
-            attackRestore.Timeout += OnAttackRestoreTimeout;
         }
 
         private void OnDisable()
@@ -77,9 +75,6 @@ namespace Entities.Enemies._3_TankEnemy
             chaseSensor.OnEnter -= OnChaseSensorEnter;
             attackSensor.OnEnter -= OnAttackSensorEnter;
             attackSensor.OnLeave -= OnAttackSensorLeave;
-            
-            attackDelay.Timeout -= OnAttackDelayTimeout;
-            attackRestore.Timeout -= OnAttackRestoreTimeout;
         }
 
         private void OnChaseSensorEnter(Player player)
@@ -89,58 +84,62 @@ namespace Entities.Enemies._3_TankEnemy
 
         private void OnAttackSensorEnter(Player player)
         {
-            if (attackCharging) return;
             //print("Attack sensor entered");
             playerInAttackRange = true;
             
-            attackDelay.Start(); // start attack animation
-            attackCharging = true;
+            // attackDelay.Start(); // start attack animation
+            // attackCharging = true;
             //var dir = (player.transform.position - transform.position).normalized;
             //attack.RotateToTarget(dir, attackPivot);
-            
-            //attack.Execute(damage);
-            blockMovement = true;
+
+            Attack();
             rb.velocity = Vector2.zero;
         }
         
         private void OnAttackSensorLeave(Player player)
         {
             playerInAttackRange = false;
-        }
 
-        private void OnAttackDelayTimeout()
-        {
-            Attack();
-            attackCharging = false;
-        }
-
-        private void OnAttackRestoreTimeout()
-        {
-            //
-            if (playerInAttackRange)
-            {
-                Attack();
-            }
-            else
-            {
-                blockMovement = false;
-            }
         }
 
         private void Attack()
         {
-            attack.Execute(damage);
-            attackRestore.Start();
+            animator.Play("GolemAttack", 0, 0f);
+            isAttacking = true;
         }
+
+        public void ExecuteAttack()
+        {
+            attack.Execute(damage);
+        }
+
+        public void AttackFinished()
+        {
+            StartCoroutine(Wait(.5f));
+        }
+
+        private IEnumerator Wait(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            isAttacking = false;
+
+            if (playerInAttackRange)
+            {
+                Attack();
+            }
+        } 
         
         private void Chase()
         {
             var dir = (player.transform.position - transform.position).normalized;
             rb.velocity = dir * moveSpeed;
+            
+            animator.Play("GolemWalk");
         }
 
         public void TakeDamage(DamageMessage message)
         {
+            if (health.isDead) return;
             health.Remove(message.damage);
             if (health.isDead)
             {
@@ -148,14 +147,24 @@ namespace Entities.Enemies._3_TankEnemy
                 return;
             }
             
-            StopAllCoroutines();
+            //StopAllCoroutines();
             StartCoroutine(Flash());
         }
 
 
         private void Die()
         {
-            Destroy(gameObject);
+            chaseSensor.OnEnter -= OnChaseSensorEnter;
+            attackSensor.OnEnter -= OnAttackSensorEnter;
+            attackSensor.OnLeave -= OnAttackSensorLeave;
+            StopAllCoroutines();
+            isAttacking = false;
+            
+            rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast", "Enemy", "Default");
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            sprite.sortingOrder = -1;
+            
+            animator.Play("GolemDeath", 0, 0f);
         }
     }
 }

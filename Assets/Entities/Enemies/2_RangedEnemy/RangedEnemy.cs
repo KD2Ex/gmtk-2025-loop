@@ -27,6 +27,7 @@ namespace Entities.Enemies._2_RangedEnemy
 
         private void Update()
         {
+            if (health.isDead) return;
             attackTimer.Tick(Time.deltaTime);
         }
 
@@ -37,7 +38,6 @@ namespace Entities.Enemies._2_RangedEnemy
             
             attackTimer.Timeout += OnAttackTimerTimeout;
 
-            health.OnDeath += () => Destroy(gameObject);
         }
         
         private void OnDisable()
@@ -78,8 +78,27 @@ namespace Entities.Enemies._2_RangedEnemy
 
         public void TakeDamage(DamageMessage message)
         {
+            if (health.isDead) return;
+            
             health.Remove(message.damage);
+
+            if (health.isDead)
+            {
+                Die();
+                return;
+            }
+            
             StartCoroutine(Flash());
+        }
+
+        private void Die()
+        {
+            animator.Play("EEDeath");
+            attackTimer.Stop();
+            rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast", "Enemy", "Default");
+            
+            attackSensor.OnEnter -= OnPlayerEnterAttackSensor;
+            attackSensor.OnLeave -= OnPlayerLeaveAttackSensor;
         }
     }
 }

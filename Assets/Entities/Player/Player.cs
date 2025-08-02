@@ -87,7 +87,7 @@ public class Player : MonoBehaviour, IDamageable
         ogMoveSpeed = moveSpeed;
         ogDashCooldown = dashCooldown;
 
-        ogAttackScale = attack.transform.localScale;
+        ogAttackScale = attack.transform.parent.localScale;
 
         UpdateAttackStats();
         
@@ -218,7 +218,7 @@ public class Player : MonoBehaviour, IDamageable
         attack.knockbackForce = totalKnockback;
         
         var radius = meleeModifiers.GetTotalValue(MeleeModifierType.Radius, 1);
-        attack.transform.localScale = ogAttackScale * radius;
+        attack.transform.parent.localScale = ogAttackScale * radius;
         
         var ammoGen = meleeModifiers.GetTotalValue(MeleeModifierType.AmmoGeneration, rangedWeapon.OgAmmoGen);
         rangedWeapon.generatePerHit = ammoGen;

@@ -47,7 +47,6 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             chaseSensor.OnEnter += OnPlayerEnterChase;
 
-            health.OnDeath += Die;
 
             attack.OnHit += OnAttackHit;
             afterAttackHit.Timeout += OnAfterAttackHit;
@@ -58,7 +57,6 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             chaseSensor.OnEnter -= OnPlayerEnterChase;
             
-            health.OnDeath -= Die;
             
             attack.OnHit -= OnAttackHit;
             afterAttackHit.Timeout -= OnAfterAttackHit;
@@ -118,6 +116,13 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             if (health.isDead) return;
             health.Remove(message.damage);
+
+            if (health.isDead)
+            {
+                Die();
+                return;
+            }
+            
             StartCoroutine(Flash());
             
             if (message.knockbackForce > 0)
@@ -134,9 +139,8 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             animator.Play("SpiderDeath");
             
-            rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast");
+            rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast", "Enemy", "Default");
             rb.velocity = Vector2.zero;
-            rb.bodyType = RigidbodyType2D.Kinematic;
             
             Destroy(attack);
             Destroy(chaseSensor);
@@ -145,6 +149,7 @@ namespace Entities.Enemies._1_TouchEnemy
 
         private void SetVelocity(Vector2 dir, float force)
         {
+            if (health.isDead) return;
             rb.velocity = dir * force;
         }
     }
