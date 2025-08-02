@@ -62623,17 +62623,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89551a4615cca354f87c3c785f2d23a2, type: 3}
---- !u!114 &569895293 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2424376297682122270, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-  m_PrefabInstance: {fileID: 145797734983928465}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &569978958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92572,7 +92561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTime: 0
   timerIsRunning: 0
-  timerText: {fileID: 569895293}
+  timerText: {fileID: 1838923343}
 --- !u!4 &854237304
 Transform:
   m_ObjectHideFlags: 0
@@ -295005,6 +294994,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5513885648196480926, guid: 89551a4615cca354f87c3c785f2d23a2, type: 3}
   m_PrefabInstance: {fileID: 546479095}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1838923343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6623184492057817493, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
+  m_PrefabInstance: {fileID: 5576508776086605957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1839180095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325953,6 +325953,22 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 2031573486}
+    - target: {fileID: 2255544220774821369, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255544220774821369, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -135.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623184492057817493, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623184492057817493, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6718118046169766884, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
       propertyPath: m_Name
       value: PlayerUI
