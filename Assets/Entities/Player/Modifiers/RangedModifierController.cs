@@ -40,6 +40,7 @@ namespace Entities.Modifiers
         public void AddFireDoT(FireDoT dot)
         {
             fireDot = dot;
+            print("Modifier Fire Dot: " + fireDot.Damage);
 
             if (player.RangedWeapon.firDot.Damage == 0)
             {

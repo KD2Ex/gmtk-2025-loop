@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Attacks;
 using Damage;
 using Entities;
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float iTime = .5f;
     [SerializeField] private Color dashColor;
     [SerializeField] private Animator slashAnim;
+    
     
     [Space(5)]
     [SerializeField] private TMP_Text statsText;
@@ -87,6 +89,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Image ammoImage;
     [SerializeField] private Image hpImage;
     [SerializeField] private GameObject pausePanel;
+
+    
     public bool pauseOpen;
 
     private bool shootInput = false;
@@ -95,6 +99,13 @@ public class Player : MonoBehaviour, IDamageable
     public Camera mainCamera;
 
     private PlayerAttackAction currentAttack = PlayerAttackAction.None;
+
+    private Dictionary<Attack, Animator> slashes = new();
+
+    [Space(5)]
+    [SerializeField] private float slashRadiusFromPlayer = 1.226f;
+
+    [SerializeField] private List<Attack> slashObjects;
     
     private void Awake()
     {
@@ -226,11 +237,31 @@ public class Player : MonoBehaviour, IDamageable
             dir = lastMoveDir;
         }
         var angle = Mathf.Atan2(dir.y, dir.x);
-        attackPivot.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * angle - 90f);
+
+        var angleOffset = 0f;
+
+        if (slashes.Count is 2)
+        {
+            angleOffset = 30;
+        }
+
+        if (slashes.Count is 4)
+        {
+            
+            angleOffset = -30;
+        }
+        
+        
+        attackPivot.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * angle - 90f + angleOffset);
 
         //var totalDamage = damage + damage * (stats.damage * 0.01f);
-        
-        attack.Execute(meleeModifiers.TotalDamage, 0, false);
+
+        foreach (var slash in slashes)
+        {
+            slash.Key.Execute(meleeModifiers.TotalDamage, 0, false);
+            slash.Value.Play("Slash", 0, 0);
+        }
+        //attack.Execute(meleeModifiers.TotalDamage, 0, false);
 
         isAttackReady = false;
 
@@ -239,7 +270,7 @@ public class Player : MonoBehaviour, IDamageable
         attackTimer.UpdateWaitTime(totalAttackCD);
         attackTimer.Start();
         
-        slashAnim.Play("Slash", 0, 0);
+        //slashAnim.Play("Slash", 0, 0);
     }
 
     public void UpdateAttackStats()
@@ -424,6 +455,10 @@ public class Player : MonoBehaviour, IDamageable
     void Start()
     {
         mainCamera = Camera.main;
+        GameManager.instance.Player = this;
+        
+        slashes.Add(attack, slashAnim);
+        
     }
 
     // Update is called once per frame
@@ -576,6 +611,31 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.3f);
         sprite.material.SetFloat("_Amount", 0);
     }
+
+    public void AddSlash()
+    {
+        if (slashes.Count == slashObjects.Count) return;
+
+        var newSlash = slashObjects[slashes.Count];
+        
+        
+        // var angle = slashes.Count * 30f;
+        // var radius = slashRadiusFromPlayer;//(attack.transform.parent.position - attack.transform.position).magnitude;
+        // var x = attack.transform.parent.position.x + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
+        // var y = attack.transform.parent.position.y + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
+        //
+        // var pos = new Vector2(x, y);
+        //
+        // var newSlash = Instantiate(attack, pos, Quaternion.identity, attack.transform.parent);
+        //
+        // var angleDir = slashes.Count % 2 == 0 ? 1 : -1;
+        //
+        // newSlash.transform.eulerAngles = new Vector3(0, 0, angle * angleDir);
+        
+        slashes.Add(newSlash, newSlash.GetComponent<Animator>());
+    }
+    
+    
 }
 
 public enum PlayerStats

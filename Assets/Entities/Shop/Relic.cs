@@ -22,6 +22,11 @@ public class Relic : MonoBehaviour
         desc = GetComponentInChildren<RelicDescription>();
         cost = Random.Range(minCost, maxCost);
 
+        if (relicEffect is RangedRelicEffect)
+        {
+            desc.OnEnter += UpdateIgniteRelicDesc;
+        }
+
         costText.text = cost.ToString();
     }
 
@@ -41,5 +46,13 @@ public class Relic : MonoBehaviour
         
         if (relicEffect)
             relicEffect.Apply(player);
+    }
+
+    private void UpdateIgniteRelicDesc()
+    {
+        if (GameManager.instance.Player.rangedModifiers.fireDot.Damage != 0)
+        {
+            desc.description = "Ignite deals More Damage";
+        }
     }
 }

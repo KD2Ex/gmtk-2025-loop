@@ -123,6 +123,8 @@ public class GameManager : MonoBehaviour
     private float playerFactor = 1f;
 
     private Timer difficultyTimer;
+
+    public Player Player;
       
     private void Awake()
     {

@@ -9,6 +9,8 @@ public class RelicDescription : MonoBehaviour
     public string description;
     private TextMeshProUGUI textBox;
 
+    public Action OnEnter;
+
     private void Start()
     {
         textBox =  GameObject.FindWithTag("ShopTextBox").GetComponent<TextMeshProUGUI>();
@@ -16,6 +18,7 @@ public class RelicDescription : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        OnEnter?.Invoke();
         textBox.text = description;
     }
 

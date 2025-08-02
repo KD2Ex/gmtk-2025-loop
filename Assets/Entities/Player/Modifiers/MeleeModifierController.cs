@@ -7,7 +7,8 @@ public enum MeleeModifierType
     Damage,
     Radius,
     Knockback,
-    AmmoGeneration
+    AmmoGeneration,
+    AddSlash
 }
 
 namespace Entities.Modifiers
@@ -41,6 +42,9 @@ namespace Entities.Modifiers
                     break;
                 case MeleeModifierType.AmmoGeneration:
                     ammoGeneration += modifier.value;
+                    break;
+                case MeleeModifierType.AddSlash:
+                    player.AddSlash();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
