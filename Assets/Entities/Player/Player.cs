@@ -478,6 +478,8 @@ public class Player : MonoBehaviour, IDamageable
         yield return null;
         
         healthComponent.OnValueChanged?.Invoke(healthComponent.Value, healthComponent.MaxValue);
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0f;
     }
 
     // Update is called once per frame
