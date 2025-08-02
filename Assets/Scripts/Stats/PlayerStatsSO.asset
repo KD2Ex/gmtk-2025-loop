@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1480932b94c8e564da4b3efefe768460, type: 3}
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: 
-  health: 110
-  damage: 210
-  moveSpeed: 265.7
-  attackDelay: 140
+  health: 10
+  damage: 30
+  moveSpeed: 10
+  attackDelay: 0

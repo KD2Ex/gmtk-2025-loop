@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9877fb8c16742a3984ecc396541d4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 150
-  MaxValue: 150
+  Value: 300
+  MaxValue: 300
   isDead: 0
 --- !u!114 &259688153506104951
 MonoBehaviour:
@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 447176434696860554}
   - component: {fileID: 1128457883442665489}
   - component: {fileID: 2916861830055844065}
+  - component: {fileID: 2793567151876574989}
   m_Layer: 7
   m_Name: Animator
   m_TagString: Untagged
@@ -372,7 +373,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 313240094bde68c409d26136361072e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -425,6 +426,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2793567151876574989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486544181480963030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d89bb021a8a2cb4ba285d364f2c78af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2578299988050517683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -434,12 +447,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 3808721807168533114}
     m_Modifications:
     - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_LocalPosition.z

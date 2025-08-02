@@ -20426,23 +20426,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 8
---- !u!1 &1435512179 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6486544181480963030, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-  m_PrefabInstance: {fileID: 1830543941}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1435512183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435512179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d89bb021a8a2cb4ba285d364f2c78af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1522388050
 GameObject:
   m_ObjectHideFlags: 0
@@ -21583,26 +21566,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TankEnemy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3059280981766781799, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 3059280981766781799, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 3059280981766781799, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 3059280981766781799, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 3059280981766781799, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.23
-      objectReference: {fileID: 0}
     - target: {fileID: 3808721807168533114, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 163.2028
@@ -21643,25 +21606,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5810269142242575671, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      propertyPath: Value
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5810269142242575671, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      propertyPath: MaxValue
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094261942534736586, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6486544181480963030, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1435512183}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca91cf4e03bc0f449bd660a76a45a55e, type: 3}
 --- !u!1 &1853356932
 GameObject:
