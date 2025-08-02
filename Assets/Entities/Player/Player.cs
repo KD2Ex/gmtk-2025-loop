@@ -9,7 +9,9 @@ using Knockback;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public enum PlayerDashType
@@ -43,6 +45,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Color dashColor;
     [SerializeField] private Animator slashAnim;
     [SerializeField] private GameObject textPrefab;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private Volume volume;
     
     [Space(5)]
     [SerializeField] private TMP_Text statsText;
@@ -96,6 +100,8 @@ public class Player : MonoBehaviour, IDamageable
     private bool shootInput = false;
     private bool attackInput = false;
 
+
+    
     public Camera mainCamera;
 
     private PlayerAttackAction currentAttack = PlayerAttackAction.None;
@@ -115,8 +121,9 @@ public class Player : MonoBehaviour, IDamageable
         ogDashCooldown = dashCooldown;
 
         ogAttackScale = attack.transform.parent.localScale;
-
         
+        UpdateAttackStats();
+
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<Dash>();
         input = GetComponent<PlayerInput>();
@@ -576,6 +583,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         StartCoroutine(Flash());
+        StartCoroutine(ShakeCamera());
         
         invincible = true;
         iFramesTimer.Start();
@@ -588,6 +596,19 @@ public class Player : MonoBehaviour, IDamageable
         }
         
         //print("Player's Heath's: " + healthComponent.Value);
+    }
+
+    IEnumerator ShakeCamera()
+    {
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 1f;
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 1f;
+        volume.profile.TryGet(out ChromaticAberration chromaticAberration);
+        chromaticAberration.intensity.value = 0.3f;
+        
+        yield return new WaitForSeconds(0.3f);
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0f;
+        chromaticAberration.intensity.value = 0f;
     }
 
     private void SetVelocity(Vector2 dir, float force)
