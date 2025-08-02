@@ -21,6 +21,11 @@ namespace Projectiles
         private float dotDamage = 0;
         private float timeBetweenDamage = 0;
 
+        private bool explosive;
+        private Attack explosiveAttack;
+        private float explosiveDamage;
+        private float explosiveRadiusScale;
+
         private void Awake()
         {
             hitbox = GetComponent<Attack>();
@@ -52,6 +57,14 @@ namespace Projectiles
                 var dmg = hitbox.damage * (dotDamage * 0.01f);
                 dotHandler.SetDoTDamage(dmg, timeBetweenDamage);
             }
+
+            if (explosive)
+            {
+                var inst = Instantiate(explosiveAttack, transform.position, Quaternion.identity);
+                inst.transform.localScale *= explosiveRadiusScale;
+                inst.Execute(explosiveDamage);
+                print("Explode?");
+            }
             
             penetrated++;
             if (penetrated > penetrateAmount)
@@ -80,6 +93,14 @@ namespace Projectiles
         {
             dotDamage = dot.Damage;
             timeBetweenDamage = dot.TimeBetweenDamage;
+        }
+
+        public void AddExplosive(Attack explosivePrefab, float damage, float radiusScale)
+        {
+            explosiveAttack = explosivePrefab;
+            explosive = true;
+            explosiveDamage = damage;
+            explosiveRadiusScale = radiusScale;
         }
         
         private void FixedUpdate()

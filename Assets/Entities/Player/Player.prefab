@@ -891,6 +891,9 @@ MonoBehaviour:
   consumePerShot: 1
   generatePerHit: 0.4
   cooldown: 0.2
+  explosvieAttackPrefab: {fileID: 7858680378119387901, guid: f10cf9f7cf2e1f844b35450008746054, type: 3}
+  ExplosiveDamage: 0
+  ExplosiveRadiusScale: 1
   OgAmmoGen: 0
   TotalDamage: 0
   TotalCooldown: 0
@@ -956,6 +959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 0
   cooldown: 0
+  explosiveDamage: 0
+  explosiveRadiusScale: 1
   fireDot:
     Damage: 0
     TimeBetweenDamage: 0

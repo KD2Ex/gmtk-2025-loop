@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnOnStart: 0
+  difficultyText: {fileID: 0}
+  EnableEnemyHP: 0
   spawners:
   - {fileID: 0}
   - {fileID: 0}
@@ -68,3 +70,6 @@ MonoBehaviour:
     prefab: {fileID: 1798686807775459159, guid: 4ecf28d176cf28e46a51c68b1d4af752, type: 3}
   DifficultyLevel: 1
   Coeff: 0
+  Player: {fileID: 0}
+  InititalDifficulty: 0
+  EnemyFactor: 0

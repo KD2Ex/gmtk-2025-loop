@@ -1,4 +1,5 @@
 using System;
+using Attacks;
 using Entities.DoTEffects;
 using Projectiles;
 using UnityEngine;
@@ -15,6 +16,11 @@ namespace Entities
         [SerializeField] private int consumePerShot;
         [SerializeField] public float generatePerHit;
         [SerializeField] private float cooldown = .2f;
+
+        [SerializeField] private Attack explosvieAttackPrefab;
+
+        public float ExplosiveDamage = 0;
+        public float ExplosiveRadiusScale = 1;
 
         private Timer cooldownTimer;
         private bool isReady = true;
@@ -74,6 +80,11 @@ namespace Entities
             inst.Init(dir, speed, TotalDamage, knockbackForce);
             inst.RotateTo(dir, 0);
             inst.AddDoTEffect(firDot);
+
+            if (ExplosiveDamage > 0)
+            {
+                inst.AddExplosive(explosvieAttackPrefab, ExplosiveDamage, ExplosiveRadiusScale);
+            }
             
             cooldownTimer.UpdateWaitTime(TotalCooldown);
             cooldownTimer.Start();

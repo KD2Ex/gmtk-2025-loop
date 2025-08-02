@@ -9,6 +9,8 @@ namespace Entities.RelicEffects
         public RangedModifierType type;
         [SerializeField] private float modifierValue;
         [SerializeField] private FireDoT fireDot;
+        [SerializeField] private float explosiveDamage;
+        [SerializeField] private float explosiveRadiusScale;
 
         private Modifier modifier;
         
@@ -25,6 +27,12 @@ namespace Entities.RelicEffects
             if (type == RangedModifierType.FireDOT)
             {
                 player.rangedModifiers.AddFireDoT(fireDot);
+                return;
+            }
+
+            if (type == RangedModifierType.Explosive)
+            {
+                player.rangedModifiers.AddExplosive(explosiveDamage, explosiveRadiusScale);
                 return;
             }
             player.rangedModifiers.AddModifier(type, modifier);

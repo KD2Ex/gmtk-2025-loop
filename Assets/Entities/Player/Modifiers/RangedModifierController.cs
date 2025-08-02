@@ -7,8 +7,7 @@ public enum RangedModifierType
     Damage,
     Cooldown,
     FireDOT,
-    Vulnerable,
-    LightningStrike
+    Explosive
 }
 
 namespace Entities.Modifiers
@@ -17,6 +16,9 @@ namespace Entities.Modifiers
     {
         public float baseDamage;
         public float cooldown;
+
+        public float explosiveDamage;
+        public float explosiveRadiusScale = 1;
 
         public FireDoT fireDot;
         
@@ -55,6 +57,18 @@ namespace Entities.Modifiers
                 player.RangedWeapon.firDot.TimeBetweenDamage = Mathf.Clamp(player.RangedWeapon.firDot.TimeBetweenDamage, .1f, 1f);
             }
         }
+
+        public void AddExplosive(float damage, float radius)
+        {
+            explosiveDamage += damage;
+            explosiveRadiusScale += radius;
+
+            var totalDamage = player.RangedWeapon.OgDamage * explosiveDamage;
+
+            player.RangedWeapon.ExplosiveDamage = totalDamage;
+            player.RangedWeapon.ExplosiveRadiusScale = explosiveRadiusScale;
+        }
+
 
         public float GetTotalValue(RangedModifierType type, float baseValue, float increased = 0f)
         {
