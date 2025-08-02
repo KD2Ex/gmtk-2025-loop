@@ -677,11 +677,11 @@ MonoBehaviour:
   attack: {fileID: 4048993498393075806}
   attackPivot: {fileID: 3358389888059134135}
   rangedWeapon: {fileID: 1124376827357982861}
-  damage: 25
+  damage: 20
   meleeKnockbackForce: 10
-  attackCooldown: 0.25
+  attackCooldown: 0.4
   dashCooldown: 0.6
-  iTime: 0.5
+  iTime: 0.3
   dashColor: {r: 0.8039216, g: 0.85490197, b: 0.9647059, a: 0.5882353}
   slashAnim: {fileID: 1268446450967640717}
   statsText: {fileID: 5277038996156945745}
