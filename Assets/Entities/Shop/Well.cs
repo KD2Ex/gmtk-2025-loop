@@ -38,6 +38,10 @@ public class Well : MonoBehaviour
         currentCost = cost * GameManager.instance.GetEnemyScale();
         currentCost = Mathf.Clamp(currentCost, 0, MaxCost);
         
+        if (GameManager.instance.DifficultyLevel == 1)
+        {
+            currentCost = 50;
+        }
         textCost.text = ((int) currentCost).ToString();
     }
     

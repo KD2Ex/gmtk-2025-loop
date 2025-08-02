@@ -20,7 +20,15 @@ public class Relic : MonoBehaviour
     {
         relicEffect = GetComponent<RelicEffect>();
         desc = GetComponentInChildren<RelicDescription>();
+        
+        
+        
         cost = Random.Range(minCost, maxCost);
+
+        if (GameManager.instance.DifficultyLevel > 1)
+        {
+            cost += (int)((float)cost * GameManager.instance.DifficultyLevel * 0.1f);
+        }
 
         if (relicEffect is RangedRelicEffect)
         {

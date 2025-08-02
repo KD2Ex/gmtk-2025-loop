@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   costText: {fileID: 2807161086351184884}
-  minCost: 1
+  minCost: 75
   maxCost: 100
 --- !u!1001 &1741492541426053987
 PrefabInstance:

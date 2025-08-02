@@ -101,8 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eba6cfde2c04376aade2ea09ac4441a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinValue: 10
+  coinValue: 5
   moveSpeed: 13
+  accel: 15
   senor: {fileID: 4387063564701509782}
 --- !u!50 &871376587723101152
 Rigidbody2D:

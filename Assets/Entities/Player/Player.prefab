@@ -885,7 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projPrefab: {fileID: 7293836918925543185, guid: 11cfbab76fda42845836476339ebfa91, type: 3}
   speed: 35
-  damage: 10
+  damage: 15
   knockbackForce: 3
   maxAmmo: 6
   consumePerShot: 1

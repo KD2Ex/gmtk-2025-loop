@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9877fb8c16742a3984ecc396541d4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 100
-  MaxValue: 100
+  Value: 55
+  MaxValue: 55
   isDead: 0
 --- !u!50 &1332791029342643043
 Rigidbody2D:
