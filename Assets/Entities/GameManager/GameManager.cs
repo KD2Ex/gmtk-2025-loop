@@ -162,7 +162,15 @@ public class GameManager : MonoBehaviour
                 var rangeIndex = indexes[index];
 
                 var range = enemyRanges[rangeIndex];
-                if (range[DifficultyLevel].end == 0)
+
+                var dIndex = DifficultyLevel;
+                
+                if (DifficultyLevel >= range.Count)
+                {
+                    dIndex = range.Count - 1;
+                }
+                
+                if (range[dIndex].end == 0)
                 {
                     i--;
                     continue;
@@ -183,7 +191,12 @@ public class GameManager : MonoBehaviour
 
     private void InitEnemy(EnemySpawner spawner, List<RangeInt> ranges, Enemy enemy)
     {
-        var range = ranges[DifficultyLevel];
+        var index = DifficultyLevel;
+        if (DifficultyLevel >= ranges.Count)
+        {
+            index = ranges.Count - 1;
+        }
+        var range = ranges[index];
         var amount = Random.Range(range.start, range.end); 
                 
         spawner.Spawn(enemy, amount, out var spawned);
