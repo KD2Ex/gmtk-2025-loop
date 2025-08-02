@@ -192,16 +192,16 @@ namespace Entities.Enemies._4_DashEnemy
             //     knockback.Execute(message.dir, message.knockbackForce);
             // }
 
-            if (health.isDead)
-            {
-                Die();
-                return;
-            }
             StartCoroutine(Flash());
+            // if (health.isDead)
+            // {
+            //     Die();
+            //     return;
+            // }
 
         }
         
-        private void Die()
+        protected override void Die()
         {
             chaseSensor.OnEnter -= OnChaseSensorEnter;
             attackSensor.OnEnter -= OnAttackSensorEnter;

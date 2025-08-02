@@ -83,19 +83,21 @@ namespace Entities.Enemies._2_RangedEnemy
             
             health.Remove(message.damage);
 
+            StartCoroutine(Flash());
+            /*
             if (health.isDead)
             {
                 Die();
                 return;
             }
+            */
             
-            StartCoroutine(Flash());
         }
 
-        private void Die()
+        protected override void Die()
         {
             animator.Play("EEDeath");
-            attackTimer.Stop();
+            attackTimer.Pause();
             rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast", "Enemy", "Default");
             
             attackSensor.OnEnter -= OnPlayerEnterAttackSensor;

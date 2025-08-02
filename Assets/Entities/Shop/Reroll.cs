@@ -58,7 +58,31 @@ public class Reroll : MonoBehaviour
         {
             if (pedestal.transform.childCount == 1)
                 Destroy(pedestal.transform.GetChild(0).gameObject);
-            Instantiate(relics[Random.Range(0, relics.Count)], pedestal.transform);
+
+            var relic = GetRandomRelic();
+            
+            //Instantiate(relics[Random.Range(0, relics.Count)], pedestal.transform);
+            Instantiate(relic, pedestal.transform);
         }
+    }
+    
+    private List<int> randomIndexes = new();
+    public GameObject GetRandomRelic()
+    {
+        int randIndex = 0;
+
+
+        for (int i = 0; i < 10; i++)
+        {
+            randIndex = Random.Range(0, relics.Count);
+            if (!randomIndexes.Contains(randIndex)) break;
+        }
+        
+        print("Index of relic: " + randIndex);
+        print("Name of relic: " + relics[randIndex].name);
+
+        randomIndexes.Add(randIndex);
+        
+        return relics[randIndex];
     }
 }

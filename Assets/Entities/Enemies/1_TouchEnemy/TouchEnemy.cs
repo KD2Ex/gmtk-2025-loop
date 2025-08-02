@@ -117,13 +117,13 @@ namespace Entities.Enemies._1_TouchEnemy
             if (health.isDead) return;
             health.Remove(message.damage);
 
-            if (health.isDead)
-            {
-                Die();
-                return;
-            }
-            
             StartCoroutine(Flash());
+            // if (health.isDead)
+            // {
+            //     Die();
+            //     return;
+            // }
+            
             
             if (message.knockbackForce > 0)
             {
@@ -135,7 +135,7 @@ namespace Entities.Enemies._1_TouchEnemy
             //print("Touch enemey health: " + health.Value);
         }
 
-        public void Die()
+        protected override void Die()
         {
             animator.Play("SpiderDeath");
             

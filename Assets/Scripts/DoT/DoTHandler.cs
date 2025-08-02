@@ -39,6 +39,11 @@ namespace DoT
         private void DealDamage()
         {
             health.Remove(damage);
+
+            if (health.isDead)
+            {
+                enabled = false;
+            }
             // vfx
         }
 

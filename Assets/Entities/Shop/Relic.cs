@@ -14,10 +14,12 @@ public class Relic : MonoBehaviour
     [SerializeField] private int maxCost;
     
     private RelicEffect relicEffect;
+    private RelicDescription desc;
 
     private void Start()
     {
         relicEffect = GetComponent<RelicEffect>();
+        desc = GetComponentInChildren<RelicDescription>();
         cost = Random.Range(minCost, maxCost);
 
         costText.text = cost.ToString();
@@ -34,6 +36,7 @@ public class Relic : MonoBehaviour
         inventory.coins -= cost;
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+        desc.gameObject.SetActive(false);
         
         
         if (relicEffect)

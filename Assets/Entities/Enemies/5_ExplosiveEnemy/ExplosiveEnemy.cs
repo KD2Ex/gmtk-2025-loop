@@ -73,7 +73,7 @@ public class ExplosiveEnemy : Enemy, IDamageable
         }
     }
 
-    private void Die()
+    protected override void Die()
     {
         rb.velocity = Vector2.zero;
         //rb.excludeLayers = LayerMask.GetMask("Enemy", "Default");

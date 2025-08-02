@@ -22,6 +22,8 @@ namespace Entities.Enemies
             //sprite = GetComponent<SpriteRenderer>();
             ogColor = sprite.color;
             health.OnDeath += DropGold;
+            health.OnDeath += Die;
+            
         }
         protected IEnumerator Flash()
         {
@@ -33,6 +35,10 @@ namespace Entities.Enemies
         protected virtual void DropGold()
         {
             GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+        }
+
+        protected virtual void Die()
+        {
         }
     }
 }

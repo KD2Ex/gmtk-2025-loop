@@ -148,20 +148,20 @@ namespace Entities.Enemies._3_TankEnemy
         {
             if (health.isDead) return;
             health.Remove(message.damage);
-            if (health.isDead)
-            {
-                Die();
-                return;
-            }
+            StartCoroutine(Flash());
+            // if (health.isDead)
+            // {
+            //     Die();
+            //     return;
+            // }
             
             //print(health.Value);
             
             //StopAllCoroutines();
-            StartCoroutine(Flash());
         }
 
 
-        private void Die()
+        protected override void Die()
         {
             chaseSensor.OnEnter -= OnChaseSensorEnter;
             attackSensor.OnEnter -= OnAttackSensorEnter;
