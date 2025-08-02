@@ -391,7 +391,7 @@ MonoBehaviour:
   moveSpeed: 23
   accelTime: 0.7
   damage: 30
-  knockbackForce: 30
+  knockbackForce: 21
 --- !u!50 &4683978105011522966
 Rigidbody2D:
   serializedVersion: 4
@@ -449,7 +449,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 443
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

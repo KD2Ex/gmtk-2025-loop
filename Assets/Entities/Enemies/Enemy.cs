@@ -23,7 +23,15 @@ namespace Entities.Enemies
             ogColor = sprite.color;
             health.OnDeath += DropGold;
             health.OnDeath += Die;
+
+            var scale = GameManager.instance.GetEnemyScale();
+            var hp = health.Value * scale;
             
+            
+
+            health.Value = hp;
+            health.MaxValue = hp;
+
         }
         protected IEnumerator Flash()
         {

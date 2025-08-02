@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Sensors;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 namespace Entities.Drops.Coins
 {
@@ -9,6 +10,7 @@ namespace Entities.Drops.Coins
     {
         public int coinValue;
         public float moveSpeed;
+        public float accel = 10f;
         private Player player;
         private Rigidbody2D rb;
         [SerializeField] private EnemySensor senor;
@@ -44,6 +46,7 @@ namespace Entities.Drops.Coins
         private void Chase()
         {
             var dir = (player.transform.position - transform.position).normalized;
+            moveSpeed += accel * Time.deltaTime;
             rb.velocity = dir * moveSpeed;
         }
 

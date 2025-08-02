@@ -18,6 +18,7 @@ namespace Entities.Enemies._1_TouchEnemy
 
         [SerializeField] private float damage;
         [SerializeField] private float knockbackForce;
+        [SerializeField] private float selfKnockback = 5f;
         //[SerializeField] private EnemySensor attackSensor;
         
         private Player player;
@@ -73,7 +74,7 @@ namespace Entities.Enemies._1_TouchEnemy
             disableChase = true;
             rb.velocity = Vector2.zero;
             var dir = (transform.position - player.transform.position).normalized;
-            knockbackComponent.Execute(dir, 15);
+            knockbackComponent.Execute(dir, selfKnockback);
             afterAttackHit.Start();
         }
 

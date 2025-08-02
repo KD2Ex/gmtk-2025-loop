@@ -90,6 +90,11 @@ namespace Entities.Enemies._4_DashEnemy
 
         private void Update()
         {
+            if (health.isDead)
+            {
+                animator.Play("GhostDeath", 0);
+                return;
+            }
             
             dashChargeTimer.Tick(Time.deltaTime);
             dashCooldown.Tick(Time.deltaTime);
@@ -222,6 +227,8 @@ namespace Entities.Enemies._4_DashEnemy
             sprite.sortingOrder = -1;
             
             animator.Play("GhostDeath", 0, 0f);
+
+            enabled = false;
         }
 
         private void SetVel(Vector2 dir, float force)

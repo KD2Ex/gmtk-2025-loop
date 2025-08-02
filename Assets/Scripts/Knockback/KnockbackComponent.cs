@@ -12,17 +12,20 @@ namespace Knockback
 
         private Vector2 dir;
         private float force;
+        private float currentForce;
 
         private bool exec = false;
 
         public bool IsRunning => exec;
         
-        public void Execute(Vector2 dir, float force)
+        public void Execute(Vector2 dir, float force, float time = 0.3f)
         {
             //print("Knockback exec");
             exec = true;
             this.dir = dir;
             this.force = force;
+            this.time = time;
+            currentForce = force;
         }
 
         private void FixedUpdate()
@@ -31,13 +34,15 @@ namespace Knockback
 
             elapsed += Time.deltaTime;
             
-            velocitySetter?.Invoke(dir, force);
-            force = (1 - elapsed) / time;
+            velocitySetter?.Invoke(dir, currentForce);
+            
+            currentForce = force * (time - elapsed) / time;
 
             if (elapsed >= time)
             {
                 exec = false;
                 elapsed = 0.0f;
+                currentForce = 0f;
             }
         }
     }

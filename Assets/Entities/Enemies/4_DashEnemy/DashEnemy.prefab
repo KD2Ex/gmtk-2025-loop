@@ -91,9 +91,9 @@ MonoBehaviour:
   attack: {fileID: 319104929405121334}
   moveSpeed: 8
   damage: 10
-  knockbackForce: 10
-  dashChargeTime: 0.5
-  dashCooldownTime: 2
+  knockbackForce: 7
+  dashChargeTime: 0.3
+  dashCooldownTime: 1.5
 --- !u!114 &1518132967790541680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,8 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9877fb8c16742a3984ecc396541d4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 75
-  MaxValue: 75
+  Value: 60
+  MaxValue: 60
   isDead: 0
 --- !u!114 &7238648902375797512
 MonoBehaviour:

@@ -60,7 +60,7 @@ MonoBehaviour:
   knockbackComponent: {fileID: 7009604620538940967}
   attack: {fileID: 5859869591613422169}
   damage: 5
-  knockbackForce: 10
+  knockbackForce: 5
 --- !u!114 &2861824067811020955
 MonoBehaviour:
   m_ObjectHideFlags: 0

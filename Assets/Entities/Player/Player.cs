@@ -458,7 +458,12 @@ public class Player : MonoBehaviour, IDamageable
         GameManager.instance.Player = this;
         
         slashes.Add(attack, slashAnim);
-        
+
+        foreach (var slash in slashObjects)
+        {
+            var animator = slash.GetComponent<Animator>();
+            animator.Play("Slash", 0, 1f);
+        }
     }
 
     // Update is called once per frame
@@ -569,7 +574,8 @@ public class Player : MonoBehaviour, IDamageable
 
         if (message.knockbackForce > 0)
         {
-            knockback.Execute(message.dir, message.knockbackForce);
+            var time = message.knockbackForce >= 20 ? .5f : .3f;
+            knockback.Execute(message.dir, message.knockbackForce, time);
         }
         
         //print("Player's Heath's: " + healthComponent.Value);
@@ -577,8 +583,9 @@ public class Player : MonoBehaviour, IDamageable
 
     private void SetVelocity(Vector2 dir, float force)
     {
+        
         rb.velocity = dir * force;
-        //print(rb.velocity);
+        print(rb.velocity.magnitude);
     }
 
     public float GetStatValue(PlayerStats stat)
@@ -603,6 +610,8 @@ public class Player : MonoBehaviour, IDamageable
         animator.Play("PlayerDeath");
         sprite.color = ogColor;
         input.currentActionMap.Disable();
+
+        hitbox.enabled = false;
     }
     
     protected IEnumerator Flash()

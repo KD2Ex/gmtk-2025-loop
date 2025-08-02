@@ -205,7 +205,7 @@ MonoBehaviour:
   attackPivot: {fileID: 0}
   moveSpeed: 6
   damage: 15
-  knockbackForce: 15
+  knockbackForce: 10
   attackDelayTime: 1
   attackRestoreTime: 0.6
   attackCooldownTime: 1
@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9877fb8c16742a3984ecc396541d4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 300
-  MaxValue: 300
+  Value: 150
+  MaxValue: 150
   isDead: 0
 --- !u!114 &259688153506104951
 MonoBehaviour:

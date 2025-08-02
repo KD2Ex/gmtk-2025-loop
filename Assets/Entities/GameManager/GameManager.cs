@@ -125,6 +125,11 @@ public class GameManager : MonoBehaviour
     private Timer difficultyTimer;
 
     public Player Player;
+
+
+    [Space(5)]
+    [Header("Difficulty Scales")]
+    public float EnemyFactor;
       
     private void Awake()
     {
@@ -302,5 +307,10 @@ public class GameManager : MonoBehaviour
         }
         
         spawnedEnemies.Clear();
+    }
+
+    public float GetEnemyScale()
+    {
+        return Mathf.Pow(EnemyFactor, DifficultyLevel);
     }
 }
