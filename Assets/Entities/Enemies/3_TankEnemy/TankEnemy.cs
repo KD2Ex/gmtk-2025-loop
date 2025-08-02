@@ -30,6 +30,8 @@ namespace Entities.Enemies._3_TankEnemy
 
         private bool isAttacking;
 
+        private Vector2 lastVelocity;
+
         protected override void Awake()
         {
             base.Awake();
@@ -43,6 +45,8 @@ namespace Entities.Enemies._3_TankEnemy
         {
             // attackDelay.Tick(Time.deltaTime);
             // attackRestore.Tick(Time.deltaTime);
+
+            sprite.flipX = lastVelocity.x > 0;
         }
 
         private void FixedUpdate()
@@ -58,6 +62,11 @@ namespace Entities.Enemies._3_TankEnemy
             }
             
             Chase();
+
+            if (rb.velocity != Vector2.zero)
+            {
+                lastVelocity = rb.velocity;
+            }
         }
 
         private void OnEnable()
