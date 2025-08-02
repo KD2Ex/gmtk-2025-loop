@@ -343,6 +343,7 @@ public class Player : MonoBehaviour, IDamageable
         sprite.color = dashColor; // new Color(ogColor.r, ogColor.g, ogColor.b, .5f);
         
         //dash.SetSpeed(dash.OgSpeed + dash.OgSpeed * (stats.moveSpeed * 0.01f * 0.5f));
+        UpdateDashStats();
         dash.Execute(dir);
         
         animator.Play("PlayerDash");
@@ -617,7 +618,16 @@ public class Player : MonoBehaviour, IDamageable
         input.currentActionMap.Disable();
 
         hitbox.enabled = false;
+        
     }
+
+    public void OnDeathAnimation()
+    {
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
+        pauseOpen = true;
+    }
+    
     
     protected IEnumerator Flash()
     {
