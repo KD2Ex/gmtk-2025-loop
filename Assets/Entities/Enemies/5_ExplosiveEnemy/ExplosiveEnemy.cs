@@ -23,6 +23,17 @@ public class ExplosiveEnemy : Enemy, IDamageable
 
     private float elapsed = 0f;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (GameManager.instance.DifficultyLevel > 9)
+        {
+            health.Value = 50;
+            health.MaxValue = 50;
+        }
+    }
+
 
     private void OnEnable()
     {
@@ -94,4 +105,3 @@ public class ExplosiveEnemy : Enemy, IDamageable
         attack.Execute(damage, knockbackForce);
     }
 }
-

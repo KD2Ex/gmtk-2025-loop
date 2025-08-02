@@ -97,7 +97,9 @@ namespace Entities.Enemies._2_RangedEnemy
         {
             animator.Play("EEDeath");
             attackTimer.Pause();
+            
             rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast", "Enemy", "Default");
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             
             attackSensor.OnEnter -= OnPlayerEnterAttackSensor;
             attackSensor.OnLeave -= OnPlayerLeaveAttackSensor;
