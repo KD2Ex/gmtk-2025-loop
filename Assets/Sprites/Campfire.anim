@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerDeath
+  m_Name: Campfire
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,17 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1849715632, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
+      value: {fileID: -121003442, guid: abd2fbff6eaf3764692a78b618f0254f, type: 3}
     - time: 0.083333336
-      value: {fileID: -1487055097, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - time: 0.16666667
-      value: {fileID: 1617978219, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - time: 0.25
-      value: {fileID: 557256636, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - time: 0.33333334
-      value: {fileID: -1194496952, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - time: 0.41666666
-      value: {fileID: 1935518083, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
+      value: {fileID: 1288241977, guid: abd2fbff6eaf3764692a78b618f0254f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,18 +46,14 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1849715632, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - {fileID: -1487055097, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - {fileID: 1617978219, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - {fileID: 557256636, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - {fileID: -1194496952, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
-    - {fileID: 1935518083, guid: 08ec6db8e65f07641a612330d447c826, type: 3}
+    - {fileID: -121003442, guid: abd2fbff6eaf3764692a78b618f0254f, type: 3}
+    - {fileID: 1288241977, guid: abd2fbff6eaf3764692a78b618f0254f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.16666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -84,11 +72,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.41666666
-    functionName: OnDeath
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

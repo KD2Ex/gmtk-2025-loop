@@ -27,6 +27,15 @@ namespace Entities.Modifiers
 
         public float TotalDamage;
 
+        public void ResetModifiers()
+        {
+            baseDamage = 0;
+            radius = 0;
+            knockback = 0;
+            ammoGeneration = 0;
+        }
+        
+
         public void AddModifier(MeleeModifierType type, Modifier modifier)
         {
             switch (type)

@@ -126,9 +126,13 @@ public class GameManager : MonoBehaviour
     private Timer difficultyTimer;
 
     public Player Player;
+    public CameraManager CameraManager;
+    public GlobalTimer GlobalTimer;
 
     public int InititalDifficulty = 0;
 
+    public Transform playerSpawnPoint;
+    
     [Space(5)]
     [Header("Difficulty Scales")]
     public float EnemyFactor;
@@ -292,6 +296,8 @@ public class GameManager : MonoBehaviour
     {
         InitLevel();
         print(spawnedEnemies.Count);
+        
+        GlobalTimer.Resume();
     }
 
     public void ExitLoop()
@@ -300,6 +306,8 @@ public class GameManager : MonoBehaviour
         RemoveAllSpawnedEnemies();
         
         OnHubEnter?.Invoke();
+        
+        GlobalTimer.Pause();
     }
 
     private void RemoveAllSpawnedEnemies()
@@ -316,6 +324,26 @@ public class GameManager : MonoBehaviour
     public float GetEnemyScale()
     {
         return Mathf.Pow(EnemyFactor, DifficultyLevel);
+    }
+
+    public void RestartGame()
+    {
+        RemoveAllSpawnedEnemies();
+        ExitLoop();
+        Player.transform.position = playerSpawnPoint.position;
+        
+        Player.Restart();
+        stagesCompleted = 0;
+        minutesPassed = 0;
+
+        difficultyTimer.Start();
+
+        CalculateDifficultyLevel();
+        
+        CameraManager.SetHubBounds();
+
+        GlobalTimer.currentTime = 0f;
+        GlobalTimer.Pause();
     }
 
     public Action OnHubEnter;

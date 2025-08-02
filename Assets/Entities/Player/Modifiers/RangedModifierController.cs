@@ -21,6 +21,16 @@ namespace Entities.Modifiers
         public float explosiveRadiusScale = 1;
 
         public FireDoT fireDot;
+
+        public void ResetModifiers()
+        {
+            baseDamage = 0;
+            cooldown = 0;
+            explosiveDamage = 0;
+            explosiveRadiusScale = 1;
+            fireDot.Damage = 0;
+            fireDot.TimeBetweenDamage = 0;
+        }
         
         public void AddModifier(RangedModifierType type, Modifier modifier)
         {

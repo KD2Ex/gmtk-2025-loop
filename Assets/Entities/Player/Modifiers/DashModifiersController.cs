@@ -17,6 +17,12 @@ namespace Entities.Modifiers
         public float dashSpeed;
         public float cooldown;
 
+        public void ResetModifiers()
+        {
+            dashSpeed = 0;
+            cooldown = 0;
+        }
+
         public void AddModifier(DashModifierType type, Modifier modifier)
         {
             
