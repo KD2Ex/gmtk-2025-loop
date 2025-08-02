@@ -1,4 +1,5 @@
 using System;
+using Entities.Enemies;
 using Health;
 using UnityEngine;
 
@@ -12,12 +13,14 @@ namespace DoT
         
         private HealthComponent health;
         private Timer damageTimer;
+        private Enemy enemy;
 
         private float damage;
 
         private void Awake()
         {
             health = GetComponent<HealthComponent>();
+            enemy = GetComponent<Enemy>();
             damageTimer = new Timer(timeBetweenDamage, false);
         }
 
@@ -39,11 +42,11 @@ namespace DoT
         private void DealDamage()
         {
             health.Remove(damage);
-
             if (health.isDead)
             {
                 enabled = false;
             }
+            enemy.ShowDamageText(Mathf.RoundToInt(damage));
             // vfx
         }
 

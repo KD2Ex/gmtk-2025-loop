@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Attacks;
 using Health;
+using TMPro;
 using UnityEngine;
 
 namespace Entities.Enemies
@@ -20,6 +21,7 @@ namespace Entities.Enemies
         protected float scale;
 
         [SerializeField] private GameObject coinPrefab;
+        [SerializeField] private GameObject textPrefab;
 
         protected virtual void Awake()
         {
@@ -61,6 +63,16 @@ namespace Entities.Enemies
         {
         }
 
+        public void ShowDamageText(int damageMessage)
+        {
+            Vector3 pointToSpawn = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            GameObject textMessage = Instantiate(textPrefab, pointToSpawn, Quaternion.identity);
+
+            textMessage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = damageMessage.ToString();
+            textMessage.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = damageMessage.ToString();
+            Destroy(textMessage, 0.5f);
+        }
+        
         protected virtual void UpdateDamage()
         {
             damage *= scale;

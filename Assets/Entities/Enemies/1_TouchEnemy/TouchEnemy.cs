@@ -112,7 +112,7 @@ namespace Entities.Enemies._1_TouchEnemy
         {
             if (health.isDead) return;
             health.Remove(message.damage);
-
+            ShowDamageText(Mathf.RoundToInt(message.damage));
             StartCoroutine(Flash());
             // if (health.isDead)
             // {

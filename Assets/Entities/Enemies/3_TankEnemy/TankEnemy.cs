@@ -146,7 +146,9 @@ namespace Entities.Enemies._3_TankEnemy
         {
             if (health.isDead) return;
             health.Remove(message.damage);
+            ShowDamageText(Mathf.RoundToInt(message.damage));
             StartCoroutine(Flash());
+            
             // if (health.isDead)
             // {
             //     Die();

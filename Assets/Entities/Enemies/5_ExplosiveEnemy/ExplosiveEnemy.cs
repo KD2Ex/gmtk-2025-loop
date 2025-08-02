@@ -68,6 +68,7 @@ public class ExplosiveEnemy : Enemy, IDamageable
     public void TakeDamage(DamageMessage message)
     {
         health.Remove(message.damage);
+        ShowDamageText(Mathf.RoundToInt(message.damage));
         if (health.isDead)
         {
             Die();

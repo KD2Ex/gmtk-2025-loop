@@ -206,6 +206,7 @@ namespace Entities.Enemies._4_DashEnemy
         public void TakeDamage(DamageMessage message)
         {
             health.Remove(message.damage);
+            ShowDamageText(Mathf.RoundToInt(message.damage));
             // if (message.knockbackForce > 0)
             // {
             //     knockback.Execute(message.dir, message.knockbackForce);

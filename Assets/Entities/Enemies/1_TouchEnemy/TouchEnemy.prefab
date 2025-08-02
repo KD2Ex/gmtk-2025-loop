@@ -59,6 +59,7 @@ MonoBehaviour:
   damage: 5
   knockbackForce: 5
   coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
+  textPrefab: {fileID: 731498985030879977, guid: f6a708869b223d04c8bf0f016b1e9054, type: 3}
   moveSpeed: 5
   chaseSensor: {fileID: 3866647854186572449}
   knockbackComponent: {fileID: 7009604620538940967}

@@ -79,7 +79,7 @@ namespace Entities.Enemies._2_RangedEnemy
         public void TakeDamage(DamageMessage message)
         {
             if (health.isDead) return;
-            
+            ShowDamageText(Mathf.RoundToInt(message.damage));
             health.Remove(message.damage);
 
             StartCoroutine(Flash());
