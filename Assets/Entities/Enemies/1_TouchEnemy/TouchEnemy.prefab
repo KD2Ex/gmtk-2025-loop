@@ -137,7 +137,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.42
 --- !u!114 &7009604620538940967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.035, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 4, z: 4}
+  m_LocalScale: {x: 0, y: 1.88, z: 1.88}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6056901057472708659}
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0.1
+  collisionLifetime: 0.1
   damage: 25
   knockbackForce: 35
 --- !u!58 &6432929193338513779
