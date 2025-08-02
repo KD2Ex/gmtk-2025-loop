@@ -77,8 +77,9 @@ public class ExplosiveEnemy : Enemy, IDamageable
     {
         rb.velocity = Vector2.zero;
         //rb.excludeLayers = LayerMask.GetMask("Enemy", "Default");
-        hitbox.excludeLayers = LayerMask.GetMask("Enemy", "Player", "Default");
-        sprite.color = Color.black;
+        hitbox.excludeLayers = LayerMask.GetMask("Enemy", "Ignore Raycast", "Player", "Default");
+        //sprite.color = Color.black;
+        animator.Play("TimeDeath");
         //Destroy(gameObject);
     }
 
