@@ -42,6 +42,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float iTime = .5f;
     [SerializeField] private Color dashColor;
     [SerializeField] private Animator slashAnim;
+    [SerializeField] private GameObject textPrefab;
     
     [Space(5)]
     [SerializeField] private TMP_Text statsText;
@@ -647,7 +648,17 @@ public class Player : MonoBehaviour, IDamageable
         
         slashes.Add(newSlash, newSlash.GetComponent<Animator>());
     }
-    
+
+    public void ShowUpgrade(string text)
+    {
+        Vector3 pointToSpawn = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        GameObject textMessage = Instantiate(textPrefab, pointToSpawn, Quaternion.identity);
+        
+        textMessage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
+        textMessage.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = text;
+        textMessage.transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
+        Destroy(textMessage, 0.5f);
+    }
     
 }
 

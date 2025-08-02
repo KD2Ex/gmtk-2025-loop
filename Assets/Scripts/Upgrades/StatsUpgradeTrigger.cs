@@ -20,8 +20,7 @@ public class StatsUpgradeTrigger : MonoBehaviour
     {
         //print(other.gameObject.name);
         if (activated) return;
-        UpgradeStat(Random.Range(1,5));
-
+        UpgradeStat(Random.Range(1,5), other.GetComponent<Player>());
         activated = true;
     }
 
@@ -30,25 +29,25 @@ public class StatsUpgradeTrigger : MonoBehaviour
         activated = false;
     }
 
-    private void UpgradeStat(int statNum)
+    private void UpgradeStat(int statNum, Player player)
     {
         switch (statNum)
         {
             case 1:
                 playerStats.health += health;
-                Debug.Log($"health + {health}%");
+                player.ShowUpgrade($"Health +{health}%");
                 break;
             case 2:
                 playerStats.damage += damage;
-                Debug.Log($"damage + {damage}%");
+                player.ShowUpgrade($"Damage +{damage}%");
                 break;
             case 3:
                 playerStats.moveSpeed += moveSpeed;
-                Debug.Log($"moveSpeed + {moveSpeed}%");
+                player.ShowUpgrade($"Move Speed +{moveSpeed}%");
                 break;
             case 4:
                 playerStats.attackDelay += attackDelay;
-                Debug.Log($"attackDelay + {attackDelay}%");
+                player.ShowUpgrade($"Attack Speed +{attackDelay}%");
                 break;
         }
     }
