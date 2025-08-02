@@ -32,6 +32,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float dashCooldown = 1f;
     [SerializeField] private float iTime = .5f;
     [SerializeField] private Color dashColor;
+    [SerializeField] private Animator slashAnim;
     
     [Space(5)]
     [SerializeField] private TMP_Text statsText;
@@ -149,6 +150,8 @@ public class Player : MonoBehaviour, IDamageable
         attackAction.canceled -= OnAttack;
         
         dashAction.started -= OnDash;
+
+        pauseAction.started -= OnPause;
         
         dash.Finished -= OnDashFinished;
         
@@ -206,6 +209,8 @@ public class Player : MonoBehaviour, IDamageable
         var totalAttackCD = this.attackCooldown - this.attackCooldown * (stats.attackDelay * 0.01f);
         attackTimer.UpdateWaitTime(totalAttackCD);
         attackTimer.Start();
+        
+        slashAnim.Play("Slash", 0, 0);
     }
 
     public void UpdateAttackStats()

@@ -307,8 +307,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
+  m_sharedMaterial: {fileID: -4851267477728076567, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2730,8 +2730,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
+  m_sharedMaterial: {fileID: -4851267477728076567, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7455,6 +7455,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8688664898378322569}
     m_Modifications:
+    - target: {fileID: 853186404605204100, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
+    - target: {fileID: 853186404605204100, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4851267477728076567, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
     - target: {fileID: 5292246151322856242, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
       propertyPath: m_Name
       value: ShopItem
@@ -7847,6 +7855,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6310491525692947779}
     m_Modifications:
+    - target: {fileID: 853186404605204100, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
+    - target: {fileID: 853186404605204100, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4851267477728076567, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
     - target: {fileID: 5292246151322856242, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
       propertyPath: m_Name
       value: ShopItem
@@ -8107,6 +8123,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2142527469548144775}
     m_Modifications:
+    - target: {fileID: 853186404605204100, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
+    - target: {fileID: 853186404605204100, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4851267477728076567, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
     - target: {fileID: 5292246151322856242, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
       propertyPath: m_Name
       value: ShopItem
@@ -8235,6 +8259,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2205265948944930967}
     m_Modifications:
+    - target: {fileID: 853186404605204100, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
+    - target: {fileID: 853186404605204100, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4851267477728076567, guid: e58a843f9a0c8c34581cbe95c9dfa902, type: 2}
     - target: {fileID: 5292246151322856242, guid: 9d63d85cb35f3e349b724072ecc64bbd, type: 3}
       propertyPath: m_Name
       value: ShopItem

@@ -13,6 +13,6 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        text.text = $"Coins: {coins}";
+        text.text = $"{coins}";
     }
 }
