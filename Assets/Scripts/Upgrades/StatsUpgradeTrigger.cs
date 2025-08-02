@@ -22,7 +22,7 @@ public class StatsUpgradeTrigger : MonoBehaviour
     {
         //print(other.gameObject.name);
         if (activated) return;
-        UpgradeStat(Random.Range(1,5), other.GetComponent<Player>());
+        UpgradeStat(Random.Range(1,4), other.GetComponent<Player>());
         activated = true;
     }
 

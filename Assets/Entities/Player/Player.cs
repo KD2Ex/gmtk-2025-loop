@@ -116,7 +116,6 @@ public class Player : MonoBehaviour, IDamageable
 
         ogAttackScale = attack.transform.parent.localScale;
 
-        UpdateAttackStats();
         
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<Dash>();
@@ -132,6 +131,8 @@ public class Player : MonoBehaviour, IDamageable
         
         dashCooldownTimer = new Timer(dashCooldown, true);
         dashCooldownTimer.Timeout += OnDashCooldown;
+        
+        UpdateAttackStats();
     }
 
     private void OnEnable()
@@ -265,9 +266,8 @@ public class Player : MonoBehaviour, IDamageable
 
         isAttackReady = false;
 
-        var totalAttackCD = this.attackCooldown - this.attackCooldown * (stats.attackDelay * 0.01f);
-        totalAttackCD = Mathf.Clamp(totalAttackCD, 0.15f, 1f);
-        attackTimer.UpdateWaitTime(totalAttackCD);
+        // var totalAttackCD = this.attackCooldown - this.attackCooldown * (stats.attackDelay * 0.01f);
+        // totalAttackCD = Mathf.Clamp(totalAttackCD, 0.15f, 1f);
         attackTimer.Start();
         
         //slashAnim.Play("Slash", 0, 0);
@@ -289,6 +289,9 @@ public class Player : MonoBehaviour, IDamageable
         rangedWeapon.generatePerHit = ammoGen;
 
         print(totalDamage + " " + totalKnockback + " " + radius + " " + ammoGen);
+
+        var cd = meleeModifiers.GetTotalValue(MeleeModifierType.Cooldown, attackCooldown);
+        attackTimer.UpdateWaitTime(cd);
     }
 
     public void UpdateRangedStats()

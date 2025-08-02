@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -10,8 +9,6 @@ public class PortalScript : MonoBehaviour
 {
     public bool activated;
     public bool blockOnExit;
-    
-    
     
     [SerializeField] public Transform exit;
     [SerializeField] private Transform cameraFollow;

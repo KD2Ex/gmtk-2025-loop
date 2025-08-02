@@ -7,6 +7,7 @@ public enum MeleeModifierType
     Damage,
     Radius,
     Knockback,
+    Cooldown,
     AmmoGeneration,
     AddSlash
 }
@@ -23,6 +24,7 @@ namespace Entities.Modifiers
         public float baseDamage;
         public float radius;
         public float knockback;
+        public float cooldown;
         public float ammoGeneration;
 
         public float TotalDamage;
@@ -48,6 +50,9 @@ namespace Entities.Modifiers
                     break;
                 case MeleeModifierType.Knockback:
                     knockback += modifier.value;
+                    break;
+                case MeleeModifierType.Cooldown:
+                    cooldown += modifier.value;
                     break;
                 case MeleeModifierType.AmmoGeneration:
                     ammoGeneration += modifier.value;
@@ -84,6 +89,11 @@ namespace Entities.Modifiers
                     result = totalBase + totalBase * (knockback * 0.01f);
                     
                     return result;
+                case MeleeModifierType.Cooldown:
+
+                    var totalAttackCD = baseValue - baseValue * (cooldown * 0.01f);
+                    totalAttackCD = Mathf.Clamp(totalAttackCD, 0.15f, 1f);
+                    return totalAttackCD;
                 case MeleeModifierType.AmmoGeneration:
                     totalBase = baseValue + ammoGeneration;
                     result = totalBase;

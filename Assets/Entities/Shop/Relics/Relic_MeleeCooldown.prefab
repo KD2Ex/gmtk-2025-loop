@@ -10,23 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1567418460706214833, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1567418460706214833, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1567418460706214833, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1567418460706214833, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.26
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2017172187830424139, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: description
-      value: +0.2 Ammo Per Melee Hit
+      value: +15% Melee Attack Speed
       objectReference: {fileID: 0}
     - target: {fileID: 4978651005446105777, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_LocalPosition.x
@@ -69,37 +65,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
-      propertyPath: m_Size.x
-      value: 1.5159993
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
-      propertyPath: m_Size.y
-      value: 1.2642924
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.006292701
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.19507301
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.125
+      value: 0.65625
       objectReference: {fileID: 0}
     - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.65625
+      value: 0.625
       objectReference: {fileID: 0}
     - target: {fileID: 7229402704423579202, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Name
-      value: Relic_MeleeAmmoGen
+      value: Relic_MeleeCooldown
       objectReference: {fileID: 0}
     - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 841865451, guid: a65bd3d3720ddb74bbd118e0ae4f34cc, type: 3}
+      objectReference: {fileID: -1564180655, guid: a65bd3d3720ddb74bbd118e0ae4f34cc, type: 3}
     - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -114,16 +94,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Size.x
-      value: 1.125
+      value: 0.65625
       objectReference: {fileID: 0}
     - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Size.y
-      value: 0.65625
+      value: 0.625
       objectReference: {fileID: 0}
     - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 841865451, guid: a65bd3d3720ddb74bbd118e0ae4f34cc, type: 3}
+      objectReference: {fileID: -1564180655, guid: a65bd3d3720ddb74bbd118e0ae4f34cc, type: 3}
     - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -134,14 +114,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7229402704423579202, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7769926458662310780}
+      addedObject: {fileID: 3560139656352795683}
   m_SourcePrefab: {fileID: 100100000, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
 --- !u!1 &2378799811423638037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7229402704423579202, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
   m_PrefabInstance: {fileID: 4994719206911409239}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7769926458662310780
+--- !u!114 &3560139656352795683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,4 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeModifierType: 3
-  modifierValue: 0.2
+  modifierValue: 10

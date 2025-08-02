@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1567418460706214833, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567418460706214833, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567418460706214833, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 2017172187830424139, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: description
       value: +15% Melee Radius
@@ -52,21 +64,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.78125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 7229402704423579202, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Name
       value: Relic_MeleeRadius
       objectReference: {fileID: 0}
     - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1004306983, guid: a65bd3d3720ddb74bbd118e0ae4f34cc, type: 3}
+    - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Color.b
-      value: 0.09927912
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Color.g
-      value: 0.5698406
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Color.r
-      value: 0.9150943
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_Size.x
+      value: 0.78125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_Size.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1004306983, guid: a65bd3d3720ddb74bbd118e0ae4f34cc, type: 3}
+    - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

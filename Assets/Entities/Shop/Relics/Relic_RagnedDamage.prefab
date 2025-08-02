@@ -52,21 +52,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.65625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798063435242129396, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.34375
+      objectReference: {fileID: 0}
     - target: {fileID: 7229402704423579202, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Name
-      value: Relic_Ranged
+      value: Relic_RagnedDamage
       objectReference: {fileID: 0}
     - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 600929113, guid: a65bd3d3720ddb74bbd118e0ae4f34cc, type: 3}
+    - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Color.b
-      value: 0.46751517
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Color.g
-      value: 0.9622642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7248444769187706035, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_Color.r
-      value: 0.48794922
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_Size.x
+      value: 0.65625
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_Size.y
+      value: 0.34375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 600929113, guid: a65bd3d3720ddb74bbd118e0ae4f34cc, type: 3}
+    - target: {fileID: 7665311439192210551, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -98,3 +126,5 @@ MonoBehaviour:
   fireDot:
     Damage: 0
     TimeBetweenDamage: 0
+  explosiveDamage: 0
+  explosiveRadiusScale: 0

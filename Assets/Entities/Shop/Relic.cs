@@ -47,8 +47,11 @@ public class Relic : MonoBehaviour
         
         
         inventory.coins -= cost;
-        gameObject.GetComponent<Collider2D>().enabled = false;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+        
+        //gameObject.GetComponent<Collider2D>().enabled = false;
+        //gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+        Destroy(gameObject);
+        
         desc.gameObject.SetActive(false);
         
         
