@@ -89,6 +89,7 @@ namespace Entities.Enemies._3_TankEnemy
         private void OnAttackSensorEnter(Player player)
         {
             //print("Attack sensor entered");
+            if (isAttacking) return;
             playerInAttackRange = true;
             
             // attackDelay.Start(); // start attack animation

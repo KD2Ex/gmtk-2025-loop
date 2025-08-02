@@ -159,8 +159,12 @@ namespace Entities.Enemies._4_DashEnemy
             dash.Execute(dir);
             
             animator.Play("GhostDash");
-            
-            sprite.flipX = dir.x > 0;
+
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;// - 90f;
+            transform.eulerAngles = new Vector3(0, 0, angle);
+
+
+            sprite.flipX = true;
             
             //StartCoroutine(Attacking());
             
@@ -171,6 +175,7 @@ namespace Entities.Enemies._4_DashEnemy
             isDashReady = false;
             dashCooldown.Start();
         }
+
 
         private void OnDashCooldown()
         {
@@ -190,6 +195,7 @@ namespace Entities.Enemies._4_DashEnemy
         private void OnDashFinished()
         {
             attack.Disable();
+            transform.eulerAngles = Vector3.zero;
         }
 
         private void OnAttackHit(Collider2D other)
