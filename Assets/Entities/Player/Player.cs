@@ -121,8 +121,6 @@ public class Player : MonoBehaviour, IDamageable
         ogDashCooldown = dashCooldown;
 
         ogAttackScale = attack.transform.parent.localScale;
-        
-        UpdateAttackStats();
 
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<Dash>();
