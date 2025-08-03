@@ -7,7 +7,8 @@ public enum RangedModifierType
     Damage,
     Cooldown,
     FireDOT,
-    Explosive
+    Explosive,
+    AmmoGen
 }
 
 namespace Entities.Modifiers
@@ -19,6 +20,8 @@ namespace Entities.Modifiers
 
         public float explosiveDamage;
         public float explosiveRadiusScale = 1;
+
+        public float passiveAmmoGen;
 
         public FireDoT fireDot;
 

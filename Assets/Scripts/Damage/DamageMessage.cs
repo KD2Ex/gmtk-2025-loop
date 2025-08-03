@@ -9,6 +9,5 @@ namespace Damage
         public float stunForce;
         public Vector2 dir;
         public Transform source;
-        public string sourceTag;
     }
 }
