@@ -518,11 +518,11 @@ public class Player : MonoBehaviour, IDamageable
 
         //healthComponent.MaxValue = ogMaxHealth + ogMaxHealth * (stats.health * 0.01f);
         UpdateHP();
-        statsText.text = $"Stats:\n" +
-                         $"Damage: {GetStatValue(PlayerStats.Damage)}\n" +
-                         $"Move Speed: {GetStatValue(PlayerStats.MoveSpeed)}\n" +
-                         $"Attack Cooldown: {GetStatValue(PlayerStats.AttackDelay)}\n" +
-                         $"Max Health: {GetStatValue(PlayerStats.Health)}\n";
+        // statsText.text = $"Stats:\n" +
+        //                  $"Damage: {GetStatValue(PlayerStats.Damage)}\n" +
+        //                  $"Move Speed: {GetStatValue(PlayerStats.MoveSpeed)}\n" +
+        //                  $"Attack Cooldown: {GetStatValue(PlayerStats.AttackDelay)}\n" +
+        //                  $"Max Health: {GetStatValue(PlayerStats.Health)}\n";
 
         // if (shootInput)
         // {

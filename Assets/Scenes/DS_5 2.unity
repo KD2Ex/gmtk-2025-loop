@@ -55099,7 +55099,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 19
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -55124,7 +55124,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 76.91997, y: -18.6, z: -10}
+  m_LocalPosition: {x: 160.53354, y: -19.749022, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297059,7 +297059,7 @@ MonoBehaviour:
   m_Follow: {fileID: 355445101}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 19
+    OrthographicSize: 16
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -297085,7 +297085,7 @@ Transform:
   m_GameObject: {fileID: 1853356932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 159.5, y: -20.232, z: -10}
+  m_LocalPosition: {x: 159.5, y: -19.848, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -297104,9 +297104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BoundingShape2D: {fileID: 107924961}
-  m_Damping: 0.32
-  m_MaxWindowSize: 10.4
+  m_BoundingShape2D: {fileID: 557285493}
+  m_Damping: 0
+  m_MaxWindowSize: 0
   m_Padding: 0
 --- !u!114 &1853356936
 MonoBehaviour:
@@ -325878,6 +325878,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 127
       objectReference: {fileID: 0}
+    - target: {fileID: 4108799358466115009, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4356855727581761569, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 127
@@ -326535,10 +326539,6 @@ PrefabInstance:
     - target: {fileID: 382048045194612536, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494446671458428316, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -66.50073
       objectReference: {fileID: 0}
     - target: {fileID: 5019814624976702884, guid: 76b2aadcb9c9c8c44982040294b662f3, type: 3}
       propertyPath: m_Camera
