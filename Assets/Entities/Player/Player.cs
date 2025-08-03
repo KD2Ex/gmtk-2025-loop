@@ -102,8 +102,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private bool shootInput = false;
     private bool attackInput = false;
-
-
     
     public Camera mainCamera;
 
@@ -115,6 +113,18 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float slashRadiusFromPlayer = 1.226f;
 
     [SerializeField] private List<Attack> slashObjects;
+    
+    [Space(5)]
+    [Header("SOund")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip attackClip;
+    [SerializeField] private AudioClip hitReactClip;
+    [SerializeField] private AudioClip rerollClip;
+    [SerializeField] private AudioClip buyRelicClip;
+    [SerializeField] private AudioClip healInWellClip;
+    [SerializeField] private AudioClip deathClip;
+    [SerializeField] private AudioClip gunshotClip;
+    [SerializeField] private AudioClip enterLoopClip;
     
     private void Awake()
     {
@@ -273,6 +283,10 @@ public class Player : MonoBehaviour, IDamageable
         //attack.Execute(meleeModifiers.TotalDamage, 0, false);
 
         isAttackReady = false;
+        
+        var pitch = Random.Range(0.85f, 1.15f);
+        audioSource.pitch = pitch;
+        audioSource.PlayOneShot(attackClip, 1f);
 
         // var totalAttackCD = this.attackCooldown - this.attackCooldown * (stats.attackDelay * 0.01f);
         // totalAttackCD = Mathf.Clamp(totalAttackCD, 0.15f, 1f);
@@ -386,6 +400,12 @@ public class Player : MonoBehaviour, IDamageable
         // print(mousePos);
         // print(dir);
         rangedWeapon.Shoot(dir.normalized);
+    }
+
+    public void PlayShotSound()
+    {
+        audioSource.pitch = 1.18f;
+        audioSource.PlayOneShot(gunshotClip, 1f);
     }
 
     private void OnDashFinished()
@@ -586,8 +606,13 @@ public class Player : MonoBehaviour, IDamageable
         if (healthComponent.isDead)
         {
             Die();
+            audioSource.pitch = Random.Range(0.85f, 1.15f);
+            audioSource.PlayOneShot(deathClip, 1f);
             return;
         }
+        
+        audioSource.pitch = Random.Range(0.85f, 1.15f);
+        audioSource.PlayOneShot(hitReactClip, 1f);
 
         StartCoroutine(Flash());
         StartCoroutine(ShakeCamera());
@@ -734,7 +759,30 @@ public class Player : MonoBehaviour, IDamageable
         textMessage.transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
         Destroy(textMessage, 1f);
     }
-    
+
+    public void PlayWellSound()
+    {
+        audioSource.pitch = Random.Range(0.85f, 1.15f);
+        audioSource.PlayOneShot(healInWellClip, 1f);
+    }
+
+    public void PlayRelicSound()
+    {
+        audioSource.pitch = Random.Range(0.85f, 1.15f);
+        audioSource.PlayOneShot(buyRelicClip, 1f);
+    }
+
+    public void PlayRerollSound()
+    {
+        audioSource.pitch = Random.Range(0.85f, 1.15f);
+        audioSource.PlayOneShot(rerollClip, 1f);
+    }
+
+    public void PlayEnterLoopSound()
+    {
+        audioSource.pitch = Random.Range(0.85f, 1.15f);
+        audioSource.PlayOneShot(enterLoopClip, 1f);
+    }
 }
 
 public enum PlayerStats

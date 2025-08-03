@@ -19,6 +19,7 @@ namespace Entities.Enemies
         [SerializeField] protected float knockbackForce;
 
         protected float scale;
+        [SerializeField] protected AudioSource audioSource;
 
         [SerializeField] private GameObject coinPrefab;
         [SerializeField] private GameObject textPrefab;

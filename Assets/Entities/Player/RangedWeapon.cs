@@ -39,6 +39,8 @@ namespace Entities
         public float TotalCooldown;
 
         public FireDoT firDot;
+
+        private Player player;
         
 
         private void Awake()
@@ -48,7 +50,9 @@ namespace Entities
             currentAmmo = maxAmmo;
             
             TotalDamage = damage; 
-            TotalCooldown = cooldown; 
+            TotalCooldown = cooldown;
+
+            player = GetComponent<Player>();
         }
 
         private void OnEnable()
@@ -91,6 +95,8 @@ namespace Entities
             isReady = false;
 
             currentAmmo -= consumePerShot;
+            
+            player.PlayShotSound();
             
             OnAmmoChanged?.Invoke(currentAmmo);
         }

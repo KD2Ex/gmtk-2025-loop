@@ -14,6 +14,10 @@ namespace Entities.Enemies._1_TouchEnemy
         [SerializeField] private EnemySensor chaseSensor;
         [SerializeField] private KnockbackComponent knockbackComponent;
         [SerializeField] private float selfKnockback = 5f;
+
+        [SerializeField] private AudioClip approachClip;
+        [SerializeField] private AudioClip hitClip;
+        [SerializeField] private AudioClip deathClip;
         //[SerializeField] private EnemySensor attackSensor;
         
         private Player player;
@@ -62,6 +66,8 @@ namespace Entities.Enemies._1_TouchEnemy
         private void OnPlayerEnterChase(Player player)
         {
             this.player = player;
+            
+            SoundUtils.PlayWithRandomPitch(audioSource, approachClip);
         }
 
         private void OnAttackHit(Collider2D other)
@@ -119,7 +125,8 @@ namespace Entities.Enemies._1_TouchEnemy
             //     Die();
             //     return;
             // }
-            
+
+            SoundUtils.PlayWithRandomPitch(audioSource, hitClip);
             
             if (message.knockbackForce > 0)
             {
@@ -133,6 +140,9 @@ namespace Entities.Enemies._1_TouchEnemy
 
         protected override void Die()
         {
+            
+            //SoundUtils.PlayWithRandomPitch(audioSource, deathClip);
+            
             animator.Play("SpiderDeath");
             
             rb.excludeLayers = LayerMask.GetMask("Player", "Ignore Raycast", "Enemy", "Default");

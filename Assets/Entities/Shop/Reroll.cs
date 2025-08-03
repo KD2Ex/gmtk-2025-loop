@@ -43,6 +43,10 @@ public class Reroll : MonoBehaviour
         inventory.coins -= cost;
         cost *= GameManager.instance.DifficultyLevel + 2;
         costText.text = cost.ToString();
+        
+        var player = other.GetComponent<Player>();
+        player.PlayRerollSound();
+        
         RerollRelics();
     }
 

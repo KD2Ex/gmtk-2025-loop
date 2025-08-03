@@ -61,6 +61,8 @@ public class Well : MonoBehaviour
             player.Health.Add(player.Health.MaxValue / 2);
             inv.coins -= (int)currentCost;
             relicDescription.description = healedDesc;
+            
+            player.PlayWellSound();
         }
     }
 

@@ -13,6 +13,9 @@ namespace Entities.Enemies._2_RangedEnemy
         [SerializeField] private Projectile projectilePrefab;
         [SerializeField] private float speed = 20;
         [SerializeField] private float attackCooldown = 1f;
+
+        [SerializeField] private AudioClip approachClip;
+        [SerializeField] private AudioClip hitClip;
         
         private Player player;
 
@@ -52,6 +55,8 @@ namespace Entities.Enemies._2_RangedEnemy
             this.player = player;
             //Shoot();
             attackTimer.Start();
+            
+        //    SoundUtils.PlayWithRandomPitch(audioSource, approachClip);
         }
 
         private void OnPlayerLeaveAttackSensor(Player player)
@@ -82,6 +87,7 @@ namespace Entities.Enemies._2_RangedEnemy
             ShowDamageText(Mathf.RoundToInt(message.damage));
             health.Remove(message.damage);
 
+            SoundUtils.PlayWithRandomPitch(audioSource, hitClip);
             StartCoroutine(Flash());
             /*
             if (health.isDead)

@@ -313,6 +313,8 @@ public class GameManager : MonoBehaviour
         
         GlobalTimer.Resume();
         difficultyTimer.Resume();
+        
+        Player.PlayEnterLoopSound();
     }
 
     public void ExitLoop()
