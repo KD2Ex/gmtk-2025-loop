@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
     public Player Player;
     public CameraManager CameraManager;
     public GlobalTimer GlobalTimer;
-
+    public Canvas playerUI;
     public int InititalDifficulty = 0;
 
     public Transform playerSpawnPoint;
@@ -353,8 +353,9 @@ public class GameManager : MonoBehaviour
         
         loopCamera.tag = "MainCamera";
         hubCamera.tag = "Untagged";
-
+        
         Player.mainCamera = loopCamera;
+        playerUI.worldCamera = loopCamera;
 
         cinemachineLoopCamera.Follow = Player.transform;
         
@@ -382,7 +383,8 @@ public class GameManager : MonoBehaviour
         loopCamera.tag = "Untagged";
 
         Player.mainCamera = hubCamera;
-
+        playerUI.worldCamera = hubCamera;
+        
         cinemachineLoopCamera.Follow = null;
         // cinemachine pos
 
@@ -423,7 +425,7 @@ public class GameManager : MonoBehaviour
 
         CalculateDifficultyLevel();
         
-        CameraManager.SetHubBounds();
+        //CameraManager.SetHubBounds();
 
         GlobalTimer.currentTime = 0f;
         GlobalTimer.Pause();
@@ -431,7 +433,7 @@ public class GameManager : MonoBehaviour
         Player.GetComponent<Inventory>().coins = 200;
         
         Player.orbit.ResetOrbit();
-
+        
     }
 
     public Action OnHubEnter;
