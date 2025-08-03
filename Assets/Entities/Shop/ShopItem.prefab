@@ -449,11 +449,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2874715432958043704, guid: c1a12f319f8620646989e8b93e4ee33c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 2874715432958043704, guid: c1a12f319f8620646989e8b93e4ee33c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2874715432958043704, guid: c1a12f319f8620646989e8b93e4ee33c, type: 3}
       propertyPath: m_LocalPosition.x
