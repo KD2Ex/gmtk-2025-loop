@@ -400,5 +400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64749aa37ae04c7a940105f50f5d5943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 15
   attack: {fileID: 0}
   radius: 1

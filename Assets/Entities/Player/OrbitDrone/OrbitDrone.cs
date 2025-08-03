@@ -7,6 +7,7 @@ namespace Entities.OrbitDrone
 {
     public class OrbitDrone: MonoBehaviour
     {
+        public float rotationSpeed = 5f;
         public Attack attack;
 
         public float radius = 1f;
@@ -14,6 +15,12 @@ namespace Entities.OrbitDrone
         private void Update()
         {
             
+        }
+
+        private void FixedUpdate()
+        {
+            
+            transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
         }
 
         public void UpdateStats()

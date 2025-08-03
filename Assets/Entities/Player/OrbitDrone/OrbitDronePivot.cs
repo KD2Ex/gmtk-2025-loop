@@ -22,16 +22,22 @@ namespace Entities.OrbitDrone
         private float damageScale;
         private float baseDamage;
         private Vector3 scale;
+        private Quaternion ogRot;
 
+        
         private bool exec;
+
+        private float ogDamage;
 
 
         public bool IsRunning => exec;
 
         private void Awake()
         {
+            ogDamage = attack.damage;
             baseDamage = attack.damage;
             scale = attack.transform.localScale;
+            ogRot = transform.rotation;
             UpdateStats();
         }
 
@@ -80,6 +86,18 @@ namespace Entities.OrbitDrone
             
             attack.gameObject.SetActive(true);
             exec = true;
+        }
+
+        public void ResetOrbit()
+        {
+            radius = 1;
+            healAmount = 0;
+            exec = false;
+            attack.gameObject.SetActive(false);
+            attack.damage = ogDamage;
+            baseDamage = ogDamage;
+
+            transform.rotation = ogRot;
         }
     }
 }

@@ -51,16 +51,21 @@ public class GameManager : MonoBehaviour
         new RangeInt(5, 1), 
         new RangeInt(6, 1), 
         new RangeInt(6, 2), 
+        new RangeInt(7, 2), 
+        new RangeInt(7, 2), 
     };
     private List<RangeInt> rangedEnemyAmountRanges = new()
     {
         new RangeInt(2, 1),
         new RangeInt(2, 2),
-        new RangeInt(2, 3),
+        new RangeInt(2, 2),
+        new RangeInt(3, 1),
         new RangeInt(3, 1),
         new RangeInt(3, 2),
+        new RangeInt(4, 1),
         new RangeInt(4, 2),
-        new RangeInt(4, 3),
+        new RangeInt(5, 1),
+        new RangeInt(5, 2),
     };
     private List<RangeInt> tankEnemyAmountRanges = new()
     {
@@ -72,18 +77,21 @@ public class GameManager : MonoBehaviour
         new RangeInt(2, 2),
         new RangeInt(3, 1),
         new RangeInt(3, 2),
+        new RangeInt(4, 1),
+        new RangeInt(4, 2),
     };
     private List<RangeInt> dashEnemyAmountRanges = new()
     {
         new RangeInt(0, 0),
+        new RangeInt(0, 0),
         new RangeInt(1, 0),
         new RangeInt(1, 1),
-        new RangeInt(1, 1),
         new RangeInt(2, 1),
         new RangeInt(2, 1),
         new RangeInt(3, 1),
         new RangeInt(3, 1),
-        new RangeInt(3, 1),
+        new RangeInt(3, 2),
+        new RangeInt(4, 1),
     };
     private List<RangeInt> explosiveEnemyAmountRanges = new()
     {
@@ -96,6 +104,7 @@ public class GameManager : MonoBehaviour
         new RangeInt(1, 2),
         new RangeInt(1, 2),
         new RangeInt(1, 3),
+        new RangeInt(2, 3),
     };
 
     private List<List<RangeInt>> enemyRanges = new();
@@ -353,6 +362,8 @@ public class GameManager : MonoBehaviour
         GlobalTimer.Pause();
 
         Player.GetComponent<Inventory>().coins = 200;
+        
+        Player.orbit.ResetOrbit();
 
     }
 
