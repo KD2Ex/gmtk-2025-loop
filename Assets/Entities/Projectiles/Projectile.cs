@@ -48,6 +48,13 @@ namespace Projectiles
             //print(other.gameObject.name);
             if (other.CompareTag("Obstacle"))
             {
+                if (explosive)
+                {
+                    var inst = Instantiate(explosiveAttack, transform.position, Quaternion.identity);
+                    inst.transform.localScale *= explosiveRadiusScale;
+                    inst.Execute(explosiveDamage);
+                    print("Explode?");
+                }
                 Destroy(gameObject);
             }
 

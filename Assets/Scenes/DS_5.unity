@@ -6321,6 +6321,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 174118049389954024, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 581081513668790921, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 798874126563256983, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 155.45848
@@ -6369,6 +6377,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUB
       objectReference: {fileID: 0}
+    - target: {fileID: 2589402415592948623, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686321984123286409, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777020998146653941, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053461447350199541, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4221235358616182481, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: cinemachine
       value: 
@@ -6377,6 +6401,22 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 355445101}
+    - target: {fileID: 4292736988330100305, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477982771606320444, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500489552363678443, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928412169668286525, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5093372653581454015, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: m_CallbackLayers.m_Bits
       value: 64
@@ -6385,9 +6425,57 @@ PrefabInstance:
       propertyPath: cinemachine
       value: 
       objectReference: {fileID: 1853356933}
+    - target: {fileID: 5615180856003901873, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749601458603421147, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749601458603421147, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895005506281538889, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365778464108134779, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987257973284835679, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987257973284835679, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644508671023409447, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821467264825969454, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938600681090814343, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112513971753076693, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8126993441326101705, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: m_CallbackLayers.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951621590882214148, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9042828379738812243, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: cinemachine
