@@ -35,6 +35,7 @@ namespace Entities.Modifiers
             radius = 0;
             knockback = 0;
             ammoGeneration = 0;
+            cooldown = 0;
         }
         
 

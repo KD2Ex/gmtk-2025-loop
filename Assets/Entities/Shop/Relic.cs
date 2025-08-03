@@ -13,7 +13,7 @@ public class Relic : MonoBehaviour
     [SerializeField] private int minCost;
     [SerializeField] private int maxCost;
     
-    private RelicEffect relicEffect;
+    [HideInInspector] public RelicEffect relicEffect;
     private RelicDescription desc;
 
     private string ogDesc;
@@ -23,27 +23,48 @@ public class Relic : MonoBehaviour
         relicEffect = GetComponent<RelicEffect>();
         desc = GetComponentInChildren<RelicDescription>();
         
-        
-        
         cost = Random.Range(minCost, maxCost);
 
         if (GameManager.instance.DifficultyLevel > 1)
         {
             cost += (int)((float)cost * GameManager.instance.DifficultyLevel * 0.1f);
         }
-
-        if (relicEffect is RangedRelicEffect)
-        {
-            desc.OnEnter += UpdateIgniteRelicDesc;
-        }
-
-        if (relicEffect is OrbitRelicEffect)
-        {
-            desc.OnEnter += UpdateOrbitRelicDesc;
-            ogDesc = desc.description;
-        }
+        //
+        // if (relicEffect is OrbitRelicEffect)
+        // {
+        //     desc.OnEnter += UpdateOrbitRelicDesc;
+        //     ogDesc = desc.description;
+        // }
 
         costText.text = cost.ToString();
+    }
+
+    private void OnEnable()
+    {
+        // if (relicEffect is RangedRelicEffect)
+        // {
+        //     desc.OnEnter += UpdateIgniteRelicDesc;
+        // }
+        //
+        // if (relicEffect is OrbitRelicEffect)
+        // {
+        //     desc.OnEnter += UpdateOrbitRelicDesc;
+        //     ogDesc = desc.description;
+        // }
+    }
+
+    private void OnDisable()
+    {
+        //
+        // if (relicEffect is RangedRelicEffect)
+        // {
+        //     desc.OnEnter -= UpdateIgniteRelicDesc;
+        // }
+        //
+        // if (relicEffect is OrbitRelicEffect)
+        // {
+        //     desc.OnEnter -= UpdateOrbitRelicDesc;
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -21,6 +21,7 @@ namespace Attacks
 
         private Timer lifeTimer;
         private Timer collisionLifeTimer;
+
         
 
         private void Awake()
@@ -109,6 +110,7 @@ namespace Attacks
             msg.damage = damage;
             msg.knockbackForce = knockbackForce;
             msg.dir = (other.transform.position - transform.position).normalized;
+            msg.source = transform;
             damageable.TakeDamage(msg);
 
             

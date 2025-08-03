@@ -348,6 +348,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6769676738642711673, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
+      propertyPath: m_TagString
+      value: Orbit
+      objectReference: {fileID: 0}
     - target: {fileID: 7858680378119387901, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: damage
       value: 15

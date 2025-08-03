@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Serialization;
 
 public class SoundControls : MonoBehaviour
 {
@@ -11,10 +7,21 @@ public class SoundControls : MonoBehaviour
     public bool sfxTurned;
     public bool musicTurned;
 
+    private float ogSFX;
+    private float ogMusic;
+
+    private void Awake()
+    {
+        mixer.GetFloat("SFX", out var sfx);
+        mixer.GetFloat("Music", out var music);
+        ogSFX = sfx;
+        ogMusic = music;
+    }
+
     private void OnEnable()
     {
-        mixer.SetFloat("SFX", -19.26f);
-        mixer.SetFloat("Music", 0f);
+        mixer.SetFloat("SFX", ogSFX);
+        mixer.SetFloat("Music", ogMusic);
     }
 
     public void SfxButton()
@@ -25,8 +32,10 @@ public class SoundControls : MonoBehaviour
         }
         else
         {
-            mixer.SetFloat("SFX", -19.26f);
+            mixer.SetFloat("SFX", ogSFX);
+            
         }
+        
 
         sfxTurned = !sfxTurned;
     }
@@ -39,7 +48,7 @@ public class SoundControls : MonoBehaviour
         }
         else
         {
-            mixer.SetFloat("Music", 0f);
+            mixer.SetFloat("Music", ogMusic);
         }
 
         musicTurned = !musicTurned;

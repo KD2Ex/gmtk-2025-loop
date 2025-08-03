@@ -86,6 +86,8 @@ public class ExplosiveEnemy : Enemy, IDamageable
 
     public void TakeDamage(DamageMessage message)
     {
+        if (message.source.gameObject.CompareTag("Orbit")) return;
+        
         health.Remove(message.damage);
         ShowDamageText(Mathf.RoundToInt(message.damage));
         if (health.isDead)

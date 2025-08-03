@@ -83,9 +83,9 @@ MonoBehaviour:
   hubMusic: {fileID: 8300000, guid: 23df400756f2da849887a9adef695adf, type: 3}
   loopMusic: {fileID: 8300000, guid: d5139f7f2774ee34ba2a2e4fcbdf1c89, type: 3}
   tracks:
-  - {fileID: 8300000, guid: 44c9c2acf3304f244b132540d7af8c07, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 2a7d8d8a00c0a4d40895d5222e3d0cb1, type: 3}
+  - {fileID: 8300000, guid: 678ed6cae9b8a3b4baaa24865ffd9ed7, type: 3}
+  - {fileID: 8300000, guid: 36ce66bb07e2ca346a55ff3f42880d70, type: 3}
 --- !u!82 &1292430443258444814
 AudioSource:
   m_ObjectHideFlags: 0

@@ -66,7 +66,7 @@ namespace Entities.Modifiers
             else
             {
                 player.RangedWeapon.firDot.Damage += dot.Damage;
-                player.RangedWeapon.firDot.TimeBetweenDamage -= dot.TimeBetweenDamage * .25f;
+                player.RangedWeapon.firDot.TimeBetweenDamage -= dot.TimeBetweenDamage * .15f;
                 
                 player.RangedWeapon.firDot.TimeBetweenDamage = Mathf.Clamp(player.RangedWeapon.firDot.TimeBetweenDamage, .1f, 1f);
             }
