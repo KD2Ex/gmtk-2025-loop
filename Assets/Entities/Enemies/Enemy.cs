@@ -100,9 +100,6 @@ namespace Entities.Enemies
         protected virtual void UpdateDamage()
         {
             damage *= scale;
-            print(damage);
-            print(GameManager.instance.DifficultyLevel);
-            print(scale);
         }
     }
 }

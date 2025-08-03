@@ -50,6 +50,7 @@ namespace Entities.OrbitDrone
         private void OnEnable()
         {
             GameManager.instance.OnHubEnter += healArea.Refill;
+            print(GameManager.instance.Player);
             GameManager.instance.Player.Health.OnValueChanged += UpdateStats;
         }
 
