@@ -76,4 +76,4 @@ MonoBehaviour:
   GlobalTimer: {fileID: 0}
   InititalDifficulty: 0
   playerSpawnPoint: {fileID: 0}
-  EnemyFactor: 1.07
+  EnemyFactor: 1.15

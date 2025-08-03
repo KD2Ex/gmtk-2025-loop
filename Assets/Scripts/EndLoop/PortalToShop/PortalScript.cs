@@ -9,11 +9,13 @@ public class PortalScript : MonoBehaviour
 {
     public bool activated;
     public bool blockOnExit;
+    public int arrowToShow;
     
     [SerializeField] public Transform exit;
     [SerializeField] private Transform cameraFollow;
     [SerializeField] private CinemachineVirtualCamera cinemachine;
-
+    [SerializeField] private List<GameObject> arrows;
+    
     private CameraManager cameraManager;
 
     private void Awake()
@@ -36,6 +38,18 @@ public class PortalScript : MonoBehaviour
             //cinemachine.GetComponent<CinemachineConfiner2D>().enabled = false;
             cameraManager.SetLoopBounds();
             GameManager.instance.EnterLoop();
+
+            switch (arrowToShow)
+            {
+                case 1:
+                    arrows[0].SetActive(true);
+                    arrows[1].SetActive(false);
+                    break;
+                case 2:
+                    arrows[0].SetActive(false);
+                    arrows[1].SetActive(true);
+                    break;
+            }
         }
         else // entered hub
         {

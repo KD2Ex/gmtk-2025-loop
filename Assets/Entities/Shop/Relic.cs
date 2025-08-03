@@ -16,6 +16,8 @@ public class Relic : MonoBehaviour
     private RelicEffect relicEffect;
     private RelicDescription desc;
 
+    private string ogDesc;
+
     private void Start()
     {
         relicEffect = GetComponent<RelicEffect>();
@@ -33,6 +35,12 @@ public class Relic : MonoBehaviour
         if (relicEffect is RangedRelicEffect)
         {
             desc.OnEnter += UpdateIgniteRelicDesc;
+        }
+
+        if (relicEffect is OrbitRelicEffect)
+        {
+            desc.OnEnter += UpdateOrbitRelicDesc;
+            ogDesc = desc.description;
         }
 
         costText.text = cost.ToString();
@@ -64,6 +72,14 @@ public class Relic : MonoBehaviour
         if (GameManager.instance.Player.rangedModifiers.fireDot.Damage != 0)
         {
             desc.description = "Ignite deals More Damage";
+        }
+    }
+
+    private void UpdateOrbitRelicDesc(Player player)
+    {
+        if (!player.orbit.IsRunning)
+        {
+            desc.description = "Orbit flame appears in Loop\n" + ogDesc;
         }
     }
 }

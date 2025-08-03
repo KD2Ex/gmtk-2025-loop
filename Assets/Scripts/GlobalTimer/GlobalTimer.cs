@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,13 +6,19 @@ public class GlobalTimer : MonoBehaviour
 {
     public float currentTime ;
     public bool timerIsRunning = false;
+    public bool runOnStart = false;
 
     public TMP_Text timerText;
 
+    private void Awake()
+    {
+        GameManager.instance.GlobalTimer = this;
+    }
+
     private void Start()
     {
-        timerIsRunning = true;
-        GameManager.instance.GlobalTimer = this;
+        if (runOnStart)
+            timerIsRunning = true;
     }
 
     private void Update()

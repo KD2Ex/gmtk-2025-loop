@@ -231,8 +231,13 @@ public class GameManager : MonoBehaviour
         
         
         difficultyTimer.Start();
+        
         if (spawnOnStart)
             InitLevel();
+        else
+        {
+            difficultyTimer.Pause();
+        }
     }
 
     private void OnEnable()
@@ -298,6 +303,7 @@ public class GameManager : MonoBehaviour
         print(spawnedEnemies.Count);
         
         GlobalTimer.Resume();
+        difficultyTimer.Resume();
     }
 
     public void ExitLoop()
@@ -308,6 +314,7 @@ public class GameManager : MonoBehaviour
         OnHubEnter?.Invoke();
         
         GlobalTimer.Pause();
+        difficultyTimer.Pause();
     }
 
     private void RemoveAllSpawnedEnemies()
