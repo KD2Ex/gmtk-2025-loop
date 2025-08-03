@@ -6377,6 +6377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUB
       objectReference: {fileID: 0}
+    - target: {fileID: 2440693637695957450, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2589402415592948623, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -6416,6 +6420,10 @@ PrefabInstance:
     - target: {fileID: 4928412169668286525, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058343746260380251, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15.97
       objectReference: {fileID: 0}
     - target: {fileID: 5093372653581454015, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: m_CallbackLayers.m_Bits
