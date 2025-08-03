@@ -95,6 +95,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Image ammoImage;
     [SerializeField] private Image hpImage;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject deathPanel;
 
     
     public bool pauseOpen;
@@ -652,9 +653,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public void OnDeathAnimation()
     {
-        pausePanel.SetActive(true);
+        deathPanel.SetActive(true);
+        deathPanel.transform.GetChild(0).GetComponent<TypeWriterEffect>().SetText($"STAGES COMPLETED {GameManager.instance.stagesCompleted}");
         Time.timeScale = 0f;
-        pauseOpen = true;
     }
 
     public void Restart()
@@ -675,6 +676,7 @@ public class Player : MonoBehaviour, IDamageable
         healthComponent.isDead = false;
         
         pausePanel.SetActive(false);
+        deathPanel.SetActive(false);
         Time.timeScale = 1f;
         pauseOpen = false;
         

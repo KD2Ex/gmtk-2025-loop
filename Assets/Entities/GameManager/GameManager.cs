@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
     public int DifficultyLevel;
     [ReadOnly] public float Coeff;
 
-    private int stagesCompleted = 0;
+    public int stagesCompleted = 0;
     private float stageFactor = 0;
     private int minutesPassed = 0;
 
