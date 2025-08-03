@@ -719,11 +719,13 @@ public class Player : MonoBehaviour, IDamageable
     {
         Vector3 pointToSpawn = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         GameObject textMessage = Instantiate(textPrefab, pointToSpawn, Quaternion.identity);
-        
+
+
+        textMessage.GetComponent<Animator>().SetFloat("Speed", 0.5f);
         textMessage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
         textMessage.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = text;
         textMessage.transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
-        Destroy(textMessage, 0.5f);
+        Destroy(textMessage, 1f);
     }
     
 }

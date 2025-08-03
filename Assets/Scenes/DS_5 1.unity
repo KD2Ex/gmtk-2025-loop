@@ -55063,7 +55063,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 19
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -55088,7 +55088,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 76.91997, y: -18.6, z: -10}
+  m_LocalPosition: {x: 160.53354, y: -19.749022, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -296956,7 +296956,7 @@ MonoBehaviour:
   m_Follow: {fileID: 355445101}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 19
+    OrthographicSize: 16
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -296982,7 +296982,7 @@ Transform:
   m_GameObject: {fileID: 1853356932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 159.5, y: -20.232, z: -10}
+  m_LocalPosition: {x: 159.5, y: -19.848, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -297001,9 +297001,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BoundingShape2D: {fileID: 107924961}
-  m_Damping: 0.32
-  m_MaxWindowSize: 10.4
+  m_BoundingShape2D: {fileID: 557285493}
+  m_Damping: 0
+  m_MaxWindowSize: 0
   m_Padding: 0
 --- !u!114 &1853356936
 MonoBehaviour:
@@ -325766,10 +325766,6 @@ PrefabInstance:
     - target: {fileID: 6058826491878371296, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: coins
       value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422684906093031647, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
-      propertyPath: time
-      value: 0.33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
