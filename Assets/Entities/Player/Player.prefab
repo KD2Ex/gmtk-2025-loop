@@ -443,7 +443,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 0f27d2e05a4d10745916b4bec9cd8ec6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.18
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -774,6 +774,7 @@ MonoBehaviour:
   ammoImage: {fileID: 0}
   hpImage: {fileID: 0}
   pausePanel: {fileID: 0}
+  deathPanel: {fileID: 0}
   pauseOpen: 0
   mainCamera: {fileID: 0}
   slashRadiusFromPlayer: 1.226
@@ -790,7 +791,7 @@ MonoBehaviour:
   buyRelicClip: {fileID: 8300000, guid: 278ee4261484fb54e8f67b79cc5d6564, type: 3}
   healInWellClip: {fileID: 8300000, guid: 14d324fe6b360b5408dcef2b759ddd45, type: 3}
   deathClip: {fileID: 8300000, guid: 9533b7d271c34e844af024b5c0cf8762, type: 3}
-  gunshotClip: {fileID: 8300000, guid: d3e81022d7fffda4caeaca50151870f5, type: 3}
+  gunshotClip: {fileID: 8300000, guid: acc278b13f9d3a145bf6fd5112b33263, type: 3}
   enterLoopClip: {fileID: 8300000, guid: de65dbe9a277d5b4d97fd31469fd47a0, type: 3}
 --- !u!50 &5738671271156143622
 Rigidbody2D:
@@ -896,7 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9877fb8c16742a3984ecc396541d4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 30
+  Value: 100
   MaxValue: 100
   isDead: 0
 --- !u!114 &4226273577700598976
@@ -989,6 +990,7 @@ MonoBehaviour:
   firDot:
     Damage: 0
     TimeBetweenDamage: 0
+  ammoPerSecond: 0
 --- !u!114 &6058826491878371296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,6 +1053,7 @@ MonoBehaviour:
   cooldown: 0
   explosiveDamage: 0
   explosiveRadiusScale: 1
+  passiveAmmoGen: 0
   fireDot:
     Damage: 0
     TimeBetweenDamage: 0

@@ -216,7 +216,7 @@ MonoBehaviour:
   attack: {fileID: 6643224633923401321}
   healArea: {fileID: 6798851231250018709}
   radius: 1
-  healAmount: 0
+  healAmountScale: 0
 --- !u!50 &8449332707752757262
 Rigidbody2D:
   serializedVersion: 4
@@ -266,11 +266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.14
+      value: 45.96
       objectReference: {fileID: 0}
     - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47.17
+      value: 45.71
       objectReference: {fileID: 0}
     - target: {fileID: 698983687453418964, guid: 00e6062772f805c4780bc2c473282cab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -405,5 +405,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
-  attack: {fileID: 0}
-  radius: 1
+  attack: {fileID: 6643224633923401321}

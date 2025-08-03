@@ -158,11 +158,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             difficultyTimer = new Timer(30f,  false);
+            tracks.Shuffle();
             return;
         }
         
         Destroy(gameObject);
-        
         
         // enemies.Add(EnemyType.Touch, touchEnemy);
         // enemies.Add(EnemyType.Ranged, rangedEnemy);

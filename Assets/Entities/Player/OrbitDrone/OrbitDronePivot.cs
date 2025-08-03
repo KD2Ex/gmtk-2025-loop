@@ -1,6 +1,8 @@
 using System;
 using Attacks;
+using Health;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Entities.OrbitDrone
 {
@@ -17,38 +19,50 @@ namespace Entities.OrbitDrone
         [SerializeField] private Attack attack;
         [SerializeField] private HealArea healArea;
         [SerializeField] private float radius;
-        [SerializeField] private float healAmount = 0f;
+        [FormerlySerializedAs("healAmount")] [SerializeField] private float healAmountScale = 0f;
 
-        private float damageScale;
-        private float baseDamage;
+        private float damageScale = 0.25f;
         private Vector3 scale;
         private Quaternion ogRot;
+
+        private float rotationSpeedScale = 1;
+        private float ogRotationSpeed;
+
 
         
         private bool exec;
 
-        private float ogDamage;
+        private float ogDamageScale;
 
 
+        private HealthComponent playerHealth;
         public bool IsRunning => exec;
 
         private void Awake()
         {
-            ogDamage = attack.damage;
-            baseDamage = attack.damage;
+            ogDamageScale = damageScale;
+            ogRotationSpeed = rotationSpeed;
+            
             scale = attack.transform.localScale;
             ogRot = transform.rotation;
-            UpdateStats();
         }
 
         private void OnEnable()
         {
             GameManager.instance.OnHubEnter += healArea.Refill;
+            GameManager.instance.Player.Health.OnValueChanged += UpdateStats;
         }
 
         private void OnDisable()
         {
             GameManager.instance.OnHubEnter -= healArea.Refill;
+            GameManager.instance.Player.Health.OnValueChanged -= UpdateStats;
+        }
+
+        private void Start()
+        {
+            playerHealth = GameManager.instance.Player.Health;
+            UpdateStats(0, playerHealth.MaxValue);
         }
 
         private void Update()
@@ -58,13 +72,17 @@ namespace Entities.OrbitDrone
             transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
         }
 
-        public void UpdateStats()
+        public void UpdateStats(float _, float maxHealth)
         {
-            attack.damage = baseDamage;
-            attack.transform.localScale = scale * radius;
-            healArea.amount = healAmount;
+            var dmg = maxHealth * damageScale;
+            attack.damage = dmg;
             
-            healArea.gameObject.SetActive(healAmount > 0);
+            attack.transform.localScale = scale * radius;
+            healArea.amount = playerHealth.MaxValue * healAmountScale;
+            
+            healArea.gameObject.SetActive(healAmountScale > 0);
+
+            rotationSpeed = ogRotationSpeed * rotationSpeedScale;
         }
 
         public void AddModifier(OrbitModifierType type, float value)
@@ -72,17 +90,19 @@ namespace Entities.OrbitDrone
             switch (type)
             {
                 case OrbitModifierType.Damage:
-                    baseDamage += value;
+                    damageScale += value;
                     break;
                 case OrbitModifierType.Radius:
                     radius += value;
                     break;
                 case OrbitModifierType.Heal:
-                    healAmount += value;
+                    healAmountScale += value;
                     break;
             }
+
+            rotationSpeedScale += 0.1f;
             
-            UpdateStats();
+            UpdateStats(playerHealth.Value, playerHealth.MaxValue);
             
             attack.gameObject.SetActive(true);
             exec = true;
@@ -91,11 +111,12 @@ namespace Entities.OrbitDrone
         public void ResetOrbit()
         {
             radius = 1;
-            healAmount = 0;
+            rotationSpeedScale = 1;
+            rotationSpeed = ogRotationSpeed;
+            healAmountScale = 0;
             exec = false;
             attack.gameObject.SetActive(false);
-            attack.damage = ogDamage;
-            baseDamage = ogDamage;
+            attack.damage = 100f * ogDamageScale; // 100 default health * default damage scale
 
             transform.rotation = ogRot;
         }

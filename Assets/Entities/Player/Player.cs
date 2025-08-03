@@ -128,6 +128,7 @@ public class Player : MonoBehaviour, IDamageable
     
     private void Awake()
     {
+        GameManager.instance.Player = this;
         ogColor = sprite.color;
         ogMaxHealth = healthComponent.MaxValue;
         ogMoveSpeed = moveSpeed;
@@ -318,7 +319,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void UpdateRangedStats()
     {
-        var totalDamage = rangedModifiers.GetTotalValue(RangedModifierType.Damage, rangedWeapon.OgDamage);
+        var totalDamage = rangedModifiers.GetTotalValue(RangedModifierType.Damage, rangedWeapon.OgDamage, stats.damage);
         rangedWeapon.TotalDamage = totalDamage;
 
         var totalCooldown = rangedModifiers.GetTotalValue(RangedModifierType.Cooldown, rangedWeapon.OgCooldown);
@@ -493,7 +494,6 @@ public class Player : MonoBehaviour, IDamageable
     IEnumerator Start()
     {
         mainCamera = Camera.main;
-        GameManager.instance.Player = this;
         
         slashes.Add(attack, slashAnim);
 
@@ -558,6 +558,7 @@ public class Player : MonoBehaviour, IDamageable
         var baseHP = ogMaxHealth;
         var hp = playerModifiers.GetTotalValue(PlayerModifierType.HP, baseHP, stats.health);
         healthComponent.MaxValue = hp;
+        healthComponent.OnValueChanged?.Invoke(healthComponent.Value, healthComponent.MaxValue);
         
         OnHpChanged(healthComponent.Value, healthComponent.MaxValue);
     }

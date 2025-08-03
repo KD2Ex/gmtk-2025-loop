@@ -38,7 +38,7 @@ public class StatsUpgradeTrigger : MonoBehaviour
             case 1:
                 playerStats.health += health;
                 player.ShowUpgrade($"Health +{health}%");
-        
+                player.Health.Add(player.Health.MaxValue * health * 0.01f);
                 player.UpdatePlayerStats();
                 
                 break;
@@ -46,6 +46,7 @@ public class StatsUpgradeTrigger : MonoBehaviour
                 playerStats.damage += damage;
                 player.ShowUpgrade($"Damage +{damage}%");
                 player.UpdateAttackStats();
+                player.UpdateRangedStats();
                 break;
             case 3:
                 playerStats.moveSpeed += moveSpeed;

@@ -134,4 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modifierType: 2
-  value: 30
+  value: 0.15

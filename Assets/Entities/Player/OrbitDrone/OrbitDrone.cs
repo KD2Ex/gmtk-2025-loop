@@ -9,45 +9,25 @@ namespace Entities.OrbitDrone
     {
         public float rotationSpeed = 5f;
         public Attack attack;
-
-        public float radius = 1f;
-
-        private void Update()
-        {
-            
-        }
-
         private void FixedUpdate()
         {
             
             transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
         }
 
-        public void UpdateStats()
+        private void OnEnable()
         {
-            radius = 1f;
-            attack.transform.localScale *= radius;
+            attack.OnHit += OnHit;
         }
 
-        // public float Damage = 50;
-        // public float KnockbackForce = 10;
-        //
-        // private void OnTriggerEnter2D(Collider2D other)
-        // {
-        //     var damageable = other.GetComponent<IDamageable>();
-        //
-        //     if (damageable == null) return;
-        //     
-        //     var dir = (other.transform.position - transform.position).normalized;
-        //
-        //     var msg = new DamageMessage
-        //     {
-        //         damage = Damage,
-        //         knockbackForce = KnockbackForce,
-        //         dir = dir
-        //     };
-        //     
-        //     damageable.TakeDamage(msg);
-        // }
+        private void OnDisable()
+        {
+            attack.OnHit -= OnHit;
+        }
+
+        private void OnHit(Collider2D other)
+        {
+            print($"Orbit dealt {attack.damage} to {other.name}");
+        }
     }
 }

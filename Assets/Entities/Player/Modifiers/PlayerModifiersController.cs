@@ -27,6 +27,7 @@ namespace Entities.Modifiers
             {
                 case PlayerModifierType.HP:
                     maxHP += modifier.value;
+                    player.Health.Add(modifier.value);
                     break;
                 case PlayerModifierType.MoveSpeed:
                     baseMoveSpeed += modifier.value;
