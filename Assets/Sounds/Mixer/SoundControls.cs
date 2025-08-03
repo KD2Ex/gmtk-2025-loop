@@ -9,6 +9,9 @@ public class SoundControls : MonoBehaviour
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private GameObject sfxButton;
     [SerializeField] private GameObject mscButton;
+
+    [SerializeField] private Color offColor;
+    [SerializeField] private Color onColor;
     
     public bool sfxTurned;
     public bool musicTurned;
@@ -18,8 +21,14 @@ public class SoundControls : MonoBehaviour
 
     private float ogSFX;
     private float ogMusic;
+
+    private Image buttonImage;
+    private Image musicButtonImage;
     
-    
+    private TMP_Text sfxButtonText;
+    private TMP_Text musicButtonText;
+
+    private Color ogFontColor;
 
     private void Awake()
     {
@@ -29,6 +38,14 @@ public class SoundControls : MonoBehaviour
         mixer.GetFloat("Music", out var music);
         ogSFX = sfx;
         ogMusic = music;
+        
+        buttonImage = sfxButton.GetComponent<Image>();
+        musicButtonImage = mscButton.GetComponent<Image>();
+        
+        sfxButtonText = sfxButton.GetComponentInChildren<TMP_Text>();
+        musicButtonText = mscButton.GetComponentInChildren<TMP_Text>();
+        
+        ogFontColor = sfxButtonText.color;
     }
 
     private void OnEnable()
@@ -41,12 +58,16 @@ public class SoundControls : MonoBehaviour
     {
         if (sfxTurned)
         {
-            sfxAnim.SetTrigger("Unpressed");
+            //sfxAnim.SetTrigger("Unpressed");
+            buttonImage.color = offColor;
+            sfxButtonText.color = onColor;
             mixer.SetFloat("SFX", -80f);
         }
         else
         {
-            sfxAnim.SetTrigger("Unpressed");
+            buttonImage.color = onColor;
+            sfxButtonText.color = ogFontColor;
+            //sfxAnim.SetTrigger("Unpressed");
             mixer.SetFloat("SFX", ogSFX);
         }
         
@@ -58,12 +79,14 @@ public class SoundControls : MonoBehaviour
     {
         if (musicTurned)
         {
-            mscAnim.SetTrigger("Unpressed");
+            musicButtonImage.color = offColor;
+            musicButtonText.color = onColor;
             mixer.SetFloat("Music", -80f);
         }
         else
         {
-            mscAnim.SetTrigger("Unpressed");
+            musicButtonImage.color = onColor;
+            musicButtonText.color = ogFontColor;
             mixer.SetFloat("Music", ogMusic);
         }
 

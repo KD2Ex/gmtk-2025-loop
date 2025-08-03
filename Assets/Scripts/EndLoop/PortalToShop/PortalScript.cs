@@ -36,7 +36,7 @@ public class PortalScript : MonoBehaviour
         if (!blockOnExit) // enetered loop
         {
             //cinemachine.GetComponent<CinemachineConfiner2D>().enabled = false;
-            cameraManager.SetLoopBounds();
+            //cameraManager.SetLoopBounds();
             GameManager.instance.EnterLoop();
 
             switch (arrowToShow)
@@ -54,7 +54,7 @@ public class PortalScript : MonoBehaviour
         else // entered hub
         {
             //cinemachine.GetComponent<CinemachineConfiner2D>().enabled = true;
-            cameraManager.SetHubBounds();
+            //cameraManager.SetHubBounds();
             GameManager.instance.ExitLoop();
         }
         

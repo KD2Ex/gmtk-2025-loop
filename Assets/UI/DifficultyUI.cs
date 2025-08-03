@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class DifficultyUI : MonoBehaviour
@@ -42,6 +38,9 @@ public class DifficultyUI : MonoBehaviour
                 bar.fillAmount = 0.873f;
                 break;
             case 10:
+                bar.fillAmount = 1f;
+                break;
+            default:
                 bar.fillAmount = 1f;
                 break;
         }

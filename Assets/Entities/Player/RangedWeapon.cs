@@ -116,7 +116,9 @@ namespace Entities
 
         public void GenerateAmmo()
         {
+            print(generationProgress);
             if (currentAmmo == maxAmmo) return;
+            print(generatePerHit);
             generationProgress += generatePerHit;
             if (generationProgress >= 1f)
             {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Cinemachine;
 using UnityEngine;
 
@@ -16,6 +17,17 @@ public class CameraManager : MonoBehaviour
     {
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
         confier = GetComponent<CinemachineConfiner2D>();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(InvalidateConfinerCache(confier));
+    }
+    
+    private IEnumerator InvalidateConfinerCache(CinemachineConfiner2D confiner)
+    {
+        yield return new WaitForEndOfFrame();
+        confiner.InvalidateCache();
     }
 
     private void Start()

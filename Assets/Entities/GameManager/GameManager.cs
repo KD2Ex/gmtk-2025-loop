@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Entities.Enemies;
 using Entities.Enemies._1_TouchEnemy;
 using Entities.Enemies._2_RangedEnemy;
@@ -151,6 +152,12 @@ public class GameManager : MonoBehaviour
     public AudioClip loopMusic;
 
     public List<AudioClip> tracks = new();
+
+    // public CinemachineVirtualCamera hubCamera;
+    public CinemachineVirtualCamera cinemachineLoopCamera;
+    
+    public Camera hubCamera;
+    public Camera loopCamera;
       
     private void Awake()
     {
@@ -341,6 +348,16 @@ public class GameManager : MonoBehaviour
         difficultyTimer.Resume();
         
         Player.PlayEnterLoopSound();
+        hubCamera.enabled = false;
+        loopCamera.enabled = true;
+        
+        loopCamera.tag = "MainCamera";
+        hubCamera.tag = "Untagged";
+
+        Player.mainCamera = loopCamera;
+
+        cinemachineLoopCamera.Follow = Player.transform;
+        
         return;
         musicSource.clip = loopMusic;
         musicSource.volume = 1f;
@@ -357,6 +374,17 @@ public class GameManager : MonoBehaviour
         
         GlobalTimer.Pause();
         difficultyTimer.Pause();
+
+        hubCamera.enabled = true;
+        hubCamera.tag = "MainCamera";
+        
+        loopCamera.enabled = false;
+        loopCamera.tag = "Untagged";
+
+        Player.mainCamera = hubCamera;
+
+        cinemachineLoopCamera.Follow = null;
+        // cinemachine pos
 
         // loopMusicPosition = musicSource.time;
         //

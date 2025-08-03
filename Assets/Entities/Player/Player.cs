@@ -151,7 +151,6 @@ public class Player : MonoBehaviour, IDamageable
         dashCooldownTimer = new Timer(dashCooldown, true);
         dashCooldownTimer.Timeout += OnDashCooldown;
         
-        UpdateAttackStats();
     }
 
     private void OnEnable()
@@ -169,6 +168,7 @@ public class Player : MonoBehaviour, IDamageable
         attackAction.canceled += OnAttack;
 
         pauseAction.started += OnPause; 
+        
         dashAction.started += OnDash;
 
         shootAction.started += OnShoot;
@@ -196,19 +196,22 @@ public class Player : MonoBehaviour, IDamageable
         attackAction.started -= OnAttack;
         attackAction.canceled -= OnAttack;
         
-        dashAction.started -= OnDash;
-
         pauseAction.started -= OnPause;
         
-        dash.Finished -= OnDashFinished;
+        dashAction.started -= OnDash;
+
         
         shootAction.started -= OnShoot;
         shootAction.canceled -= OnShoot;
+        
+        dash.Finished -= OnDashFinished;
         
         healthComponent.OnValueChanged -= OnHpChanged;
         
         attack.OnHit -= OnAttackHit;
         rangedWeapon.OnAmmoChanged -= OnAmmoUpdated;
+
+        Time.timeScale = 1f;
     }
 
     private void OnHpChanged(float current, float max)
@@ -309,6 +312,7 @@ public class Player : MonoBehaviour, IDamageable
         attack.transform.parent.localScale = ogAttackScale * radius;
         
         var ammoGen = meleeModifiers.GetTotalValue(MeleeModifierType.AmmoGeneration, rangedWeapon.OgAmmoGen);
+        print("Ammo gen ");
         rangedWeapon.generatePerHit = ammoGen;
 
         print(totalDamage + " " + totalKnockback + " " + radius + " " + ammoGen);
@@ -503,6 +507,7 @@ public class Player : MonoBehaviour, IDamageable
             animator.Play("Slash", 0, 1f);
         }
 
+        UpdateAttackStats();
         yield return null;
         
         healthComponent.OnValueChanged?.Invoke(healthComponent.Value, healthComponent.MaxValue);
