@@ -39,6 +39,7 @@ namespace Entities.Enemies._4_DashEnemy
             ogColor = sprite.color;
             dashChargeTimer = new Timer(dashChargeTime, true);
             dashCooldown = new Timer(dashCooldownTime, true);
+            soulDropCount = 2;
         }
 
         protected override void Start()

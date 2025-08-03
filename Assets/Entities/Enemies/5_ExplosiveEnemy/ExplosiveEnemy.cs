@@ -32,6 +32,7 @@ public class ExplosiveEnemy : Enemy, IDamageable
             health.Value = 50;
             health.MaxValue = 50;
         }
+        soulDropCount = 2;
     }
 
 

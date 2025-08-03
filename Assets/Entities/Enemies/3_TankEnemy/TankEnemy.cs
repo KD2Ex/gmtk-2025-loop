@@ -36,6 +36,8 @@ namespace Entities.Enemies._3_TankEnemy
 
             attack.damage = damage;
             attack.knockbackForce = knockbackForce;
+
+            soulDropCount = 2;
         }
 
         private void Update()

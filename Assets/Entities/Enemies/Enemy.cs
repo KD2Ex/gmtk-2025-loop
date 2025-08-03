@@ -23,6 +23,8 @@ namespace Entities.Enemies
         [SerializeField] private GameObject coinPrefab;
         [SerializeField] private GameObject textPrefab;
 
+        protected int soulDropCount = 1;
+
         protected virtual void Awake()
         {
             scale = GameManager.instance.GetEnemyScale();
@@ -61,7 +63,20 @@ namespace Entities.Enemies
 
         protected virtual void DropGold()
         {
-            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            // var count = 1;
+            // if (GameManager.instance.DifficultyLevel == 1)
+            // {
+            //     count = 1;
+            // }
+            // else
+            // {
+            //     count = GameManager.instance.DifficultyLevel / 2;
+            // }
+
+            for (int i = 0; i < soulDropCount; i++)
+            {
+                GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            }
         }
 
         protected virtual void Die()
