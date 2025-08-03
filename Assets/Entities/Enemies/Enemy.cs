@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Attacks;
 using Health;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Entities.Enemies
@@ -76,7 +77,9 @@ namespace Entities.Enemies
 
             for (int i = 0; i < soulDropCount; i++)
             {
-                GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+                Vector3 pointToSpawn = new Vector2(transform.position.x + Random.insideUnitCircle.x * 2,
+                    transform.position.y + Random.insideUnitCircle.y * 2);
+                GameObject coin = Instantiate(coinPrefab, pointToSpawn, Quaternion.identity);
             }
         }
 
