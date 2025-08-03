@@ -37,6 +37,9 @@ namespace Entities.Modifiers
             player.RangedWeapon.ExplosiveRadiusScale = 1;
             player.RangedWeapon.firDot.Damage = 0;
             player.RangedWeapon.firDot.TimeBetweenDamage = 0;
+
+            passiveAmmoGen = 0;
+            player.RangedWeapon.ammoPerSecond = 0;
         }
         
         public void AddModifier(RangedModifierType type, Modifier modifier)
@@ -48,6 +51,10 @@ namespace Entities.Modifiers
                     break;
                 case RangedModifierType.Cooldown:
                     cooldown += modifier.value;
+                    break;
+                case RangedModifierType.AmmoGen:
+                    passiveAmmoGen += modifier.value;
+                    player.RangedWeapon.ammoPerSecond = passiveAmmoGen;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -102,6 +109,8 @@ namespace Entities.Modifiers
                     totalBase = baseValue;
                     result = totalBase - totalBase * (cooldown * 0.01f);
                     return result;
+                case RangedModifierType.AmmoGen:
+                    return passiveAmmoGen;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }

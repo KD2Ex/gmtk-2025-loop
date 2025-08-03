@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2017172187830424139, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: description
-      value: +5% Fire Rate
+      value: +0.2 Ammo Per Second
       objectReference: {fileID: 0}
     - target: {fileID: 4978651005446105777, guid: 30248d798f6e8924e8c65fa639410597, type: 3}
       propertyPath: m_LocalPosition.x
@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86300d21fbcc447abed99c27d105e320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  modifierValue: 5
+  type: 4
+  modifierValue: 0.2
   fireDot:
     Damage: 0
     TimeBetweenDamage: 0

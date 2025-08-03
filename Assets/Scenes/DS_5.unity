@@ -6391,7 +6391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3711806153934758276, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: relics.Array.size
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3711806153934758276, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: relics.Array.data[6]
@@ -6429,6 +6429,10 @@ PrefabInstance:
       propertyPath: relics.Array.data[14]
       value: 
       objectReference: {fileID: 2378799811423638037, guid: 33b630fe93da34542b2eb1454fa0bf1c, type: 3}
+    - target: {fileID: 3711806153934758276, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
+      propertyPath: relics.Array.data[15]
+      value: 
+      objectReference: {fileID: 2378799811423638037, guid: a33e0ea1409586243ab8017dcb188209, type: 3}
     - target: {fileID: 3777020998146653941, guid: 5396ca0d3d029c34aa3888bd9eed038c, type: 3}
       propertyPath: m_Layer
       value: 8

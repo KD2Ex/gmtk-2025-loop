@@ -41,7 +41,10 @@ namespace Entities
         public FireDoT firDot;
 
         private Player player;
+
+        private Timer ammoGenTimer; 
         
+        public float ammoPerSecond = 0f;
 
         private void Awake()
         {
@@ -53,16 +56,20 @@ namespace Entities
             TotalCooldown = cooldown;
 
             player = GetComponent<Player>();
+            
+            ammoGenTimer = new Timer(1f, false);
         }
 
         private void OnEnable()
         {
             cooldownTimer.Timeout += OnCooldown;
+            ammoGenTimer.Timeout += OnAmmoGenTimer;
         }
 
         private void OnDisable()
         {
             cooldownTimer.Timeout -= OnCooldown;
+            ammoGenTimer.Timeout -= OnAmmoGenTimer;
         }
 
         private void OnCooldown()
@@ -73,6 +80,12 @@ namespace Entities
         private void Update()
         {
             cooldownTimer.Tick(Time.deltaTime);
+            ammoGenTimer.Tick(Time.deltaTime);
+        }
+
+        private void Start()
+        {
+            ammoGenTimer.Start();
         }
 
         public void Shoot(Vector2 dir)
@@ -116,5 +129,30 @@ namespace Entities
                 OnAmmoChanged?.Invoke(currentAmmo);
             }
         }
+        
+        public void GenerateAmmo(float value)
+        {
+            if (currentAmmo == maxAmmo) return;
+            
+            generationProgress += value;
+            
+            if (generationProgress >= 1f)
+            {
+                var amount = (int)generationProgress;
+                currentAmmo += amount;
+                generationProgress -= amount;
+                
+                currentAmmo = Mathf.Clamp(currentAmmo, 0, maxAmmo);
+                
+                OnAmmoChanged?.Invoke(currentAmmo);
+            }
+        }
+
+        public void OnAmmoGenTimer()
+        {
+            if (ammoPerSecond == 0) return;
+            GenerateAmmo(ammoPerSecond);
+        }
+        
     }
 }
