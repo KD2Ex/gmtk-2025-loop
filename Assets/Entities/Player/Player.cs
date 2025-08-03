@@ -49,6 +49,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Volume volume;
     [SerializeField] public OrbitDronePivot orbit;
+    [SerializeField] private ChromaticAberration chromaticAberration;
     
     [Space(5)]
     [SerializeField] private TMP_Text statsText;
@@ -150,6 +151,7 @@ public class Player : MonoBehaviour, IDamageable
         
         dashCooldownTimer = new Timer(dashCooldown, true);
         dashCooldownTimer.Timeout += OnDashCooldown;
+        volume.profile.TryGet(out chromaticAberration);
         
     }
 
@@ -641,7 +643,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 1f;
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 1f;
-        volume.profile.TryGet(out ChromaticAberration chromaticAberration);
         chromaticAberration.intensity.value = 0.3f;
         
         yield return new WaitForSeconds(0.3f);
