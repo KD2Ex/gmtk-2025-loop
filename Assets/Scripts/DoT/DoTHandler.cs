@@ -41,6 +41,12 @@ namespace DoT
 
         private void DealDamage()
         {
+            if (health.isDead)
+            {
+                enabled = false;
+                return;
+            }
+            
             health.Remove(damage);
             if (health.isDead)
             {

@@ -10,6 +10,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using Entities.OrbitDrone;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private GameObject textPrefab;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Volume volume;
+    [SerializeField] public OrbitDronePivot orbit;
     
     [Space(5)]
     [SerializeField] private TMP_Text statsText;
@@ -472,7 +474,6 @@ public class Player : MonoBehaviour, IDamageable
         {
             var animator = slash.GetComponent<Animator>();
             animator.Play("Slash", 0, 1f);
-            
         }
 
         yield return null;
@@ -674,6 +675,14 @@ public class Player : MonoBehaviour, IDamageable
         
         input.currentActionMap.Enable();
         UpdateHP();
+        
+        UpdatePlayerStats();
+        UpdateAttackStats();
+        UpdateRangedStats();
+        UpdateDashStats();
+
+        slashes.Clear();
+        slashes.Add(attack, slashAnim);
     }
     
     protected IEnumerator Flash()

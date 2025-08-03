@@ -5,23 +5,20 @@ using UnityEngine;
 
 public class HealArea : MonoBehaviour
 {
-    [SerializeField] private float amount = 50f;
+    [SerializeField] public float amount = 50f;
     
+    private int healsCount = 1;
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (healsCount <= 0) return;
+        
         var player = other.GetComponent<Player>();
         player.Health.Add(amount);
+        healsCount--;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Refill()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        healsCount = 1;
     }
 }

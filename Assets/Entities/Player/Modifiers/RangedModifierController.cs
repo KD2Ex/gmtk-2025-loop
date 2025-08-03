@@ -30,6 +30,10 @@ namespace Entities.Modifiers
             explosiveRadiusScale = 1;
             fireDot.Damage = 0;
             fireDot.TimeBetweenDamage = 0;
+            player.RangedWeapon.ExplosiveDamage = 0;
+            player.RangedWeapon.ExplosiveRadiusScale = 1;
+            player.RangedWeapon.firDot.Damage = 0;
+            player.RangedWeapon.firDot.TimeBetweenDamage = 0;
         }
         
         public void AddModifier(RangedModifierType type, Modifier modifier)
