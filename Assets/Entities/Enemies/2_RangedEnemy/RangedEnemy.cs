@@ -4,6 +4,7 @@ using Health;
 using Projectiles;
 using Sensors;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Entities.Enemies._2_RangedEnemy
 {
@@ -20,6 +21,7 @@ namespace Entities.Enemies._2_RangedEnemy
         private Player player;
 
         private Timer attackTimer;
+        private AudioMixer mixer;
 
         protected override void Awake()
         {

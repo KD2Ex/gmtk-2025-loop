@@ -18,6 +18,10 @@ namespace Entities.Enemies._3_TankEnemy
         [SerializeField] private float attackRestoreTime = .4f;
         [SerializeField] private float attackCooldownTime = 1f;
 
+        [SerializeField] private AudioClip approachClip;
+        [SerializeField] private AudioClip hitClip;
+        [SerializeField] private AudioClip deathClip;
+
         private Player player;
 
         private bool playerInAttackRange = false;
@@ -86,6 +90,7 @@ namespace Entities.Enemies._3_TankEnemy
         private void OnChaseSensorEnter(Player player)
         {
             this.player = player;
+            audioSource.PlayOneShot(approachClip, 1.2f);
         }
 
         private void OnAttackSensorEnter(Player player)
@@ -151,12 +156,13 @@ namespace Entities.Enemies._3_TankEnemy
             ShowDamageText(Mathf.RoundToInt(message.damage));
             StartCoroutine(Flash());
             
-            // if (health.isDead)
-            // {
-            //     Die();
-            //     return;
-            // }
+            if (health.isDead)
+            {
+                return;
+            }
             
+            SoundUtils.PlayWithRandomPitch(audioSource, hitClip);
+            //audioSource.PlayOneShot(hitClip, 1f);
             //print(health.Value);
             
             //StopAllCoroutines();
@@ -179,6 +185,8 @@ namespace Entities.Enemies._3_TankEnemy
             sprite.sortingOrder = -1;
             
             animator.Play("GolemDeath", 0, 0f);
+            
+            audioSource.PlayOneShot(deathClip, 1f);
         }
     }
 }

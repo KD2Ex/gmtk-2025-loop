@@ -404,8 +404,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public void PlayShotSound()
     {
-        audioSource.pitch = 1.18f;
-        audioSource.PlayOneShot(gunshotClip, 1f);
+        // audioSource.pitch = 1.18f;
+        // audioSource.PlayOneShot(gunshotClip, 1f);
+        SoundUtils.PlayWithRandomPitch(audioSource, gunshotClip);
     }
 
     private void OnDashFinished()

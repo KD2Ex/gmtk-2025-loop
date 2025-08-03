@@ -18,6 +18,8 @@ namespace Entities.Enemies._4_DashEnemy
         [SerializeField] private float dashChargeTime;
         [SerializeField] private float dashCooldownTime;
         
+        [SerializeField] private AudioClip approachClip;
+        
         private Player player;
         
         private Timer dashChargeTimer;
@@ -77,6 +79,7 @@ namespace Entities.Enemies._4_DashEnemy
         private void OnChaseSensorEnter(Player obj)
         {
             player = obj;
+            SoundUtils.PlayWithRandomPitch(audioSource, approachClip, .8f);
         }
         
         private void OnAttackSensorEnter(Player obj)

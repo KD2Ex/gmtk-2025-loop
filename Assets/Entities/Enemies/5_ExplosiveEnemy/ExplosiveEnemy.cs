@@ -18,6 +18,9 @@ public class ExplosiveEnemy : Enemy, IDamageable
     [SerializeField] private float accel = 15;
     [SerializeField] private float accelTime;
 
+    [SerializeField] private AudioClip approachClip;
+    [SerializeField] private AudioClip explosionClip;
+    [SerializeField] private AudioClip deathClip;
 
     private Player player;
 
@@ -68,6 +71,8 @@ public class ExplosiveEnemy : Enemy, IDamageable
         this.player = player;
         print("Spotted" +
               "");
+        
+        audioSource.PlayOneShot(approachClip, .8f);
     }
 
     private void OnReachedPlayer(Player player)
@@ -99,10 +104,12 @@ public class ExplosiveEnemy : Enemy, IDamageable
         //sprite.color = Color.black;
         animator.Play("TimeDeath");
         //Destroy(gameObject);
+        audioSource.PlayOneShot(deathClip, 1f);
     }
 
     private void Detonate()
     {
         attack.Execute(damage, knockbackForce);
+        audioSource.PlayOneShot(explosionClip, 1f);
     }
 }

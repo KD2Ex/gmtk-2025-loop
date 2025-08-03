@@ -145,6 +145,12 @@ public class GameManager : MonoBehaviour
     [Space(5)]
     [Header("Difficulty Scales")]
     public float EnemyFactor;
+
+    [Space(5)] [Header("music")] public AudioSource musicSource;
+    public AudioClip hubMusic;
+    public AudioClip loopMusic;
+
+    public List<AudioClip> tracks = new();
       
     private void Awake()
     {
@@ -163,6 +169,7 @@ public class GameManager : MonoBehaviour
         // enemies.Add(EnemyType.Tank, tankEnemy);
         // enemies.Add(EnemyType.Dash, dashEnemy);
         // enemies.Add(EnemyType.Explosive, explosiveEnemy);
+        
     }
     
 
@@ -263,6 +270,23 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         difficultyTimer.Tick(Time.deltaTime);
+        if (!musicSource.isPlaying)
+        {
+            PlayNextSong();
+        }
+    }
+
+    private int trackIndex = 0;
+
+    private void PlayNextSong()
+    {
+        musicSource.clip = tracks[trackIndex];
+        musicSource.Play();
+        trackIndex++;
+        if (trackIndex == tracks.Count)
+        {
+            trackIndex = 0;
+        }
     }
 
     private void DifficultyTimerTimeout()
@@ -306,6 +330,8 @@ public class GameManager : MonoBehaviour
         CalculateDifficultyLevel();
     }
 
+    private float loopMusicPosition = 0f;
+
     public void EnterLoop()
     {
         InitLevel();
@@ -315,6 +341,11 @@ public class GameManager : MonoBehaviour
         difficultyTimer.Resume();
         
         Player.PlayEnterLoopSound();
+        return;
+        musicSource.clip = loopMusic;
+        musicSource.volume = 1f;
+        musicSource.time = loopMusicPosition;
+        musicSource.Play();
     }
 
     public void ExitLoop()
@@ -326,6 +357,12 @@ public class GameManager : MonoBehaviour
         
         GlobalTimer.Pause();
         difficultyTimer.Pause();
+
+        // loopMusicPosition = musicSource.time;
+        //
+        // musicSource.clip = hubMusic;
+        // musicSource.volume = 1f;
+        // musicSource.Play();
     }
 
     private void RemoveAllSpawnedEnemies()

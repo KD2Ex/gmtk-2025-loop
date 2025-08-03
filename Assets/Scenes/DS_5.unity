@@ -16973,7 +16973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4920749071556892253, guid: 0d9d9dfb2a6385a4db117dd4aaf5142b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -325954,11 +325954,15 @@ PrefabInstance:
     - target: {fileID: 3404771855481362824, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: gunshotClip
       value: 
-      objectReference: {fileID: 8300000, guid: cc27ad8e3c4595249ba6a023822409ca, type: 3}
+      objectReference: {fileID: 8300000, guid: acc278b13f9d3a145bf6fd5112b33263, type: 3}
     - target: {fileID: 3404771855481362824, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 1853356933}
+    - target: {fileID: 4108799358466115009, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
+      propertyPath: Value
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4670631330782627419, guid: eaf5ed0c32faa7849a52c4f7cfed4650, type: 3}
       propertyPath: m_Pitch
       value: 1.18
@@ -326232,6 +326236,18 @@ PrefabInstance:
       propertyPath: playerSpawnPoint
       value: 
       objectReference: {fileID: 246063545}
+    - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
+      propertyPath: tracks.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a7d8d8a00c0a4d40895d5222e3d0cb1, type: 3}
+    - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
+      propertyPath: tracks.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 678ed6cae9b8a3b4baaa24865ffd9ed7, type: 3}
+    - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
+      propertyPath: tracks.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36ce66bb07e2ca346a55ff3f42880d70, type: 3}
     - target: {fileID: 2604034373417498934, guid: 2978710f6a0a42b4faf4fa66af32ff43, type: 3}
       propertyPath: spawners.Array.data[0]
       value: 
