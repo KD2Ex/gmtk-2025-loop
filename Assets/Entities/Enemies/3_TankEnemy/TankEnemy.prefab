@@ -200,7 +200,7 @@ MonoBehaviour:
   sprite: {fileID: 1128457883442665489}
   animator: {fileID: 2916861830055844065}
   attack: {fileID: 5676877522282112078}
-  damage: 20
+  damage: 25
   knockbackForce: 10
   coinPrefab: {fileID: 7588216586141399371, guid: aa86ee17d376dc94d9cd9bff03210ce6, type: 3}
   textPrefab: {fileID: 731498985030879977, guid: f6a708869b223d04c8bf0f016b1e9054, type: 3}
@@ -223,8 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9877fb8c16742a3984ecc396541d4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 150
-  MaxValue: 150
+  Value: 220
+  MaxValue: 220
   isDead: 0
 --- !u!114 &259688153506104951
 MonoBehaviour:
