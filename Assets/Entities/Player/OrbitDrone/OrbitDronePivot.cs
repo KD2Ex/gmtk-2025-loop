@@ -1,4 +1,5 @@
 using System;
+using Attacks;
 using UnityEngine;
 
 namespace Entities.OrbitDrone
@@ -6,6 +7,8 @@ namespace Entities.OrbitDrone
     public class OrbitDronePivot : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed;
+        [SerializeField] private Attack attack;
+        [SerializeField] private float radius;
         
         private void Update()
         {

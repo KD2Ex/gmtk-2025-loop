@@ -344,6 +344,9 @@ public class GameManager : MonoBehaviour
 
         GlobalTimer.currentTime = 0f;
         GlobalTimer.Pause();
+
+        Player.GetComponent<Inventory>().coins = 200;
+
     }
 
     public Action OnHubEnter;

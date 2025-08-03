@@ -133,5 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1e516a0f6a418c8f61b1d7b5563a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeModifierType: 4
+  meleeModifierType: 5
   modifierValue: 0

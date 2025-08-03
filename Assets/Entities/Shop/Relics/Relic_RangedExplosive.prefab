@@ -138,5 +138,5 @@ MonoBehaviour:
   fireDot:
     Damage: 20
     TimeBetweenDamage: 0.5
-  explosiveDamage: 20
+  explosiveDamage: 0.2
   explosiveRadiusScale: 0.1
