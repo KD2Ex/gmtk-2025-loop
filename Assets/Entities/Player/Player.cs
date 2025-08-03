@@ -446,13 +446,11 @@ public class Player : MonoBehaviour, IDamageable
     }
 
 
-    private void OnPause(InputAction.CallbackContext context)
+    public void OnPause(InputAction.CallbackContext context)
     {
         if (pauseOpen)
         {
-            pausePanel.SetActive(false);
-            Time.timeScale = 1f;
-            pauseOpen = false;
+            ClosePanel();
         }
         else
         {
@@ -460,6 +458,13 @@ public class Player : MonoBehaviour, IDamageable
             Time.timeScale = 0f;
             pauseOpen = true;
         }
+    }
+
+    public void ClosePanel()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1f;
+        pauseOpen = false;
     }
     
     // Start is called before the first frame update
